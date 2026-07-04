@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI 学习资源 —— 课程、平台、社区、算力" />
+  <title>AI 学习 · 怪好用的 AI 工具</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css?v=20260703f" />
+
+  <style>
+    .hw-page { max-width: var(--content-width, 760px); margin: 0 auto; padding: 32px 0 80px; }
+    .hw-header { text-align: center; margin-bottom: 48px; }
+    .hw-header .hw-eyebrow { display: inline-block; font-size: 12px; letter-spacing: 3px; color: var(--blue-soft); font-weight: 500; text-transform: uppercase; }
+    .hw-header h1 { font-family: var(--font-serif); font-size: 28px; font-weight: 600; color: var(--text); margin: 8px 0 6px; }
+    .hw-header p { font-size: 14px; color: var(--text-mute); margin: 0 0 16px; }
+    .hw-header .hero-divider { margin: 0 auto; }
+    .hw-lead { font-family: var(--font-serif); font-size: 16.5px; color: var(--text-soft); line-height: 1.9; text-align: center; max-width: 600px; margin: 0 auto 48px; padding: 0 20px; }
+
+    .hw-card { position: relative; background: var(--surface); border: 1px solid var(--border-soft); border-radius: var(--radius-lg); padding: 32px 36px 32px 40px; margin-bottom: 24px; transition: transform .2s ease, box-shadow .2s ease; overflow: hidden; }
+    .hw-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 4px 0 0 4px; }
+    .hw-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+    .hw-card[data-accent="blue"]::before  { background: linear-gradient(180deg, #9eb8cd, #c7d7e6); }
+    .hw-card[data-accent="green"]::before { background: linear-gradient(180deg, var(--green), #b5d4be); }
+    .hw-card[data-accent="purple"]::before { background: linear-gradient(180deg, #b8adc6, #d2c9de); }
+    .hw-card[data-accent="camel"]::before { background: linear-gradient(180deg, var(--camel), var(--camel-soft)); }
+
+    .hw-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+    .hw-card-header .hw-icon { width: 22px; height: 22px; flex-shrink: 0; }
+    .hw-card-header h2 { font-family: var(--font-serif); font-size: 17px; font-weight: 600; color: var(--text); margin: 0; flex: 1; }
+    .hw-tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 1px; padding: 3px 10px; border-radius: 20px; border: 1px solid var(--border); white-space: nowrap; background: var(--bg-soft); color: var(--text-mute); }
+    .hw-tag.bought { background: rgba(139, 184, 156, 0.12); color: #5a8a6e; border-color: rgba(139, 184, 156, 0.3); }
+    .hw-tag.trial { background: rgba(107, 140, 174, 0.10); color: #5a7d9e; border-color: rgba(107, 140, 174, 0.25); }
+
+    .hw-card-body p { color: var(--text-soft); line-height: 1.9; margin: 0 0 0.9em; }
+    .hw-card-body p:last-child { margin-bottom: 0; }
+    .hw-card-body strong { color: var(--text); font-weight: 500; }
+
+    .hw-group-title { font-family: var(--font-serif); font-size: 14px; font-weight: 500; color: var(--text-mute); letter-spacing: 2px; text-align: center; margin: 40px 0 20px; position: relative; }
+    .hw-group-title::before, .hw-group-title::after { content: ''; display: inline-block; vertical-align: middle; width: 48px; height: 1px; background: var(--border); margin: 0 12px; }
+    .hw-back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--blue); text-decoration: none; transition: color .2s ease; margin-top: 32px; }
+    .hw-back:hover { color: var(--camel); }
+
+    .hw-card { animation: fadeUp .5s ease both; }
+    .hw-card:nth-child(1) { animation-delay: 0s; }
+    .hw-card:nth-child(2) { animation-delay: 0.06s; }
+    .hw-card:nth-child(3) { animation-delay: 0.12s; }
+    .hw-card:nth-child(4) { animation-delay: 0.18s; }
+    .hw-card:nth-child(5) { animation-delay: 0.24s; }
+    .hw-card:nth-child(6) { animation-delay: 0.30s; }
+    .hw-card:nth-child(7) { animation-delay: 0.36s; }
+    .hw-card:nth-child(8) { animation-delay: 0.42s; }
+    .hw-card:nth-child(9) { animation-delay: 0.48s; }
+    .hw-card:nth-child(10) { animation-delay: 0.54s; }
+
+    @media (max-width: 640px) {
+      .hw-page { padding: 24px 16px 64px; }
+      .hw-card { padding: 24px 20px 24px 28px; margin-bottom: 16px; }
+      .hw-card-header h2 { font-size: 15.5px; }
+      .hw-header h1 { font-size: 24px; }
+      .hw-lead { font-size: 15px; margin-bottom: 36px; }
+      .hw-group-title::before, .hw-group-title::after { width: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-left" style="display:flex;align-items:center;gap:16px;">
+        <a href="index.html" class="back-to-portal">← 返回星河</a>
+        <a href="tools.html" class="back-to-portal">← 返回工具列表</a>
+      </div>
+      <div class="header-right">
+        <a href="tools.html" class="site-title">
+          <span class="title-mark" style="background:linear-gradient(135deg,#6b8cae,#8fa5c9);">具</span>
+          <span class="title-text">怪好用的 AI 工具</span>
+        </a>
+        <div class="topic-switcher">
+          <button class="topic-switcher-btn" aria-haspopup="true" aria-expanded="false">
+            <span>主题</span>
+            <svg viewBox="0 0 24 24" width="14" height="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="topic-switcher-menu">
+            <a href="agent.html" class="topic-switcher-item">从小白玩转 AI Agent</a>
+            <a href="history.html" class="topic-switcher-item">AI 纵横 70 年</a>
+            <a href="complexity.html" class="topic-switcher-item">不要低估了 AI 系统的复杂度</a>
+            <a href="basics.html" class="topic-switcher-item">那些没人教过你的基础</a>
+            <a href="spillover.html" class="topic-switcher-item">学 AI 时的价值溢出</a>
+            <a href="tools.html" class="topic-switcher-item current">怪好用的 AI 工具</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="hw-page">
+
+      <header class="hw-header fade-up">
+        <span class="hw-eyebrow">LEARNING</span>
+        <h1>AI 学习</h1>
+        <p>线上资源多到学不完，问题不在于找不找得到</p>
+        <div class="hero-divider"></div>
+      </header>
+
+      <p class="hw-lead fade-up">这个时代学 AI，缺的从来不是资源——缺的是你想学的那股劲。课程、平台、社区、算力，全是免费的或者白菜价。只要你想学，就学得了。</p>
+
+      <div class="hw-group-title">课程</div>
+
+      <div class="hw-card" data-accent="blue">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10l-10-7-10 7 10 7z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg>
+          <h2>吴恩达 · deeplearning.ai</h2>
+          <span class="hw-tag bought">学过</span>
+        </div>
+        <div class="hw-card-body">
+          <p>吴恩达的课是很多人 AI 入门的起点，我就是看他的课起步的。2026 年 5 月他又出了新课——《AI Prompting for Everyone》，3 小时，零代码，面向所有人。在 <strong>deeplearning.ai</strong> 平台上，有付费有免费，课程质量在全球范围内都是第一梯队。</p>
+          <p>B 站上搜「吴恩达」「机器学习」有一大堆搬运和汉化版本，涵盖监督学习、非监督学习、神经网络基础全套。如果你英语还行，直接去 deeplearning.ai 官网看原版，体验更好。</p>
+        </div>
+      </div>
+
+      <div class="hw-card" data-accent="purple">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8c-1.5-2.5-5-2-7 1s-3 6-1 8 5 2 7-1c1.3-2 1.3-4.5 0-6"/><path d="M14 6c-1.5-2.5-5-2-7 1"/></svg>
+          <h2>廖雪峰 · Python</h2>
+          <span class="hw-tag trial">正在学</span>
+        </div>
+        <div class="hw-card-body">
+          <p>学 AI 绕不开 Python。我现在正在看廖雪峰的 Python 教程——中文教程里逻辑最清晰的一个，从基础语法到常用库都有覆盖，实战导向。网上免费的版本到处是，跟着敲一遍基本够用了。</p>
+        </div>
+      </div>
+
+      <div class="hw-card" data-accent="blue">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="12 17 17 22 7 22 12 17"/></svg>
+          <h2>B 站 · 中国大学 MOOC</h2>
+          <span class="hw-tag bought">用过</span>
+        </div>
+        <div class="hw-card-body">
+          <p>B 站是个巨大的 AI 教室——搜「人工智能」「深度学习」「LLM」，国内外的课几乎都能找到搬运或者中文精讲。国内的大学课去<strong>中国大学 MOOC</strong>（icourse163.org），清华北大上交的经典课程基本都上线了。国外的斯坦福 CS229（机器学习）、CS231n（计算机视觉）也能在 YouTube 和各大公开课平台找到完整版本。</p>
+          <p>资源大把大把的，关键是你有没有坐下来打开第一个视频的冲动。</p>
+        </div>
+      </div>
+
+      <div class="hw-group-title">上手实践</div>
+
+      <div class="hw-card" data-accent="green">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <h2>PaddlePaddle · 云平台</h2>
+          <span class="hw-tag trial">了解中</span>
+        </div>
+        <div class="hw-card-body">
+          <p>光看课不写代码等于没学。百度飞桨（PaddlePaddle）有免费的 GPU 算力资源给学习者和开发者用，不用自己买显卡也能跑模型训练。各大云平台——阿里云、腾讯云、华为云——也都有学生免费额度或者极低价格的学习套餐。</p>
+          <p>写一整页代码、报一整页错、改一整页 Bug——这个过程比看十节课都管用。算力不是门槛，愿不愿意动手才是。</p>
+        </div>
+      </div>
+
+      <div class="hw-card" data-accent="camel">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2"/><path d="M6 8v8"/><path d="M6 16c0 2 2 3 4 3"/><path d="M4 16c-2 0-2 3 0 3"/><circle cx="18" cy="18" r="2"/><path d="M18 16v-8"/><path d="M18 8c0-2-2-3-4-3"/><path d="M20 8c2 0 2-3 0-3"/></svg>
+          <h2>GitHub · Git · Gitee</h2>
+          <span class="hw-tag bought">在用</span>
+        </div>
+        <div class="hw-card-body">
+          <p>学 AI 绕不开版本控制。找开源项目、复现论文代码、管理自己的学习记录——全都需要 Git。</p>
+          <p><strong>GitHub</strong> 是生态最好的，全球 AI 开源项目的首选托管平台。国内访问经常不稳定，但你不是第一个遇到这个问题的人——直接问 DeepSeek「怎么上 GitHub」，它会给出一堆靠谱的办法。国内替代是<strong>码云（Gitee）</strong>，我用过，中文界面友好，国内访问快，不过上面大部分是镜像仓库，原创开源项目体量和质量跟 GitHub 还是有差距。</p>
+          <p>Git 本身不难学——clone、commit、push、pull，四个命令够你用了。</p>
+        </div>
+      </div>
+
+      <div class="hw-card" data-accent="camel">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <h2>CSDN · 各大技术社区</h2>
+          <span class="hw-tag bought">日常在看</span>
+        </div>
+        <div class="hw-card-body">
+          <p>遇到报错怎么办？把错误信息复制到搜索引擎，大概率 CSDN、知乎、博客园、SegmentFault 上已经有人踩过同样的坑了。AI 相关的讨论在 GitHub Issues、Reddit r/MachineLearning、Hugging Face 论坛也都很活跃。</p>
+          <p>2026 年学 AI，学习路径、工具、社区这三样全都拉满了——你想走的每一步，几乎都有人帮你趟过路了。剩下的，只是你愿不愿意迈出第一步。</p>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:40px;">
+        <a href="tools.html" class="hw-back">← 返回工具列表</a>
+      </div>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">工欲善其事，必先利其器</p>
+      <p class="footer-copy">© 2026 AIdreamer · 用 AI 学 AI</p>
+    </div>
+  </footer>
+</body>
+</html>

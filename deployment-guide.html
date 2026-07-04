@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>网页部署完全指南 · 从小白到上线</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: #f5f3ef; --surface: #fffefb;
+  --text: #3d3a35; --text-soft: #5c564a; --text-mute: #8a8376;
+  --camel: #c9a876; --camel-soft: #ddc9a8; --camel-light: #efe4d2;
+  --blue: #6b8cae; --blue-soft: #8fa5c9; --blue-light: #d8e4f2;
+  --green: #8fb89c; --green-soft: #b5d4be; --green-light: #dae9df;
+  --purple: #a89bc4; --purple-soft: #c4b9d8; --purple-light: #e8e2f0;
+  --border: #e0dbd2; --border-soft: #ece7de;
+  --shadow: 0 2px 8px rgba(92,86,74,0.06);
+  --shadow-hover: 0 4px 16px rgba(92,86,74,0.10);
+  --radius: 12px; --radius-sm: 8px;
+  --font-serif: 'Noto Serif SC', Georgia, serif;
+  --font-sans: 'Noto Sans SC', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans); font-size: 16px; line-height: 1.85;
+  color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased;
+}
+
+/* Layout */
+.container { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+
+/* Hero */
+.hero { text-align: center; padding: 60px 0 48px; }
+.hero-eyebrow { font-size: 12px; letter-spacing: 4px; color: var(--camel); font-weight: 500; text-transform: uppercase; }
+.hero h1 { font-family: var(--font-serif); font-size: 36px; font-weight: 700; color: var(--text); margin: 12px 0 8px; }
+.hero p { font-size: 16px; color: var(--text-mute); max-width: 520px; margin: 0 auto; }
+.hero .divider { width: 60px; height: 2px; background: linear-gradient(90deg, var(--camel), var(--camel-soft)); margin: 24px auto; border-radius: 1px; }
+
+/* Section */
+section { margin: 56px 0; }
+section h2 {
+  font-family: var(--font-serif); font-size: 24px; font-weight: 600;
+  color: var(--text); margin-bottom: 8px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+section h3 {
+  font-family: var(--font-serif); font-size: 18px; font-weight: 600;
+  color: var(--text-soft); margin: 28px 0 10px;
+}
+section h4 {
+  font-size: 15px; font-weight: 600; color: var(--camel); margin: 20px 0 6px;
+}
+section p { margin-bottom: 14px; color: var(--text-soft); text-align: justify; }
+section ul, section ol { margin: 8px 0 16px 24px; }
+section li { margin-bottom: 6px; color: var(--text-soft); }
+
+/* Cards */
+.card {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: var(--radius); padding: 28px 32px; margin-bottom: 20px;
+  box-shadow: var(--shadow); transition: box-shadow .2s ease;
+}
+.card:hover { box-shadow: var(--shadow-hover); }
+.card h4 { margin-top: 0; }
+.card .card-icon { font-size: 22px; margin-bottom: 8px; }
+
+/* Info box */
+.info-box {
+  background: var(--blue-light); border-left: 4px solid var(--blue);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 18px 24px; margin: 20px 0;
+}
+.info-box p { margin-bottom: 6px; font-size: 14.5px; }
+.info-box strong { color: var(--text); }
+
+.warn-box {
+  background: var(--camel-light); border-left: 4px solid var(--camel);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 18px 24px; margin: 20px 0;
+}
+.warn-box p { margin-bottom: 6px; font-size: 14.5px; }
+.warn-box strong { color: var(--text); }
+
+/* Comparison table */
+.comp-table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; }
+.comp-table th {
+  background: var(--camel-light); color: var(--text);
+  padding: 12px 16px; text-align: left; font-weight: 600; font-family: var(--font-serif);
+  font-size: 14px;
+}
+.comp-table th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+.comp-table th:last-child { border-radius: 0 var(--radius-sm) 0 0; }
+.comp-table td {
+  padding: 10px 16px; border-bottom: 1px solid var(--border-soft); vertical-align: top;
+  color: var(--text-soft); line-height: 1.6;
+}
+.comp-table tr:last-child td:first-child { border-radius: 0 0 0 var(--radius-sm); }
+.comp-table tr:last-child td:last-child { border-radius: 0 0 var(--radius-sm) 0; }
+
+/* Step list */
+.step { counter-increment: step-counter; margin-bottom: 24px; }
+.step::before {
+  content: counter(step-counter);
+  display: inline-block; width: 28px; height: 28px;
+  background: var(--camel); color: #fff; border-radius: 50%;
+  text-align: center; line-height: 28px; font-size: 14px; font-weight: 700;
+  margin-right: 10px; flex-shrink: 0;
+}
+.step-title { display: inline; font-weight: 600; color: var(--text); }
+.step-detail { margin: 6px 0 6px 38px; color: var(--text-soft); }
+.step-detail code {
+  background: var(--camel-light); padding: 2px 6px; border-radius: 4px;
+  font-family: var(--font-mono); font-size: 13px; color: var(--text);
+}
+
+/* Code block */
+pre {
+  background: #2b2d30; color: #e0dcd0; padding: 20px 24px;
+  border-radius: var(--radius-sm); overflow-x: auto; margin: 12px 0 18px;
+  font-family: var(--font-mono); font-size: 13px; line-height: 1.7;
+}
+code { font-family: var(--font-mono); font-size: 13px; }
+
+/* Tags */
+.tag { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 12px; margin-left: 8px; }
+.tag-green { background: var(--green-light); color: #5a8a6e; }
+.tag-red { background: #fce4e4; color: #b85c5c; }
+.tag-blue { background: var(--blue-light); color: var(--blue); }
+
+/* Summary box at end */
+.summary-box {
+  background: linear-gradient(135deg, var(--camel-light), #f7f2e8);
+  border: 2px solid var(--camel-soft);
+  border-radius: var(--radius); padding: 32px 36px; margin: 40px 0;
+}
+.summary-box h3 { color: var(--text); margin-top: 0; }
+.summary-box p { font-size: 15px; }
+
+/* Nav */
+.toc {
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: var(--radius); padding: 24px 28px; margin-bottom: 40px;
+}
+.toc h3 { font-family: var(--font-serif); font-size: 16px; margin: 0 0 12px; color: var(--text); }
+.toc ol { margin: 0 0 0 20px; font-size: 14px; }
+.toc li { margin-bottom: 4px; }
+.toc a { color: var(--blue); text-decoration: none; }
+.toc a:hover { color: var(--camel); }
+
+/* Back link */
+.back-link { display: inline-block; font-size: 14px; color: var(--blue); text-decoration: none; margin-bottom: 24px; transition: color .2s; }
+.back-link:hover { color: var(--camel); }
+
+@media (max-width: 640px) {
+  .container { padding: 24px 16px 60px; }
+  .hero { padding: 32px 0 28px; }
+  .hero h1 { font-size: 26px; }
+  .comp-table { font-size: 12px; }
+  .comp-table th, .comp-table td { padding: 8px 10px; }
+  .card { padding: 20px 22px; }
+  section h2 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<a href="index.html" class="back-link">← 返回星河</a>
+
+<header class="hero">
+  <div class="hero-eyebrow">DEPLOYMENT GUIDE</div>
+  <h1>网页部署完全指南</h1>
+  <p>从「什么是部署」到「我的博客怎么上线」，这一篇讲透。写给完全没碰过服务器的人。</p>
+  <div class="divider"></div>
+</header>
+
+<!-- TOC -->
+<nav class="toc">
+  <h3>📑 目录</h3>
+  <ol>
+    <li><a href="#what-is">什么是部署？——先把概念搞清楚</a></li>
+    <li><a href="#how-internet-works">铺垫：互联网是怎么找到你的网页的</a></li>
+    <li><a href="#methods">四种部署方式全景对比</a></li>
+    <li><a href="#security">安全性——你最关心的事，展开讲透</a></li>
+    <li><a href="#github-pages">GitHub Pages 详解</a></li>
+    <li><a href="#vercel">Vercel 详解</a></li>
+    <li><a href="#your-case">你的情况：静态 HTML 博客该用哪个</a></li>
+    <li><a href="#step-by-step">实操指南：从零到上线，每一步怎么走</a></li>
+    <li><a href="#summary">总结：一句话推荐</a></li>
+  </ol>
+</nav>
+
+<!-- ========== SECTION 1 ========== -->
+<section id="what-is">
+  <h2>一、什么是部署？——先把概念搞清楚</h2>
+
+  <h3>一个类比：从手稿到出版</h3>
+  <p>你现在写博客，就像在自己书房里写手稿。你的博客文件（HTML、CSS、JS、图片）都趴在你的电脑硬盘上。你用浏览器打开 <code>file:///C:/Users/dz202/.../index.html</code>——这叫「本地浏览」。只有你能看到，别人看不到。</p>
+  <p><strong>部署（Deployment）就是把这份手稿送到印刷厂，印成一本谁都能翻开的书。</strong>具体来说，就是把你的文件放到一台 24 小时开机、连着公网的计算机上，给它分配一个网址。任何人在地球上任何角落，只要在浏览器里输入那个网址，就能看到你的博客。</p>
+
+  <h3>部署 ≠ 买服务器</h3>
+  <p>很多人听到「部署」就想到「买一台服务器、装 Linux、配 Nginx、调防火墙」——这是十年前的做法。现在的静态博客部署，本质上就是 <strong>把文件传到一个能托管静态文件的服务商那里</strong>，跟把照片传到网盘差不多。下面会详细展开。</p>
+
+  <div class="info-box">
+    <p><strong>一句话总结：</strong>部署 = 把你的 HTML 文件从一个「只有你能打开」的位置，挪到一个「任何浏览器都能通过网址打开」的位置。</p>
+  </div>
+</section>
+
+<!-- ========== SECTION 2 ========== -->
+<section id="how-internet-works">
+  <h2>二、铺垫：互联网是怎么找到你的网页的</h2>
+
+  <p>在讲部署方式之前，需要先说清楚一个基础问题：当别人在浏览器输入 <code>https://你的博客.com</code> 时，互联网是怎么找到你电脑上的那些 HTML 文件的？这个过程需要经过三道门：</p>
+
+  <h4>第一道门：DNS 解析 —— 把名字翻译成门牌号</h4>
+  <p>互联网上的每一台服务器都有一个 IP 地址，比如 <code>76.76.21.21</code>。但人记不住这种数字，所以有了域名（比如 <code>vercel.app</code>）。DNS（Domain Name System）就是一个全球分布的「电话本」，你输入域名，它返回 IP 地址。这个过程通常在 50-200 毫秒内完成，你感知不到。</p>
+
+  <h4>第二道门：HTTPS 加密 —— 路上别让人偷看</h4>
+  <p>浏览器跟服务器通信时，所有的数据（HTML、CSS、图片、你的浏览记录）都是明文在网络上来回传的——就像寄明信片，每经过一个邮局都可能被翻看。HTTPS 就是给明信片套了个信封——SSL/TLS 加密确保中间人看不到内容。现代浏览器已经强制推 HTTPS：标记 HTTP 网站为「不安全」，拒绝加载混合内容。你部署的网站必须走 HTTPS。</p>
+
+  <h4>第三道门：Web 服务器 —— 打开文件递出去</h4>
+  <p>请求到达服务器后，服务器上跑着一个程序（如 Nginx、Vercel 的 Edge Network），它根据 URL 找到对应的文件，读出来，通过 HTTPS 返回给浏览器。你的博客是纯静态的（只有 HTML/CSS/JS），所以服务器要做的事情极其简单：收到请求 → 找到文件 → 丢回去。</p>
+
+  <div class="info-box">
+    <p><strong>对你的博客来说：</strong>DNS 找 IP → HTTPS 加密通道 → 服务器把你的 <code>index.html</code> 发回去。整个过程跟你用 <code>file://</code> 打开本地文件原理类似，只是多了一步网络传输。</p>
+  </div>
+</section>
+
+<!-- ========== SECTION 3 ========== -->
+<section id="methods">
+  <h2>三、四种部署方式全景对比</h2>
+
+  <p>互联网上部署静态网站的方式，可以分成四个流派。为了方便你理解，我按「掌控感从高到低」排列：</p>
+
+  <div class="card">
+    <h4>方式一：自己买 VPS，手动装一切</h4>
+    <p>租一台云服务器（阿里云 ECS / AWS EC2 / 腾讯云 CVM），SSH 连接进去，手动安装 Nginx/Apache，配防火墙、配 HTTPS 证书、配 DNS 解析、配自动续期。这意味着你要学 Linux 命令行、知道 systemd 是什么、能读懂 Nginx 配置文件、会排查 502 错误。自由度高到你可以在上面跑任何东西——Python 应用、数据库、定时任务。</p>
+    <p><strong>对你的博客：严重过度。</strong>你只是想展示几个 HTML 页面，不需要养一台服务器。一个月几十块钱的服务器费、配环境的时间成本、出问题了自己排查——都不值得。</p>
+  </div>
+
+  <div class="card">
+    <h4>方式二：对象存储 + CDN</h4>
+    <p>把文件上传到一个云存储桶（AWS S3 / 阿里云 OSS / 腾讯云 COS），然后配 CDN 加速。速度极快（全球节点分发），无限扩展。但需要手动配 HTTPS、手动做文件更新、手动处理缓存失效。适合有 DevOps 技能的人或者团队项目。</p>
+    <p><strong>对你的博客：能用，但没必要。</strong>你不需要 CDN 的极致速度（你的读者主要是国内）、不需要手动管理缓存策略。而且国内的对象存储往往需要备案域名——又多一件麻烦事。</p>
+  </div>
+
+  <div class="card">
+    <h4>方式三：静态网站托管平台（GitHub Pages / Vercel / Netlify / Cloudflare Pages）<span class="tag tag-green">推荐</span></h4>
+    <p>这类平台专门为「静态网站」设计。你把代码推到 GitHub，平台自动检测到变更，自动把文件部署到全球 CDN 节点，自动配好 HTTPS 证书，自动续期。你只需要做三件事：写代码 → 推到 GitHub → 平台自动上线。整个过程零运维。</p>
+    <p><strong>这是你的首选。</strong>下面会详细对比 GitHub Pages 和 Vercel（你已经有这两个平台的账号）。</p>
+  </div>
+
+  <div class="card">
+    <h4>方式四：一键部署服务（TiDB Cloud 部署 / 云开发平台）</h4>
+    <p>腾讯云 CloudBase、阿里云云开发、LeanCloud 等——直接在网页上拖文件、点几下按钮就上线。最简单。但限制多：免费额度小、绑平台生态、未来迁移成本高。适合做一个临时页或活动页，不适合长期博客。</p>
+  </div>
+
+  <!-- Comparison table -->
+  <table class="comp-table">
+    <thead>
+      <tr><th>维度</th><th>VPS 自建</th><th>对象存储+CDN</th><th>静态托管平台</th><th>一键平台</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>上手难度</strong></td>
+        <td>高（需 Linux 基础）</td>
+        <td>中（需配 HTTPS/DNS）</td>
+        <td><strong>低（推代码就行）</strong></td>
+        <td>极低（拖文件）</td>
+      </tr>
+      <tr>
+        <td><strong>月费</strong></td>
+        <td>约 ¥30-80</td>
+        <td>约 ¥5-20</td>
+        <td><strong>免费</strong></td>
+        <td>免费额度小</td>
+      </tr>
+      <tr>
+        <td><strong>HTTPS</strong></td>
+        <td>手动配 Let's Encrypt</td>
+        <td>手动配</td>
+        <td><strong>自动配+自动续</strong></td>
+        <td>自动</td>
+      </tr>
+      <tr>
+        <td><strong>访问速度</strong></td>
+        <td>取决于服务器位置</td>
+        <td>极快（CDN 全球）</td>
+        <td>很快</td>
+        <td>一般</td>
+      </tr>
+      <tr>
+        <td><strong>安全性</strong></td>
+        <td>完全自控（但也完全自担）</td>
+        <td>平台负责基础设施安全</td>
+        <td><strong>平台负责 + 自动 HTTPS</strong></td>
+        <td>平台负责</td>
+      </tr>
+      <tr>
+        <td><strong>适合场景</strong></td>
+        <td>需要后端/数据库</td>
+        <td>大流量商业站</td>
+        <td><strong>个人博客/文档站</strong></td>
+        <td>临时活动页</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ========== SECTION 4: SECURITY ========== -->
+<section id="security">
+  <h2>四、安全性——你最关心的事，展开讲透</h2>
+
+  <p>你说安全性是你最看重的。非常好——而且你的博客恰好是「安全性天然很高」的类型。下面我拆成几个层面，逐个告诉你有哪些风险、平台怎么防、你还需要做什么。</p>
+
+  <h3>第一层：传输安全 —— 数据在路上会不会被偷看？</h3>
+  <h4>风险是什么</h4>
+  <p>如果网站走 HTTP（非加密），任何中间节点（你公司的网关、公共 Wi-Fi、ISP 的路由器）都能看到你和读者之间传输的所有内容——网页内容、你输入了什么、点了什么链接。在公共 Wi-Fi 下，甚至有人可以劫持你的网页、插入广告或恶意代码。</p>
+  <h4>GitHub Pages 和 Vercel 怎么做</h4>
+  <p>两者都自动为你的网站启用 HTTPS，并自动续期证书。你什么都不用做。你的 `.vercel.json` 文件里甚至可以显式配置强制 HTTPS 重定向——也就是说，如果有人尝试用 HTTP 访问，会自动跳到 HTTPS。</p>
+  <h4>你还需要做什么</h4>
+  <p>如果将来你绑定了自己的域名（比如 `aidreamer.me`），需要确保 DNS 配置正确、证书续期没中断。但在使用平台默认域名（`xxx.github.io` 或 `xxx.vercel.app`）的阶段，这件事平台全包了，你零负担。你的博客是纯静态内容展示，没有登录、没有表单、没有支付——因此不需要担心数据泄漏、SQL 注入、XSS 跨站脚本攻击这一类动态网站特有的安全风险。你甚至没有数据库，攻击者能偷什么呢？你的 HTML 本来就是公开的。</p>
+
+  <h3>第二层：源代码安全 —— 你的代码会被别人拿走吗？</h3>
+  <h4>关键事实</h4>
+  <p>你的博客是纯前端代码——HTML、CSS、JavaScript。这些东西，<strong>任何人用浏览器打开你的网站时，按 F12 就能看到全部源码</strong>。所以不管你是不是把源码放在公开 GitHub 仓库里，代码本身就是「公开可见」的。没有安全问题，因为本来就没有秘密。</p>
+  <h4>GitHub Pages 的特殊情况</h4>
+  <p>GitHub Pages 要求你的代码放在公开仓库（除非你用付费的 GitHub Pro/Team/Enterprise）。这意味着你的所有 Markdown 草稿、JS 源码、构建脚本——全部对全世界可见。如果你在代码里不小心写了敏感信息（比如 API 密钥、个人邮箱），那就相当于公开了。</p>
+  <h4>Vercel 的优势</h4>
+  <p>Vercel 可以从私有 GitHub 仓库部署——你依然免费，但代码不公开。不过对你的博客来说，这个优势意义不大——你的 HTML 代码本来就公开可见。而且你目前也没有敏感信息在代码里。</p>
+  <h4>你还需要做什么</h4>
+  <p>检查一下你的构建脚本（`build.py`、`build_history.py`）和 JS 代码里，有没有写死任何密钥、Token、个人邮箱、家庭地址。你的博客目前没有这些内容——构建是全本地的，JS 里只有文章内容和逻辑。继续保持这个好习惯。</p>
+
+  <h3>第三层：供应链安全 —— 你依赖的第三方会不会作恶？</h3>
+  <h4>你依赖了什么</h4>
+  <p>你的博客目前引用了三个外部资源：</p>
+  <ul>
+    <li><code>cdnjs.cloudflare.com</code> —— marked.js 4.3.0 和 highlight.js 11.9.0</li>
+    <li><code>fonts.googleapis.com</code> —— Noto Serif/Sans SC 和 JetBrains Mono 字体</li>
+  </ul>
+  <h4>风险在哪</h4>
+  <p>如果 cdnjs.cloudflare.com 被劫持，他们可以替换你引用的 JS 文件——在你的网页里注入恶意代码。或者 marked.js 出了一个有漏洞的新版本但你锁定了版本（你做对了），所以这个风险已经降到最低。Google Fonts 国内加载可能很慢，但不会造成安全风险——字体文件不是可执行代码。</p>
+  <h4>Vercel 的供应链安全</h4>
+  <p>Vercel 自身的基础设施安全性在静态托管平台里是第一梯队的：SOC 2 合规、DDoS 防护、自动安全补丁。作为对比，GitHub Pages 背靠微软 Azure 基础设施，安全性也很成熟。两者都没有出现过静态网站被黑的安全事件。</p>
+  <h4>你还需要做什么</h4>
+  <p>你已经锁定了 CDN 版本号（marked@4.3.0、highlight.js@11.9.0），这是你对供应链安全做的最好的一件事。另外，如果你后续加上任何新的外部 JS 或者跟踪代码（Google Analytics、百度统计等），确保理解它们会收集什么数据。你的博客目前没有任何追踪脚本——这是最干净的状态。</p>
+
+  <h3>第四层：平台账户安全 —— 你的部署平台账号被黑怎么办？</h3>
+  <h4>最大风险</h4>
+  <p>如果有人拿到你的 GitHub 账号，他可以：修改你的博客内容、删除仓库、在你的页面上插入恶意链接。同样，如果拿到 Vercel 账号，可以篡改你的网站。</p>
+  <h4>防护措施</h4>
+  <ul>
+    <li><strong>开 GitHub 双因素认证（2FA）</strong>——这是最重要的一步。在 GitHub Settings → Password and authentication 里开启。手机上装个 Authenticator App（如 Microsoft Authenticator 或 Google Authenticator），每次登录需要输入动态验证码。</li>
+    <li><strong>Vercel 也开 2FA</strong>——Vercel 同样支持双因素认证。</li>
+    <li><strong>用强密码</strong>——不要用「123456」或者生日。用一个密码管理器（如 Bitwarden）生成随机密码。</li>
+    <li><strong>不要分享 Token</strong>——GitHub Personal Access Token、Vercel Token 绝对不要贴到公开的地方（包括你的代码仓库和博客文章）。</li>
+  </ul>
+
+  <h3>第五层：DDoS 攻击 —— 你的博客会被打挂吗？</h3>
+  <p>DDoS（分布式拒绝服务攻击）就是有人用大量伪造请求把服务器打挂。对你的个人博客来说：<strong>完全不值得担心。</strong>因为你的网站没有任何攻击价值（没有钱、没有用户数据、没有竞争对手），而且 GitHub Pages 和 Vercel 都有自动 DDoS 防护——他们的基础设施每天处理海量请求，个人博客那点流量根本触发不了任何问题。</p>
+
+  <div class="warn-box">
+    <p><strong>安全性总结：</strong>对纯静态 HTML 博客而言，「安全」其实很简单。你没有数据库可被拖库、没有 API 可被注入、没有用户登录可被撞库。你唯一需要关心的是：</p>
+    <p>1️⃣ 平台自动配好 HTTPS（GitHub Pages √、Vercel √）</p>
+    <p>2️⃣ 开双因素认证保护你的平台账号（需要你自己做）</p>
+    <p>3️⃣ 别在公开代码里写敏感信息（你已经做到了）</p>
+    <p>4️⃣ 锁定 CDN 库版本（你已经做到了）</p>
+  </div>
+</section>
+
+<!-- ========== SECTION 5: GITHUB PAGES ========== -->
+<section id="github-pages">
+  <h2>五、GitHub Pages 详解</h2>
+
+  <h3>它是什么</h3>
+  <p>GitHub Pages 是 GitHub 提供的免费静态网站托管服务。你把 HTML 文件放在一个 GitHub 仓库里，GitHub 自动把你的文件变成一个网站。域名默认是 <code>你的用户名.github.io</code>。</p>
+
+  <h3>怎么工作的</h3>
+  <p>GitHub Pages 在你仓库的 Settings → Pages 里有一个开关。你选定一个分支（比如 `main`），指定一个文件夹（比如根目录 `/` 或 `/docs`），然后 GitHub 就会自动把这个文件夹里的内容部署为一个网站。之后你每次往这个分支推送代码，GitHub 自动触发重新部署——通常在 1-2 分钟内生效。</p>
+  <p>GitHub Pages 背后用的是 Jekyll（一个静态网站生成器），但你可以通过在仓库根目录放一个空的 <code>.nojekyll</code> 文件来禁用它——这样 GitHub 就会直接把你的 HTML 文件原样托管，不做任何处理。你的博客正好需要这样。</p>
+
+  <h3>优点</h3>
+  <ul>
+    <li><strong>零额外注册</strong>：你已经有 GitHub 账号，不需要注册任何新服务。</li>
+    <li><strong>完全免费</strong>：无限制的流量和带宽（不过有软限制：每月 100GB 带宽、每小时 10 次构建——个人博客永远用不到上限）。</li>
+    <li><strong>HTTPS 自动配</strong>：勾选 Enforce HTTPS，证书自动申请和续期。</li>
+    <li><strong>国内访问尚可</strong>：GitHub Pages 在国内没有被墙，访问速度在可接受范围内（比 Vercel 稍慢，但能用）。</li>
+    <li><strong>极简工作流</strong>：推代码 = 部署。你跟平时写代码的工作流完全一致。</li>
+    <li><strong>仓库即网站</strong>：不需要额外配置，一个仓库里写代码，同一个仓库自动变成网站。</li>
+  </ul>
+
+  <h3>缺点</h3>
+  <ul>
+    <li><strong>要求公开仓库</strong>（免费版）：你的所有源码、Markdown 草稿都公开。如果你切换到私有仓库，GitHub Pages 需要付费的 GitHub Pro（$4/月）。</li>
+    <li><strong>没有构建步骤</strong>：GitHub Pages 只能托管静态文件，不能在部署时运行 `python build.py`。你必须本地运行 build 脚本，然后把生成好的文件一起推上去。你的博客恰好是这样工作的——你已经有了 `build.py`，每次改完文章本地跑一次，然后把整个 `blog/` 文件夹推上去。</li>
+    <li><strong>部署速度一般</strong>：更新后要等 1-5 分钟才能看到效果。</li>
+    <li><strong>自定义域名稍微多几步</strong>：配你自己的域名需要加 CNAME 文件和 DNS 记录。</li>
+  </ul>
+</section>
+
+<!-- ========== SECTION 6: VERCEL ========== -->
+<section id="vercel">
+  <h2>六、Vercel 详解</h2>
+
+  <h3>它是什么</h3>
+  <p>Vercel 是一个专注于前端部署的平台，由 Next.js 的团队打造。它不光能托管静态网站，还能部署全栈应用（带 API 路由、带数据库、带边缘函数）。但对你这个纯静态博客来说，它就是一个「更快的静态托管」。</p>
+
+  <h3>怎么工作的</h3>
+  <p>你连接 GitHub 仓库到 Vercel，Vercel 监听仓库的 push 事件。每次你推送代码到 `main` 分支，Vercel 自动拉取代码 → 构建（如果需要） → 部署到全球 CDN。域名默认是 <code>你的项目名.vercel.app</code>。Vercel 的 CDN 节点分布比 GitHub Pages 广，国内访问速度通常更快。</p>
+
+  <h3>优点</h3>
+  <ul>
+    <li><strong>更快</strong>：Vercel 的全球 CDN（Edge Network）节点覆盖比 GitHub Pages 更广，首次加载速度更快。</li>
+    <li><strong>支持私有仓库免费部署</strong>：你的 GitHub 仓库可以是私有的。</li>
+    <li><strong>支持构建步骤</strong>：如果你以后想在部署时自动运行 `python build.py`（而不是本地跑），Vercel 可以做。虽然你目前不需要。</li>
+    <li><strong>HTTPS 自动配</strong>：跟 GitHub Pages 一样，全自动。</li>
+    <li><strong>你已经有 `vercel.json`</strong>：你的博客根目录已经配好了 Vercel 缓存配置。</li>
+    <li><strong>部署速度极快</strong>：通常 15-60 秒完成。</li>
+    <li><strong>免费额度高</strong>：每月 100GB 带宽、6000 分钟构建时间——个人博客完全够用。</li>
+  </ul>
+
+  <h3>缺点</h3>
+  <ul>
+    <li><strong>多一个第三方平台</strong>：虽然是免费，但你的网站依赖两个平台（GitHub 存放代码 + Vercel 托管网站），比 GitHub Pages（一个平台搞定）多了一层依赖。</li>
+    <li><strong>学习曲线稍微高一点</strong>：需要理解 Vercel 的项目设置、环境变量等概念。但对你的简单场景来说，几乎不需要碰这些。</li>
+    <li><strong>国内访问偶尔慢</strong>：Vercel 的部分 IP 在某些网络环境下可能被限速（取决于运营商和地区）。</li>
+  </ul>
+
+  <div class="info-box">
+    <p><strong>你的 `vercel.json` 已经准备好了：</strong></p>
+    <p>你的博客根目录已经有一个 `vercel.json` 文件，里面配置了缓存策略。这意味着你连接 Vercel 后不需要任何额外配置——直接部署就能用，缓存策略自动生效。</p>
+  </div>
+</section>
+
+<!-- ========== SECTION 7: YOUR CASE ========== -->
+<section id="your-case">
+  <h2>七、你的情况：静态 HTML 博客该用哪个</h2>
+
+  <h3>你的项目的特征</h3>
+  <ul>
+    <li>纯静态：27 个 HTML 页面 + JS + CSS + 图片，零后端</li>
+    <li>内容已内联：`content.js` 和 `history-content.js` 是 build 产物，部署前本地运行 `build.py` 生成好</li>
+    <li>没有 API、没有数据库、没有登录系统</li>
+    <li>已有 GitHub 账号 + Vercel 账号</li>
+    <li>已有 `vercel.json` 配置文件</li>
+    <li>代码本身就可以公开（纯前端），没敏感信息</li>
+  </ul>
+
+  <h3>GitHub Pages vs Vercel，对比你的需求</h3>
+  <table class="comp-table">
+    <thead>
+      <tr><th>维度</th><th>GitHub Pages</th><th>Vercel</th><th>对你的影响</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>上手难度</strong></td>
+        <td>推代码就行</td>
+        <td>连 GitHub 就行</td>
+        <td>两者都简单，门槛相同</td>
+      </tr>
+      <tr>
+        <td><strong>HTTPS</strong></td>
+        <td>自动</td>
+        <td>自动</td>
+        <td>两者都满足</td>
+      </tr>
+      <tr>
+        <td><strong>仓库可见性</strong></td>
+        <td>必须公开（免费版）</td>
+        <td>可以私有</td>
+        <td><strong>对你不重要</strong>——HTML 代码天然公开</td>
+      </tr>
+      <tr>
+        <td><strong>国内访问速度</strong></td>
+        <td>可接受</td>
+        <td>略快</td>
+        <td>差异不大，都不是国内服务器</td>
+      </tr>
+      <tr>
+        <td><strong>部署速度</strong></td>
+        <td>1-5 分钟</td>
+        <td>15-60 秒</td>
+        <td>Vercel 更快，但不关键</td>
+      </tr>
+      <tr>
+        <td><strong>配置复杂度</strong></td>
+        <td>需要 `.nojekyll` + Settings 里开</td>
+        <td>需要连 GitHub 账号</td>
+        <td>GitHub Pages 少一步账号连接</td>
+      </tr>
+      <tr>
+        <td><strong>平台依赖</strong></td>
+        <td>只依赖 GitHub</td>
+        <td>依赖 GitHub + Vercel</td>
+        <td>GitHub Pages 更简洁</td>
+      </tr>
+      <tr>
+        <td><strong>免费</strong></td>
+        <td>是</td>
+        <td>是</td>
+        <td>两者都免费</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ========== SECTION 8: STEP BY STEP ========== -->
+<section id="step-by-step">
+  <h2>八、实操指南：从零到上线，每一步怎么走</h2>
+
+  <p>不管你选哪个平台，第一步都一样：把博客代码推上 GitHub。</p>
+
+  <!-- ---- Prerequisite ---- -->
+  <h3>前提：把代码推上 GitHub</h3>
+
+  <div style="counter-reset: step-counter;">
+  <div class="step">
+    <span class="step-title">在电脑上安装 Git</span>
+    <div class="step-detail">去 <code>https://git-scm.com/download/win</code> 下载 Windows 版 Git，一路默认安装。装完后打开终端（PowerShell 或 Git Bash），输入 <code>git --version</code>，看到版本号说明装好了。</div>
+  </div>
+
+  <div class="step">
+    <span class="step-title">配置 Git 用户名和邮箱</span>
+    <div class="step-detail">
+      <pre>git config --global user.name "AIdreamer"
+git config --global user.email "你的GitHub注册邮箱@example.com"</pre>
+      这个信息会出现在每次提交记录里。
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-title">在 GitHub 上创建新仓库</span>
+    <div class="step-detail">
+      打开 <code>github.com</code>，登录，点右上角「+」→「New repository」。<br>
+      仓库名：填 <code>my-ai-blog</code>（或任何你喜欢的名字）。<br>
+      可见性：选 <strong>Public</strong>（如果选 GitHub Pages 部署）。如果选 Vercel 部署，<strong>可以选 Private</strong>。<br>
+      不要勾选「Add a README file」——你的项目已经有 README 了。<br>
+      点「Create repository」。
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-title">把本地博客文件推送到 GitHub</span>
+    <div class="step-detail">
+      打开终端，进入你的博客目录：
+      <pre>cd "c:\Users\dz202\WorkBuddy\2026-07-01-17-10-44\blog"
+
+git init
+git add .
+git commit -m "初次提交：部署博客第一版"
+git branch -M main
+git remote add origin https://github.com/你的用户名/my-ai-blog.git
+git push -u origin main</pre>
+      这 6 行命令的含义：初始化 Git 仓库 → 添加所有文件 → 创建第一个提交 → 设置分支名为 main → 关联 GitHub 仓库 → 推上去。<br>
+      <strong>如果提示登录：</strong>GitHub 现在要求用 Personal Access Token 代替密码。去 GitHub Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token，勾选 `repo` 权限，生成后复制。终端提示密码时粘贴这个 token。
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-title">验证</span>
+    <div class="step-detail">刷新 GitHub 仓库页面，应该看到你的所有文件（index.html、posts/、css/、js/ 等）都出现在仓库里了。</div>
+  </div>
+  </div>
+
+  <div class="info-box">
+    <p><strong>⚠️ 别忘了：你的 `build.py` 产物！</strong></p>
+    <p>每次在本地改完文章后，先运行 <code>python build.py</code> 和 <code>python build_history.py</code> 生成最新的 <code>content.js</code> 和 <code>history-content.js</code>，然后再 <code>git add . && git commit && git push</code>。否则线上还是旧内容。</p>
+    <p>你也可以不把 <code>posts/</code> 目录（Markdown 源文件）推上去——但推上去也无妨，对安全无影响。</p>
+  </div>
+
+  <!-- ---- Option A: GitHub Pages ---- -->
+  <h3>方案 A：用 GitHub Pages 部署（推荐起步用这个）</h3>
+
+  <div style="counter-reset: step-counter;">
+  <div class="step">
+    <span class="step-title">创建 .nojekyll 文件</span>
+    <div class="step-detail">
+      GitHub Pages 默认会用 Jekyll 处理你的文件，但你不需要。在博客根目录创建一个空的 <code>.nojekyll</code> 文件：
+      <pre>echo "" > .nojekyll
+git add .nojekyll
+git commit -m "添加 .nojekyll 禁用 Jekyll"
+git push</pre>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-title">在 GitHub 仓库里开启 Pages</span>
+    <div class="step-detail">
+      打开你的 GitHub 仓库 → 顶部标签点 <strong>Settings</strong> → 左侧菜单点 <strong>Pages</strong>。<br>
+      Source：选 <strong>Deploy from a branch</strong>。<br>
+      Branch：选 <strong>main</strong>，文件夹选 <strong>/ (root)</strong>。<br>
+      点 <strong>Save</strong>。
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-title">等 1-2 分钟，刷新页面</span>
+    <div class="step-detail">
+      回到 Pages 设置页，会显示「Your site is live at <strong>https://你的用户名.github.io/my-ai-blog/</strong>」。点进去，你的星河首页应该就出来了。
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-title">开启强制 HTTPS</span>
+    <div class="step-detail">
+      在 Pages 设置页，勾选 <strong>Enforce HTTPS</strong>。等生效后，所有 HTTP 访问会自动跳到 HTTPS。
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-title">后续更新</span>
+    <div class="step-detail">
+      以后每次改了文章：本地运行 <code>python build.py</code> → <code>git add .</code> → <code>git commit -m "更新文章"</code> → <code>git push</code> → 等 1-2 分钟，线上自动更新。
+    </div>
+  </div>
+  </div>
+
+  <div class="warn-box">
+    <p><strong>⚠️ 绝对路径问题：</strong>如果你的博客内部链接用了绝对路径（如 <code>/css/style.css</code> 前导斜杠），在 GitHub Pages 上可能 404——因为你的网站根路径是 <code>/my-ai-blog/</code> 而不是 <code>/</code>。你博客里目前用的是相对路径（<code>css/style.css</code> 无前导斜杠），所以这个问题不存在。部署后如果某个页面白屏，优先检查是不是链接路径问题。</p>
+  </div>
+
+  <!-- ---- Option B: Vercel ---- -->
+  <h3>方案 B：用 Vercel 部署</h3>
+
+  <div style="counter-reset: step-counter;">
+  <div class="step">
+    <span class="step-title">打开 Vercel 官网，导入 GitHub 仓库</span>
+    <div class="step-detail">
+      打开 <code>vercel.com</code>，用你的 GitHub 账号登录（注意：是「用 GitHub 登录」，不是注册新账号）。登录后点「Import Project」→ 选择「Import Git Repository」。在列表里找到 <code>my-ai-blog</code>，点 Import。
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-title">配置项目（几乎全默认）</span>
+    <div class="step-detail">
+      Framework Preset：选 <strong>Other</strong>（因为你的博客没有用 Next.js/Vite 等框架，就是纯 HTML）。<br>
+      Root Directory：留空（默认 `./`）。<br>
+      Build Command：<strong>留空</strong>（你的 build 在本地跑的，不需要 Vercel 跑）。<br>
+      Output Directory：<strong>留空</strong>（默认部署根目录）。<br>
+      点 <strong>Deploy</strong>。
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-title">等 30-60 秒，自动上线</span>
+    <div class="step-detail">
+      Vercel 会自动拉取你的代码、发现没有 build 命令、直接把所有文件部署到 CDN。完成后会显示「Congratulations!」和你的网站地址：<strong>https://my-ai-blog-xxx.vercel.app</strong>。点击查看。
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-title">配置自动部署（已自动配好）</span>
+    <div class="step-detail">
+      Vercel 导入 GitHub 仓库时已经自动设置好了：每次你推送代码到 <code>main</code> 分支，Vercel 自动重新部署。不需要任何额外配置。
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-title">后续更新</span>
+    <div class="step-detail">
+      跟 GitHub Pages 一样：本地运行 build → git add/commit/push → Vercel 自动检测、15-60 秒内更新。你甚至不需要打开 Vercel 网站。
+    </div>
+  </div>
+  </div>
+
+  <div class="info-box">
+    <p><strong>💡 你的 `vercel.json` 会自动生效：</strong></p>
+    <p>里面配置了缓存策略（静态文件缓存 1 年、HTML 不缓存），Vercel 检测到这个文件后会自动应用。部署完成后，你的 CSS/JS/图片文件会在读者浏览器里缓存，第二次访问秒开。</p>
+  </div>
+</section>
+
+<!-- ========== SECTION 9: SUMMARY ========== -->
+<section id="summary">
+  <h2>九、总结：一句话推荐</h2>
+
+  <div class="summary-box">
+    <h3>我推荐你先用 GitHub Pages</h3>
+    <p>理由很简单：</p>
+    <p><strong>1. 少一层依赖</strong>——你只有一个平台要管（GitHub），不需要在 GitHub 和 Vercel 之间来回跳。</p>
+    <p><strong>2. 对纯静态博客来说，两者体验几乎一样</strong>——你都是 `git push` 然后等上线。Vercel 多出来的那些高级功能（构建步骤、边缘函数、环境变量）你目前全用不到。</p>
+    <p><strong>3. 未来迁移零成本</strong>——GitHub Pages 和 Vercel 都只是读取你仓库里的文件。你今天用 GitHub Pages，明天想换 Vercel，只需要在 Vercel 里导入同一个仓库——1 分钟完成切换。没有任何锁定。</p>
+    <p><strong>4. 安全层面无差别</strong>——两者都自动 HTTPS，都依赖 GitHub 账号安全。你在 GitHub 开 2FA，两个平台就都安全了。</p>
+    <p>等你博客流量大了、或者你开始做有构建步骤的前端项目了，再考虑 Vercel。现阶段，GitHub Pages 是最简洁、最符合你「不要过度设计」理念的选择。</p>
+  </div>
+
+  <h3>你现在可以做的最小行动</h3>
+  <p>按第八节的前提步骤（装 Git → 配用户名 → 创建仓库 → git push），先把代码推上 GitHub。然后打开仓库 Settings → Pages，选 main 分支，点 Save。等 2 分钟。打开 <code>https://你的用户名.github.io/my-ai-blog/</code>。如果看到你的星河首页——部署就完成了。整个流程 15 分钟搞定。</p>
+</section>
+
+<footer style="text-align:center;padding:48px 0 24px;color:var(--text-mute);font-size:14px;">
+  <p>© 2026 AIdreamer · 用 AI 学 AI</p>
+</footer>
+
+</div>
+</body>
+</html>

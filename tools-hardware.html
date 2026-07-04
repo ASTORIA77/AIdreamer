@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI 硬件设备 —— AI 耳机、会议本、AI PC、机器人等亲测体验" />
+  <title>硬件设备 · 怪好用的 AI 工具</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css?v=20260703f" />
+
+  <style>
+    /* ============================================
+       硬件设备页 —— 莫兰迪卡片风格
+       ============================================ */
+    .hw-page {
+      max-width: var(--content-width, 760px);
+      margin: 0 auto;
+      padding: 32px 0 80px;
+    }
+
+    /* --- 标题区 --- */
+    .hw-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .hw-header .hw-eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: var(--blue-soft);
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    .hw-header h1 {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 8px 0 6px;
+    }
+    .hw-header p {
+      font-size: 14px;
+      color: var(--text-mute);
+      margin: 0 0 16px;
+    }
+    .hw-header .hero-divider {
+      margin: 0 auto;
+    }
+
+    /* --- 开场白 --- */
+    .hw-lead {
+      font-family: var(--font-serif);
+      font-size: 16.5px;
+      color: var(--text-soft);
+      line-height: 1.9;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 48px;
+      padding: 0 20px;
+    }
+
+    /* --- 卡片 --- */
+    .hw-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 32px 36px 32px 40px;
+      margin-bottom: 24px;
+      transition: transform .2s ease, box-shadow .2s ease;
+      overflow: hidden;
+    }
+    .hw-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      border-radius: 4px 0 0 4px;
+    }
+    .hw-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* 左侧色条 —— 不同设备 */
+    .hw-card[data-accent="blue"]::before  { background: linear-gradient(180deg, #9eb8cd, #c7d7e6); }
+    .hw-card[data-accent="green"]::before  { background: linear-gradient(180deg, #b2c9b6, #d2dfd5); }
+    .hw-card[data-accent="purple"]::before { background: linear-gradient(180deg, #b8adc6, #d2c9de); }
+    .hw-card[data-accent="camel"]::before { background: linear-gradient(180deg, var(--camel), var(--camel-soft)); }
+    .hw-card[data-accent="gray"]::before  { background: linear-gradient(180deg, #b8b0a6, #d4cec4); }
+
+    /* --- 卡片头部 --- */
+    .hw-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .hw-card-header .hw-icon {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+    .hw-card-header h2 {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 0;
+      flex: 1;
+    }
+    .hw-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: var(--bg-soft);
+      color: var(--text-mute);
+      border: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .hw-tag.bought {
+      background: rgba(139, 184, 156, 0.12);
+      color: #5a8a6e;
+      border-color: rgba(139, 184, 156, 0.3);
+    }
+    .hw-tag.shelf {
+      background: rgba(168, 155, 196, 0.12);
+      color: #7a6e9a;
+      border-color: rgba(168, 155, 196, 0.3);
+    }
+    .hw-tag.pass {
+      background: rgba(184, 176, 166, 0.12);
+      color: #8a8070;
+      border-color: rgba(184, 176, 166, 0.3);
+    }
+
+    /* --- 卡片正文 --- */
+    .hw-card-body p {
+      color: var(--text-soft);
+      line-height: 1.9;
+      margin: 0 0 0.9em;
+    }
+    .hw-card-body p:last-child {
+      margin-bottom: 0;
+    }
+    .hw-card-body strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* --- 分组标题 --- */
+    .hw-group-title {
+      font-family: var(--font-serif);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-mute);
+      letter-spacing: 2px;
+      text-align: center;
+      margin: 40px 0 20px;
+      position: relative;
+    }
+    .hw-group-title::before,
+    .hw-group-title::after {
+      content: '';
+      display: inline-block;
+      vertical-align: middle;
+      width: 48px;
+      height: 1px;
+      background: var(--border);
+      margin: 0 12px;
+    }
+
+    /* --- 底部返回 --- */
+    .hw-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: var(--blue);
+      text-decoration: none;
+      transition: color .2s ease;
+      margin-top: 32px;
+    }
+    .hw-back:hover {
+      color: var(--camel);
+    }
+
+    /* --- 动画 --- */
+    .hw-card {
+      animation: fadeUp .5s ease both;
+    }
+    .hw-card:nth-child(1) { animation-delay: 0s; }
+    .hw-card:nth-child(2) { animation-delay: 0.06s; }
+    .hw-card:nth-child(3) { animation-delay: 0.12s; }
+    .hw-card:nth-child(4) { animation-delay: 0.18s; }
+    .hw-card:nth-child(5) { animation-delay: 0.24s; }
+    .hw-card:nth-child(6) { animation-delay: 0.30s; }
+    .hw-card:nth-child(7) { animation-delay: 0.36s; }
+    .hw-card:nth-child(8) { animation-delay: 0.42s; }
+    .hw-card:nth-child(9) { animation-delay: 0.48s; }
+    .hw-card:nth-child(10) { animation-delay: 0.54s; }
+
+    /* --- 响应式 --- */
+    @media (max-width: 640px) {
+      .hw-page {
+        padding: 24px 16px 64px;
+      }
+      .hw-card {
+        padding: 24px 20px 24px 28px;
+        margin-bottom: 16px;
+      }
+      .hw-card-header h2 {
+        font-size: 15.5px;
+      }
+      .hw-header h1 {
+        font-size: 24px;
+      }
+      .hw-lead {
+        font-size: 15px;
+        margin-bottom: 36px;
+      }
+      .hw-group-title::before,
+      .hw-group-title::after {
+        width: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-left" style="display:flex;align-items:center;gap:16px;">
+        <a href="index.html" class="back-to-portal">← 返回星河</a>
+        <a href="tools.html" class="back-to-portal">← 返回工具列表</a>
+      </div>
+      <div class="header-right">
+        <a href="tools.html" class="site-title">
+          <span class="title-mark" style="background:linear-gradient(135deg,#6b8cae,#8fa5c9);">具</span>
+          <span class="title-text">怪好用的 AI 工具</span>
+        </a>
+        <div class="topic-switcher">
+          <button class="topic-switcher-btn" aria-haspopup="true" aria-expanded="false">
+            <span>主题</span>
+            <svg viewBox="0 0 24 24" width="14" height="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="topic-switcher-menu">
+            <a href="agent.html" class="topic-switcher-item">从小白玩转 AI Agent</a>
+            <a href="history.html" class="topic-switcher-item">AI 纵横 70 年</a>
+            <a href="complexity.html" class="topic-switcher-item">不要低估了 AI 系统的复杂度</a>
+            <a href="basics.html" class="topic-switcher-item">那些没人教过你的基础</a>
+            <a href="spillover.html" class="topic-switcher-item">学 AI 时的价值溢出</a>
+            <a href="tools.html" class="topic-switcher-item current">怪好用的 AI 工具</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="hw-page">
+
+      <!-- 标题区 -->
+      <header class="hw-header fade-up">
+        <span class="hw-eyebrow">HARDWARE</span>
+        <h1>硬件设备</h1>
+        <p>亲测过的、纠结过的，都放这了</p>
+        <div class="hero-divider"></div>
+      </header>
+
+      <p class="hw-lead fade-up">先说结论：目前这个品类整体还在早期，大部分产品的 AI 能力更像加分项而不是核心功能。别指望它能完全替代人力，当成一个好玩的新东西就行。</p>
+
+      <!-- 买了的 -->
+      <div class="hw-group-title">买了</div>
+
+      <div class="hw-card" data-accent="blue">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v4a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-4"/><path d="M16 14v4a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-4"/><path d="M4 14a8 8 0 0 1 16 0"/></svg>
+          <h2>AI 耳机</h2>
+          <span class="hw-tag shelf">吃灰中</span>
+        </div>
+        <div class="hw-card-body">
+          <p>说实话，没什么用。耳机体积太小，塞进去的模型做 STT（语音转文字）和 ASR（自动语音识别）准确率不行——本来指望它能当个随时唤醒的语音助手，结果连我说话都听不太清楚。到手之后就是个普通听歌工具，AI 功能基本等于没有。</p>
+        </div>
+      </div>
+
+      <div class="hw-card" data-accent="green">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4z"/></svg>
+          <h2>会议本</h2>
+          <span class="hw-tag bought">在用</span>
+        </div>
+        <div class="hw-card-body">
+          <p>开会太多了，想着买一个解放双手。考虑到公司会议的保密要求，专门挑了带端侧模型的——不用联网，本地就能做转写和总结，数据不出设备。</p>
+          <p>但如果你的场景对隐私要求不高，其实<strong>录音豆、录音卡</strong>更方便：体积小、别在衣领上就行，手机连上就能出纪要。会议本的体验更像一个专用设备，值不值取决于你对保密这件事有多在意。</p>
+        </div>
+      </div>
+
+      <div class="hw-card" data-accent="purple">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"/><circle cx="8" cy="14" r="1.5"/><circle cx="16" cy="14" r="1.5"/><line x1="7" y1="6" x2="17" y2="6"/><line x1="9" y1="21" x2="9" y2="19"/><line x1="15" y1="21" x2="15" y2="19"/></svg>
+          <h2>教育机器人</h2>
+          <span class="hw-tag shelf">吃灰中</span>
+        </div>
+        <div class="hw-card-body">
+          <p>买了一个入门级的，本来想着学学 ROS、调调传感器，结果高估了自己的业余时间。工作一忙起来，它就在角落吃灰。</p>
+          <p>也不是不想玩——最近在看 IMU、运动轨迹、机器人传感器集成这些内容，看得迷迷糊糊的还没学会。这个品类先留个坑，等搞明白了再回来写。</p>
+        </div>
+      </div>
+
+      <div class="hw-card" data-accent="camel">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+          <h2>AI PC</h2>
+          <span class="hw-tag bought">主力在用</span>
+        </div>
+        <div class="hw-card-body">
+          <p>自己装机的时候就留了这条心——本地部署了轻量化模型，配了张独立显卡。说实话，一轮训练跑下来，独立显卡比纯 CPU 快了不是一点半点，这种差距不用看跑分，用过一次就回不去了。</p>
+          <p>长远来看我还想买台个人工作站——贵是真贵，咬咬牙得攒一大笔。但我相信 2028 年左右算力瓶颈会转移：现在大家还在卷参数量、卷显存，两年后硬件上来了、优化好了，个人玩深度学习的门槛会比现在低不少。到那时候再上工作站，性价比就出来了。</p>
+        </div>
+      </div>
+
+      <!-- 没买的 -->
+      <div class="hw-group-title">纠结过，没买</div>
+
+      <div class="hw-card" data-accent="gray">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+          <h2>AI Pad</h2>
+          <span class="hw-tag pass">放弃</span>
+        </div>
+        <div class="hw-card-body">
+          <p>逛数码区的时候心动过，后来冷静想了一下——现在的 Pad 就是个椭圆机看剧专用设备，加个 AI 功能又能怎么用？场景不对，功能再好也是积灰。没买。</p>
+        </div>
+      </div>
+
+      <div class="hw-card" data-accent="gray">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M1 10a5 5 0 0 1 10 0v2H1z"/><path d="M13 10a5 5 0 0 1 10 0v2H13z"/><line x1="1" y1="12" x2="23" y2="12"/></svg>
+          <h2>VR 眼镜</h2>
+          <span class="hw-tag pass">放弃</span>
+        </div>
+        <div class="hw-card-body">
+          <p>在商场试过一次，那种身临其境的感觉确实爽。但我有个致命问题：经常看着剧、听着声音就睡着了。一个需要戴着清醒使用的设备，碰上这种随时断电的体质……想想还是算了。</p>
+        </div>
+      </div>
+
+      <div class="hw-card" data-accent="gray">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="4"/><circle cx="18" cy="12" r="4"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+          <h2>AI 眼镜</h2>
+          <span class="hw-tag pass">放弃</span>
+        </div>
+        <div class="hw-card-body">
+          <p>这东西最近确实火，但说实话——我到现在也没搞懂它能用来干嘛。更关键的是，我是个深度近视患者，日常离不了自己的眼镜。AI 眼镜配镜片又是一笔钱，功能还没想清楚，就先别折腾了。</p>
+        </div>
+      </div>
+
+      <div class="hw-card" data-accent="gray">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="2" width="18" height="20" rx="2"/><line x1="8" y1="2" x2="16" y2="2"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <h2>AI 折叠屏手机</h2>
+          <span class="hw-tag pass">放弃</span>
+        </div>
+        <div class="hw-card-body">
+          <p>这两年折叠屏被包装成「新时代的工作台」——展开大屏，AI 多窗口，效率翻倍，随时随地办公。但我想的是：工作还不够多吗？我不缺工作台，我缺的是下班时间。一个更便携的加班工具，好像不是我的真实需求。</p>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:40px;">
+        <a href="tools.html" class="hw-back">← 返回工具列表</a>
+      </div>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">工欲善其事，必先利其器</p>
+      <p class="footer-copy">© 2026 AIdreamer · 用 AI 学 AI</p>
+    </div>
+  </footer>
+</body>
+</html>

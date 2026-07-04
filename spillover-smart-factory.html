@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="学 AI 时的价值溢出 —— 领航级智能工厂：政策·体系·数据·实践全景讲解" />
+  <title>领航级智能工厂 · 价值溢出</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css?v=20260703f" />
+
+  <style>
+    .page {
+      max-width: var(--wide-width);
+      margin: 0 auto;
+      padding: 32px 32px 80px;
+    }
+
+    .article-header {
+      text-align: center;
+      margin-bottom: 48px;
+      animation: fadeUp .5s ease both;
+    }
+    .article-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--camel);
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .article-header h1 {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 0 0 6px;
+      line-height: 1.4;
+    }
+    .article-header .subtitle {
+      font-size: 14px;
+      color: var(--text-mute);
+    }
+    .article-header .hero-divider { margin: 18px auto 0; }
+
+    .lead {
+      font-family: var(--font-serif);
+      font-size: 16.5px;
+      color: var(--text-soft);
+      line-height: 2;
+      margin: 0 0 48px;
+      animation: fadeUp .5s ease .1s both;
+    }
+
+    .body {
+      animation: fadeUp .5s ease .2s both;
+    }
+    .body h2 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 44px 0 12px;
+      padding-left: 14px;
+      border-left: 3px solid var(--camel);
+    }
+    .body h3 {
+      font-family: var(--font-serif);
+      font-size: 16.5px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 32px 0 10px;
+    }
+    .body h4 {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 24px 0 8px;
+    }
+    .body p, .body li {
+      font-size: 15px;
+      color: var(--text-soft);
+      line-height: 1.9;
+      margin: 0 0 14px;
+      text-align: justify;
+    }
+    .body ul { margin: 4px 0 18px; padding-left: 20px; }
+    .body ul li { margin-bottom: 6px; }
+    .body strong { color: var(--text); font-weight: 600; }
+
+    .body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13.5px;
+    }
+    .body th, .body td {
+      padding: 10px 14px;
+      border: 1px solid var(--border-soft);
+      text-align: left;
+    }
+    .body th {
+      background: var(--bg-soft);
+      font-weight: 500;
+      color: var(--text);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .body td { color: var(--text-soft); vertical-align: top; }
+
+    .callout {
+      margin: 24px 0;
+      padding: 18px 24px;
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+    }
+    .callout-warn {
+      background: rgba(201, 168, 118, 0.05);
+      border-left: 3px solid var(--camel);
+    }
+    .callout-accent {
+      background: rgba(107, 140, 174, 0.04);
+      border-left: 3px solid var(--blue);
+    }
+    .callout p {
+      font-family: var(--font-serif);
+      color: var(--text-soft);
+      margin: 0 0 4px;
+      font-size: 14.5px;
+    }
+    .callout p:last-child { margin: 0; }
+    .callout p strong { color: var(--text); }
+
+    .body hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+
+    .file-ref {
+      font-size: 13px;
+      color: var(--text-mute);
+      font-family: var(--font-mono);
+      margin: 0 0 24px;
+      text-align: center;
+    }
+
+    .flow-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 16px 0;
+      flex-wrap: wrap;
+    }
+    .flow-step {
+      background: var(--bg-soft);
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      color: var(--text-soft);
+    }
+    .flow-arrow {
+      color: var(--camel);
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    @media (max-width: 640px) {
+      .page { padding: 24px 20px 64px; }
+      .article-header h1 { font-size: 23px; }
+      .lead { font-size: 15px; }
+      .body h2 { font-size: 18px; }
+      .body table { font-size: 12px; }
+      .body th, .body td { padding: 8px 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-left" style="display:flex;align-items:center;gap:16px;">
+        <a href="index.html" class="back-to-portal">← 返回星河</a>
+        <a href="spillover.html" class="back-to-portal">← 返回便签板</a>
+      </div>
+      <div class="header-right">
+        <a href="spillover.html" class="site-title">
+          <span class="title-mark" style="background:linear-gradient(135deg,#ddc9a8,#e8d4b8);">溢</span>
+          <span class="title-text">学 AI 时的价值溢出</span>
+        </a>
+        <div class="topic-switcher">
+          <button class="topic-switcher-btn" aria-haspopup="true" aria-expanded="false">
+            <span>主题</span>
+            <svg viewBox="0 0 24 24" width="14" height="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="topic-switcher-menu">
+            <a href="agent.html" class="topic-switcher-item">从小白玩转 AI Agent</a>
+            <a href="history.html" class="topic-switcher-item">AI 纵横 70 年</a>
+            <a href="complexity.html" class="topic-switcher-item">不要低估了 AI 系统的复杂度</a>
+            <a href="basics.html" class="topic-switcher-item">那些没人教过你的基础</a>
+            <a href="spillover.html" class="topic-switcher-item current">学 AI 时的价值溢出</a>
+            <a href="tools.html" class="topic-switcher-item">怪好用的 AI 工具</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top:32px;">
+    <article class="page">
+
+      <header class="article-header">
+        <div class="article-eyebrow">工业智能</div>
+        <h1>领航级智能工厂</h1>
+        <p class="subtitle">政策 · 体系 · 数据 · 实践 全景讲解</p>
+        <div class="hero-divider"></div>
+      </header>
+
+      <p class="file-ref">核心文件：工信厅联通装函〔2025〕251号 / 工信部联科〔2025〕279号 &nbsp;|&nbsp; 首批发布：2025.11.27 · 世界智能制造大会（南京）· 15家</p>
+
+      <p class="lead">从"制造大国"迈向"制造强国"不是口号，而是一条被政策文件逐级拆解清楚的路。这条路上走得最远的节点，叫<strong>领航级智能工厂</strong>——全国 3.5 万家基础工厂里只选出了 15 家。</p>
+
+      <div class="body">
+        <h2>〇、战略背景</h2>
+
+        <p>中国制造业增加值连续多年居全球首位，但大而不强。人口红利消退、碳排放收紧、全球供应链重构——三重压力之下，出路只有一条：<strong>用智能化对冲成本上升，用数据驱动替代经验决策。</strong></p>
+
+        <p>2024 年国务院办公厅印发《制造业数字化转型行动方案》，随后智能工厂梯度培育体系、智能制造典型场景指引、"人工智能+制造"专项行动、数据要素×三年行动计划——一个覆盖"技术—数据—场景—企业"四维的政策矩阵快速成型。</p>
+
+        <div class="callout callout-accent">
+          <p><strong>理解这一切的钥匙：</strong>所有政策围绕同一个核心——让数据从"被采集"到"被使用"，从"被存储"到"被流通"，从"成本项"变为"价值源"。领航级智能工厂，就是这条逻辑链上走得最远的那个节点。</p>
+        </div>
+
+        <h2>一、梯度培育体系：四级金字塔</h2>
+
+        <p>2024 年 10 月，工信部等六部门首次印发《关于开展 2024 年度智能工厂梯度培育行动的通知》，创建了基础级→先进级→卓越级→领航级四级培育体系。2025 年 6 月，六部门再度联合发文（工信厅联通装函〔2025〕251号），将这一制度常态化。</p>
+
+        <table>
+          <tr><th>层级</th><th>名称</th><th>定位</th><th>建成数量</th></tr>
+          <tr><td>Level 1</td><td>基础级</td><td>数字化改造 · 核心数据实时采集 · 关键工序自动化</td><td>3.5万+</td></tr>
+          <tr><td>Level 2</td><td>先进级</td><td>数字化转型 · 网络化协同 · 重点场景智能化应用</td><td>8200+</td></tr>
+          <tr><td>Level 3</td><td>卓越级</td><td>AI 技术应用探索 · AI 场景 ≥20% · 全生命周期综合优化</td><td>500+</td></tr>
+          <tr><td>Level 4</td><td>领航级</td><td>AI 广泛深度应用 · AI 场景 ≥60% · 探索未来制造模式</td><td>首批 15 家</td></tr>
+        </table>
+
+        <p>四个层级不是"好/更好/最好"的排序，而是一条递进的价值链：基础级解决"有没有"（设备联网），先进级解决"通不通"（系统集成），卓越级解决"好不好"（AI初步应用），领航级解决"新不新"（AI深度变革、全球领航）。从基础到领航，淘汰率超过 99.95%。</p>
+
+        <h3>各层级核心指标对比</h3>
+
+        <table>
+          <tr><th>指标</th><th>基础级</th><th>先进级</th><th>卓越级</th><th>领航级</th></tr>
+          <tr><td>装备数控化率</td><td>≥60%</td><td>≥70%</td><td>行业领先</td><td>全球领先</td></tr>
+          <tr><td>关键工序数控化率</td><td>≥70%</td><td>≥80%</td><td>行业领先</td><td>全球领先</td></tr>
+          <tr><td>数据采集上传率</td><td>≥90%</td><td>≥90%</td><td>毫秒级</td><td>全流程全环节</td></tr>
+          <tr><td>AI 应用场景比例</td><td>—</td><td>探索阶段</td><td>≥20%</td><td>≥60%</td></tr>
+          <tr><td>系统集成</td><td>MES 基础</td><td>MES+ERP+PLM等</td><td>全链集成</td><td>全链 AI 深度嵌入</td></tr>
+          <tr><td>成熟度等级 (GB/T 39116)</td><td>二级及以上</td><td>二级及以上</td><td>三级及以上</td><td>四级及以上</td></tr>
+        </table>
+
+        <h2>二、领航级的要求</h2>
+
+        <p><strong>AI 覆盖率硬指标：应用 AI 技术场景比例 ≥60%</strong>（卓越级仅需 ≥20%，差距为 3 倍）。覆盖工厂建设、研发设计、生产作业、生产管理、运营管理五个全环节。已入选的 15 家领航工厂中，AI 实际渗透了 70% 以上业务场景，沉淀了超过 6000 个垂直领域模型。</p>
+
+        <h3>建设内容：五个环节全覆盖</h3>
+
+        <table>
+          <tr><th>环节</th><th>领航级要求要点</th></tr>
+          <tr><td>工厂建设</td><td>高性能算力/网络/安全基础设施、数字孪生工厂、工厂操作系统+行业垂直大模型</td></tr>
+          <tr><td>研发设计</td><td>生成式 AI 辅助产品设计、多学科联合仿真、虚拟验证、AI 大模型自动生成设计方案</td></tr>
+          <tr><td>生产作业</td><td>智能排产（强化学习/多目标优化）、人机协同、预测性维护、AI 视觉检测、柔性产线</td></tr>
+          <tr><td>生产管理</td><td>数字孪生驱动的实时管控、AI 质量预测与追溯、能源智能管理、安全态势感知</td></tr>
+          <tr><td>运营管理</td><td>AI 驱动的供应链协同、智能经营决策、大规模个性化定制、精准营销、产品远程运维</td></tr>
+        </table>
+
+        <h2>三、数据要素：从"采"到"用"</h2>
+
+        <p>2022 年 12 月，"数据二十条"正式确立数据为第五大生产要素。工厂里的每一条设备运行数据、每一个质检结果，不再只是"记录"，而是可以定价、流通、复用增值的资产。</p>
+
+        <p>数据价值链的递进逻辑：<strong>数字化率</strong>（装备能产生数据）→ <strong>数采率</strong>（数据被收集）→ <strong>高质量数据集</strong>（治理/标注/标准化）→ <strong>数控率</strong>（数据驱动控制与优化）。五份文件，一条主线——</p>
+
+        <table>
+          <tr><th>序号</th><th>时间</th><th>文件</th><th>定位</th></tr>
+          <tr><td>①</td><td>2023.12</td><td>数据要素×三年计划（17部门）</td><td>提出方向：数据要×工业制造</td></tr>
+          <tr><td>②</td><td>2025.10</td><td>九个领域场景指引（国家数据局）</td><td>明确阵地：58 个场景需要什么数据</td></tr>
+          <tr><td>③</td><td>2025.12</td><td>模数共振（八部门AI+制造）</td><td>下达指标：到 2027 年建成 100 个高质量数据集</td></tr>
+          <tr><td>④</td><td>2026.02</td><td>工业数据筑基行动（工信部专项）</td><td>组织施工：四类主体+1+4+N 体系</td></tr>
+          <tr><td>⑤</td><td>2026.04</td><td>工业场景数据要素应用参考指引</td><td>交付手册：23 个场景"采—集—用"怎么做</td></tr>
+        </table>
+
+        <p>"模数共振"的核心方法论：<strong>以模引数、用数赋模</strong>——以模型对数据的需求反向拉动数据治理，再用高质量数据集反哺模型训练。从"3.5万家基础工厂的粗数据"到"15家领航工厂 6000+ 垂直模型"之间，缺的就是这五份文件构建起来的"高质量数据集生产线"。</p>
+
+        <h2>四、申报流程：逐级递进、不可跨越</h2>
+
+        <p>申报领航级智能工厂必须逐级递进——先获评基础级（自评自建）→ 先进级（省级认定）→ 卓越级（国家认定）→ 领航级。不能跳级。从实践看，500 余家卓越级中仅 15 家通过，淘汰率 97%。</p>
+
+        <div style="padding:16px 0;">
+          <p style="text-align:center;font-family:var(--font-mono);font-size:13px;color:var(--text-mute);">
+            Step 1: 基础级自评 → Step 2: 先进级申报 → Step 3: 卓越级申报 → Step 4: 领航级申报
+          </p>
+        </div>
+
+        <h2>五、首批 15 家领航级智能工厂</h2>
+
+        <p>2025 年 11 月 27 日，世界智能制造大会（南京）上，六部门联合公布首批 15 家领航级智能工厂，从 500 余家卓越级中优中选优，涵盖装备制造、原材料、电子信息、消费品等行业。15 家工厂共同发布了"领航行动计划联合倡议"。</p>
+
+        <table>
+          <tr><th>#</th><th>企业</th><th>项目名称</th><th>所在地</th><th>行业</th></tr>
+          <tr><td>1</td><td>宝山钢铁</td><td>高端绿色硅钢预测式制造智能工厂</td><td>上海</td><td>原材料</td></tr>
+          <tr><td>2</td><td>上海航天设备制造总厂</td><td>高可靠规模化宇航产品全流程链动智能工厂</td><td>上海</td><td>装备制造</td></tr>
+          <tr><td>3</td><td>徐州重型机械（徐工）</td><td>全球定制敏捷交付移动式起重机智能工厂</td><td>江苏</td><td>装备制造</td></tr>
+          <tr><td>4</td><td>南京钢铁</td><td>产业链深度协同特殊钢个性化定制智能工厂</td><td>江苏</td><td>原材料</td></tr>
+          <tr><td>5</td><td>中石化镇海炼化</td><td>全局优化自主执行绿色石化智能工厂</td><td>浙江</td><td>原材料</td></tr>
+          <tr><td>6</td><td>杭州海康威视</td><td>物联感知产品大规模个性化定制智能工厂</td><td>浙江</td><td>电子信息</td></tr>
+          <tr><td>7</td><td>潍柴动力</td><td>数智精益模式高端发动机智能工厂</td><td>山东</td><td>装备制造</td></tr>
+          <tr><td>8</td><td>青岛海尔中央空调</td><td>中央空调全流程定制化服务与智慧集成智能工厂</td><td>山东</td><td>消费品</td></tr>
+          <tr><td>9</td><td>长飞光纤</td><td>棒纤缆全产业链一体化智能工厂</td><td>湖北</td><td>电子信息</td></tr>
+          <tr><td>10</td><td>武汉京东方</td><td>极致效率 10.5 代液晶面板智能工厂</td><td>湖北</td><td>电子信息</td></tr>
+          <tr><td>11</td><td>中联重科</td><td>挖掘机共享制造智能工厂</td><td>湖南</td><td>装备制造</td></tr>
+          <tr><td>12</td><td>格力电器（珠海金湾）</td><td>全价值链格力协同屋空调智能工厂</td><td>广东</td><td>消费品</td></tr>
+          <tr><td>13</td><td>上汽通用五菱</td><td>工艺解耦与产线重构的汽车岛式智能工厂</td><td>广西</td><td>装备制造</td></tr>
+          <tr><td>14</td><td>中海油海南分公司</td><td>全业务孪生优化的"深海一号"智慧气田</td><td>海南</td><td>原材料</td></tr>
+          <tr><td>15</td><td>成都飞机工业</td><td>先进航空装备柔性敏捷智能工厂</td><td>四川</td><td>装备制造</td></tr>
+        </table>
+
+        <h3>典型案例</h3>
+
+        <p><strong>中联重科 · "共享制造"</strong>——全球首创 6 大核心制造环节全流程智能制造，70 余种型号共享混流生产，设备利用率提升 60%。</p>
+        <p><strong>上汽通用五菱 · "岛式制造"</strong>——全球首创智能岛制造体系，打破传统刚性流水线，三大岛群支持 24 种车型混合生产，AI 场景比例超 75%，获评审专家全票通过。</p>
+        <p><strong>海康威视 · 赋能 2000+ 供应商</strong>——产线换线时间下降 50%，成熟经验向 2000 余家供应商、80 万家渠道商输出数字化协同，赋能石化、钢铁、汽车等多行业升级。</p>
+        <p><strong>"深海一号" · 28 人管百万吨</strong>——全业务孪生与远程无人化运营，仅 28 人完成百万吨油气当量现场用工。</p>
+        <p><strong>徐工 · 10 分钟全线换型</strong>——9 个型号 50 多台起重机订单同时下达，10 分钟产线焕然一新。以前换型准备周期 5-6 小时。</p>
+        <p><strong>南钢 · 研发周期缩短 50%</strong>——数字孪生+AI 支撑特殊钢定制化生产，订单准时达成率 98.5%，新产品研发周期较传统模式缩短 50%。</p>
+
+        <div class="callout callout-warn">
+          <p><strong>"头雁效应"正在释放：</strong>15 家领航工厂已累计带动上下游 1300 多家工厂协同升级。工信部明确将进一步扩展规模，推动领航工厂成为技术、标准、规则的策源地，加速向海外复制推广。</p>
+        </div>
+
+        <h2>六、"十五五"政策矩阵</h2>
+
+        <p>"十五五"规划纲要（2026 年 3 月发布）首次提出"提升数智化发展水平"，将"深入推进数字中国建设"单独成篇，明确部署"实施工业互联网创新发展工程""全面实施'人工智能+'行动"。</p>
+
+        <p>关键量化目标：规上制造业数字化转型普及率达 80%、培育 100+ 家世界级"灯塔工厂"、50 个产值超千亿智能制造产业集群。规划建议还提出高端工业软件国产化率提升至 40%+、培养 10 万名"AI+制造"复合型人才等方向性指标。</p>
+
+        <h3>2026 年"开年政策三箭"</h3>
+
+        <table>
+          <tr><th>#</th><th>文件</th><th>对应要素</th><th>核心</th></tr>
+          <tr><td>①</td><td>八部门"AI+制造"专项行动（1月7日）</td><td>算法</td><td>AI 怎么赋能制造</td></tr>
+          <tr><td>②</td><td>工业互联网与 AI 融合赋能行动方案（1月6日）</td><td>网络</td><td>工业网络和平台怎么升级</td></tr>
+          <tr><td>③</td><td>工业数据筑基行动（3月10日）</td><td>数据</td><td>数据怎么"采-集-用"</td></tr>
+        </table>
+
+        <p>三份文件分别对应算法、网络、数据——AI 三要素在工业场景的全面部署。</p>
+
+        <hr />
+
+        <div class="callout callout-accent">
+          <p><strong>从 3.5 万家基础工厂到 15 家领航工厂——这不只是一次筛选，而是中国制造业从"大"到"强"的路标。每一项政策、每一个指标、每一家入选企业，都在回答同一个问题：制造业的未来应该长什么样。</strong></p>
+        </div>
+
+        <h2>参考文件</h2>
+
+        <ol style="padding-left:20px;color:var(--text-mute);font-size:14px;line-height:2;">
+          <li>工信部等六部门《关于开展2025年度智能工厂梯度培育行动的通知》（工信厅联通装函〔2025〕251号）</li>
+          <li>工信部《智能制造典型场景参考指引（2025年版）》（工信厅通装函〔2025〕155号）</li>
+          <li>国家数据局等十七部门《"数据要素×"三年行动计划（2024—2026年）》（国数政策〔2023〕11号）</li>
+          <li>国家数据局《工业制造等九个领域"数据要素×"典型场景指引》（2025年10月）</li>
+          <li>工信部《工业场景数据要素应用参考指引》（工信厅信发函〔2026〕174号）</li>
+          <li>工信部《工业数据筑基行动》（工信厅信发函〔2026〕64号）</li>
+          <li>工信部等八部门《"人工智能+制造"专项行动实施意见》（工信部联科〔2025〕279号）</li>
+          <li>工信部《工业互联网和人工智能融合赋能行动方案》（工信厅信管〔2025〕76号）</li>
+          <li>《中华人民共和国国民经济和社会发展第十五个五年规划纲要》（2026年3月）</li>
+        </ol>
+
+      </div>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">学着学着，路就宽了</p>
+      <p class="footer-copy">© 2026 AIdreamer · 用 AI 学 AI</p>
+    </div>
+  </footer>
+</body>
+</html>

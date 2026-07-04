@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI 纵横 70 年 —— 学一门技术要有历史观" />
+  <title>AI 纵横 70 年</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <link rel="stylesheet" href="css/style.css?v=20260703q" />
+  <link rel="stylesheet" href="css/history.css?v=20260703c" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-nav-left">
+        <a href="index.html" class="back-to-portal">← 返回星河</a>
+        <a href="history.html" class="back-to-portal back-to-timeline" id="header-back-timeline" style="display:none;">← 返回时间轴</a>
+      </div>
+      <div class="header-right">
+        <a href="history.html" class="site-title">
+          <span class="title-mark" style="background:linear-gradient(135deg,#7a9a9a,#95b0ae);">史</span>
+          <span class="title-text">AI 纵横 70 年</span>
+        </a>
+        <div class="topic-switcher">
+          <button class="topic-switcher-btn" aria-haspopup="true" aria-expanded="false">
+            <span>主题</span>
+            <svg viewBox="0 0 24 24" width="14" height="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="topic-switcher-menu">
+            <a href="agent.html" class="topic-switcher-item">从小白玩转 AI Agent</a>
+            <a href="history.html" class="topic-switcher-item current">AI 纵横 70 年</a>
+            <a href="complexity.html" class="topic-switcher-item">不要低估了 AI 系统的复杂度</a>
+            <a href="basics.html" class="topic-switcher-item">那些没人教过你的基础</a>
+            <a href="spillover.html" class="topic-switcher-item">学 AI 时的价值溢出</a>
+            <a href="tools.html" class="topic-switcher-item">怪好用的 AI 工具</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="app" class="container">
+    <!-- 由 history-app.js 渲染 -->
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">学一门技术要有历史观 —— 知道从哪来，才能知道往哪去</p>
+      <p class="footer-copy">© 2026 AI 纵横 70 年 · AIdreamer</p>
+    </div>
+  </footer>
+
+  <button id="back-to-top" class="back-to-top" aria-label="返回顶部" title="返回顶部">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <script src="js/history.js?v=20260703b"></script>
+  <script src="js/history-content.js?v=20260703e"></script>
+  <script src="js/history-app.js?v=20260703b"></script>
+</body>
+</html>

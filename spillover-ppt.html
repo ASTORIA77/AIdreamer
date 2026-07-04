@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="学 AI 时的价值溢出 —— 关于 AI 生成 PPT 这件事" />
+  <title>关于 AI 生成 PPT 这件事 · 价值溢出</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css?v=20260703f" />
+
+  <style>
+    .page {
+      max-width: var(--content-width);
+      margin: 0 auto;
+      padding: 32px 32px 80px;
+    }
+
+    /* --- 标题 --- */
+    .article-header {
+      text-align: center;
+      margin-bottom: 48px;
+      animation: fadeUp .5s ease both;
+    }
+    .article-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--camel);
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .article-header h1 {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 0 0 6px;
+      line-height: 1.4;
+    }
+    .article-header .subtitle {
+      font-size: 14px;
+      color: var(--text-mute);
+    }
+    .article-header .hero-divider { margin: 18px auto 0; }
+
+    /* --- 引文 --- */
+    .lead {
+      font-family: var(--font-serif);
+      font-size: 16.5px;
+      color: var(--text-soft);
+      line-height: 2;
+      margin: 0 0 48px;
+      animation: fadeUp .5s ease .1s both;
+    }
+
+    /* --- 正文 --- */
+    .body {
+      animation: fadeUp .5s ease .2s both;
+    }
+    .body h2 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 44px 0 12px;
+      padding-left: 14px;
+      border-left: 3px solid var(--camel);
+    }
+    .body h3 {
+      font-family: var(--font-serif);
+      font-size: 16.5px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 32px 0 10px;
+    }
+    .body p {
+      font-size: 15px;
+      color: var(--text-soft);
+      line-height: 1.9;
+      margin: 0 0 14px;
+      text-align: justify;
+    }
+    .body strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+    .body code {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      background: var(--bg-soft);
+      padding: 1px 6px;
+      border-radius: 3px;
+      color: var(--text-soft);
+    }
+
+    /* --- 表格 --- */
+    .body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    .body th, .body td {
+      padding: 10px 14px;
+      border: 1px solid var(--border-soft);
+      text-align: left;
+    }
+    .body th {
+      background: var(--bg-soft);
+      font-weight: 500;
+      color: var(--text);
+      font-size: 13px;
+    }
+    .body td {
+      color: var(--text-soft);
+    }
+
+    /* --- 引用块 --- */
+    .callout {
+      margin: 24px 0;
+      padding: 18px 24px;
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+    }
+    .callout-warn {
+      background: rgba(201, 168, 118, 0.05);
+      border-left: 3px solid var(--camel);
+    }
+    .callout-accent {
+      background: rgba(107, 140, 174, 0.04);
+      border-left: 3px solid var(--blue);
+    }
+    .callout p {
+      font-family: var(--font-serif);
+      color: var(--text-soft);
+      margin: 0 0 4px;
+      font-size: 14.5px;
+    }
+    .callout p:last-child { margin: 0; }
+    .callout p strong { color: var(--text); }
+
+    /* --- 脚注编号 --- */
+    .point {
+      margin: 10px 0 10px 0;
+    }
+    .point .point-label {
+      display: inline;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* --- 分隔线 --- */
+    .body hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+
+    @media (max-width: 640px) {
+      .page { padding: 24px 20px 64px; }
+      .article-header h1 { font-size: 23px; }
+      .lead { font-size: 15px; }
+      .body h2 { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-left" style="display:flex;align-items:center;gap:16px;">
+        <a href="index.html" class="back-to-portal">← 返回星河</a>
+        <a href="spillover.html" class="back-to-portal">← 返回便签板</a>
+      </div>
+      <div class="header-right">
+        <a href="spillover.html" class="site-title">
+          <span class="title-mark" style="background:linear-gradient(135deg,#ddc9a8,#e8d4b8);">溢</span>
+          <span class="title-text">学 AI 时的价值溢出</span>
+        </a>
+        <div class="topic-switcher">
+          <button class="topic-switcher-btn" aria-haspopup="true" aria-expanded="false">
+            <span>主题</span>
+            <svg viewBox="0 0 24 24" width="14" height="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="topic-switcher-menu">
+            <a href="agent.html" class="topic-switcher-item">从小白玩转 AI Agent</a>
+            <a href="history.html" class="topic-switcher-item">AI 纵横 70 年</a>
+            <a href="complexity.html" class="topic-switcher-item">不要低估了 AI 系统的复杂度</a>
+            <a href="basics.html" class="topic-switcher-item">那些没人教过你的基础</a>
+            <a href="spillover.html" class="topic-switcher-item current">学 AI 时的价值溢出</a>
+            <a href="tools.html" class="topic-switcher-item">怪好用的 AI 工具</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top:32px;">
+    <article class="page">
+
+      <header class="article-header">
+        <div class="article-eyebrow">AI 排版</div>
+        <h1>关于 AI 生成 PPT 这件事</h1>
+        <p class="subtitle">两条可走的路，一条不必走的路</p>
+        <div class="hero-divider"></div>
+      </header>
+
+      <p class="lead">我对 PPT 一直没什么好感。准确地说，是对"做 PPT 的过程"没什么好感——那种把一个清晰的想法切成一页一页、再花两个小时调字号、对齐文本框、找配图的过程。所以当 AI 出现的时候，我第一个想试的就是：能不能让它替我做完这件事。试了一圈，结论很直接：<strong>能，但目前最被津津乐道的那条路，反而是错的。</strong></p>
+
+      <div class="body">
+        <h2>一、此路不通：AI 生图式 PPT</h2>
+
+        <p>眼下最常见的方案，是把一页 PPT 当成一张图来生成。CLIP 负责理解你写的提示词，扩散模型负责把像素一点点"涂"出来。画面看起来是 PPT 的样子，但里面的每一个字、每一根线，都是被<strong>画</strong>出来的，而不是被<strong>排</strong>出来的。它本质上不是在做一页 PPT，而是在画一张看起来像 PPT 的图。</p>
+
+        <h3>三个躲不开的硬伤</h3>
+
+        <p><strong>内容不准。</strong>文字会乱码，图标会错位，引用的数字常常凭空捏造。一页幻灯片里，最不该出错的恰恰是字。</p>
+
+        <p><strong>排版失控。</strong>元素飞来飞去，对齐无从谈起。模型不知道"标题居中""字号统一"是什么概念——它眼里只有像素的浓淡。</p>
+
+        <p><strong>Token 黑洞。</strong>生成一页好看的画面要烧掉的算力，够写半本书。代价高，结果还不一定能用。</p>
+
+        <h3>GPT-Image-2 也没改变结论</h3>
+
+        <p>OpenAI 的 GPT-Image-2 走自回归路线——先"想"再"画"，画完自己回头检查。文字渲染、版式一致性确实比上一代好得多。但它解决的是"把图画好"，不是"把 PPT 做好"。你让它画一张演示页面，它能给你一张近乎完美的截图——可那也只是截图，不能编辑、不能复用、不能跳转。把生图做到极致，PPT 的根本困境只是被推迟了，没有被解决。</p>
+
+        <div class="callout callout-warn">
+          <p>这条路适合玩玩，不适合真干活。严肃场合，要换一种想法。</p>
+        </div>
+
+        <h2>二、路径一：让 AI 出大纲，让模板兜底</h2>
+
+        <p>AI 真正擅长的，是处理文字、梳理结构。它不擅长的，是审美和排版——但这恰恰是 WPS、PPT 的智能图形和模板库一直在做的事。让两边各干各的强项，就是这条路的全部秘密。</p>
+
+        <table>
+          <tr><th>步骤</th><th>操作</th><th>说明</th></tr>
+          <tr><td>01</td><td>把想法丢给 AI</td><td>生成带层级的结构化大纲，标好哪些是要点、哪些是案例、哪些是小结</td></tr>
+          <tr><td>02</td><td>粘进模板</td><td>从"无中生有"变成"填空"。版式、配色、字体由模板负责</td></tr>
+          <tr><td>03</td><td>微调文字，一键换风格</td><td>整体替换不到一分钟。换观众就换皮</td></tr>
+        </table>
+
+        <p>规整、专业、可控，省 Token 省时间。职场汇报、教学课件、培训材料——一切"内容比形式更重要"的场合，这条路都够用。</p>
+
+        <h2>三、路径二：把 PPT 当成一段代码</h2>
+
+        <h3>一个换框思路</h3>
+
+        <p>HTML 网页本质上是代码。AI 写代码的能力，比它做排版的能力成熟得多。把"做一页 PPT"改写成"写一个 HTML 页面"——这件事的性质就变了：从一个让 AI 抓瞎的视觉问题，变成了一个它最在行的工程问题。</p>
+
+        <div class="callout callout-accent">
+          <p><strong>把幻灯片，当作一段会运行的代码。</strong></p>
+        </div>
+
+        <h3>它真的会写代码——SWE-bench 是证据</h3>
+
+        <p>Princeton 的 SWE-bench 直接拿 GitHub 上真实仓库的 issue 当题目：让模型读完整代码库、理解 bug、提交补丁，再自动跑测试看通不通过。这是"工程意义上的会写代码"，不是 LeetCode 那种花拳绣腿。</p>
+
+        <p>2026 年 7 月 SWE-bench Verified 前十：<strong>Anthropic 霸榜</strong>——Claude Fable 5 以 95.00 分登顶，Opus 4.8 也有 88.60。工程代码这件事上，Claude 系确实稳。<strong>DeepSeek V4 Pro</strong> 以 80.60 分成为最强开源模型和最强国产模型，跟 GPT-5.5 掰手腕不落下风。</p>
+
+        <h3>能写代码的模型们</h3>
+
+        <table>
+          <tr><th>模型</th><th>一句话</th></tr>
+          <tr><td>Claude Opus 4.8</td><td>长链路工程任务公认最稳</td></tr>
+          <tr><td>GPT-5.5</td><td>综合最强，前端代码兼具审美</td></tr>
+          <tr><td>DeepSeek V4 Pro</td><td>开源第一，性价比惊人</td></tr>
+          <tr><td>GLM-5.2</td><td>中文场景稳，1M 上下文，六月刚开源</td></tr>
+          <tr><td>Kimi K2.6</td><td>agentic coding 第一梯队</td></tr>
+          <tr><td>小米 MiMo-V2.5</td><td>全模态联动，跨界黑马</td></tr>
+        </table>
+
+        <h3>落到操作上</h3>
+
+        <p>扔一句"做一个 PPT 风格的 HTML 页面，主题是 XX，淡雅一点"——它直接吐出一份可运行的网页：版式工整、动效合理、能在浏览器里翻页。用 reveal.js、Slidev、Marp 这类工具再包一层，就是现代意义上的"幻灯片"——源码可以版本管理，发布可以一键托管，复用它是你的。</p>
+
+        <p>而且门槛比想的低——Slidev 和 Marp 让你只用写 Markdown，工具帮你渲染成 HTML 幻灯片。路径二的门槛被压到了<strong>"会写大纲就够了"</strong>。</p>
+
+        <h2>四、两条路的取舍</h2>
+
+        <table>
+          <tr><th>维度</th><th>路径一 · 大纲 + 模板</th><th>路径二 · HTML 网页</th></tr>
+          <tr><td>典型场景</td><td>职场汇报、教学课件</td><td>发布会、对外演示、作品集</td></tr>
+          <tr><td>可控性</td><td>高，所见即所得</td><td>中高，依赖一次审稿</td></tr>
+          <tr><td>美观度</td><td>规矩、正式</td><td>灵动，可交互、可动效</td></tr>
+          <tr><td>技术门槛</td><td>零</td><td>略懂代码更佳，不懂也行</td></tr>
+          <tr><td>依赖 AI 的</td><td>文字处理能力</td><td>代码生成能力</td></tr>
+          <tr><td>修改成本</td><td>改一页很快</td><td>改样式一处全改</td></tr>
+        </table>
+
+        <p><strong>日常走路径一，关键时刻走路径二。</strong>它们不互斥，可以混用——用路径一搭骨架，用路径二做封面与彩蛋页。</p>
+
+        <h2>五、让时间留给思想本身</h2>
+
+        <p>Markdown 被发明时，背后只有一句很轻的话：<strong>让时间留给文字本身。</strong>翻译过来就是：排版是工具的事，不是创作者的事。</p>
+
+        <p>我不是不喜欢演示。我享受把一个想法讲清楚的过程。我不喜欢的是花两个小时去对齐文本框、调字号、找配图、改母版——这些跟思想没有关系，是纯粹的"输出格式税"。</p>
+
+        <p>今天讲的这两条路，本质上做的是同一件事：<strong>把排版成本降到最低，把所有时间留给创造和价值。</strong></p>
+
+        <p>AI 在这件事里的角色，不是取代你思考，而是把你从那些不该消耗你的事情里解放出来。它最大的价值不是"做得比你好"，而是"让你不必再做"。</p>
+
+        <hr />
+
+        <div class="callout callout-accent">
+          <p><strong>让时间留给思想本身。排版，交给工具就够了。</strong></p>
+        </div>
+
+      </div>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">学着学着，路就宽了</p>
+      <p class="footer-copy">© 2026 AIdreamer · 用 AI 学 AI</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="不要低估了 AI 系统的复杂度 —— 深入下去才知道这个系统有多复杂" />
+  <title>不要低估了 AI 系统的复杂度</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <link rel="stylesheet" href="css/style.css?v=20260703" />
+  <link rel="stylesheet" href="css/topic-placeholder.css?v=20260715d" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="back-to-portal">← 返回星河</a>
+      <div class="header-right">
+        <a href="complexity.html" class="site-title">
+          <span class="title-mark" style="background:linear-gradient(135deg,#8fb89c,#a8c9b4);">杂</span>
+          <span class="title-text">不要低估了 AI 系统的复杂度</span>
+        </a>
+        <div class="topic-switcher">
+          <button class="topic-switcher-btn" aria-haspopup="true" aria-expanded="false">
+            <span>主题</span>
+            <svg viewBox="0 0 24 24" width="14" height="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="topic-switcher-menu">
+            <a href="agent.html" class="topic-switcher-item">从小白玩转 AI Agent</a>
+            <a href="history.html" class="topic-switcher-item">AI 纵横 70 年</a>
+            <a href="complexity.html" class="topic-switcher-item current">不要低估了 AI 系统的复杂度</a>
+            <a href="basics.html" class="topic-switcher-item">那些没人教过你的基础</a>
+            <a href="spillover.html" class="topic-switcher-item">学 AI 时的价值溢出</a>
+            <a href="tools.html" class="topic-switcher-item">怪好用的 AI 工具</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="topic-placeholder fade-up">
+      <div class="topic-hero">
+        <span class="topic-eyebrow">SYSTEM COMPLEXITY</span>
+        <h1 class="topic-title">不要低估了 AI 系统的复杂度</h1>
+        <p class="topic-subtitle">很多人觉得 AI 就是"训个模型"。但只有真正深入下去，才知道一个 AI 系统从数据到上线，要经过多少道工序、多少个坑。</p>
+        <div class="topic-divider" style="background:linear-gradient(90deg,#8fb89c,#c9a876);"></div>
+      </div>
+
+      <div class="topic-modules">
+        <h2 class="topic-section-title">计划覆盖的模块</h2>
+        <div class="module-grid">
+          <a href="complexity-data.html" class="module-card-link">
+            <div class="module-card">
+              <div class="module-num">01</div>
+              <h3>数据工程</h3>
+              <p>采集、清洗、标注、存储——数据是 AI 的燃料，燃料不纯，引擎再好也跑不动。</p>
+            </div>
+          </a>
+          <a href="complexity-model.html" class="module-card-link">
+            <div class="module-card">
+              <div class="module-num">02</div>
+              <h3>模型算法</h3>
+              <p>设计、训练、调参。这是最显眼的部分，但远不是全部。</p>
+            </div>
+          </a>
+          <a href="complexity-evaluation.html" class="module-card-link">
+            <div class="module-card">
+              <div class="module-num">03</div>
+              <h3>评估验证</h3>
+              <p>指标设计、离线评估、在线评估。模型训完不算完——得知道它到底好不好。</p>
+            </div>
+          </a>
+          <a href="complexity-inference.html" class="module-card-link">
+            <div class="module-card">
+              <div class="module-num">04</div>
+              <h3>推理优化</h3>
+              <p>量化、压缩、加速。模型太大跑不动？这一步解决"能不能用"的问题。</p>
+            </div>
+          </a>
+          <a href="complexity-deployment.html" class="module-card-link">
+            <div class="module-card">
+              <div class="module-num">05</div>
+              <h3>部署运维</h3>
+              <p>上线、监控、版本管理。模型从实验室到生产，中间隔着 MLOps 一整座山。</p>
+            </div>
+          </a>
+          <a href="complexity-feedback.html" class="module-card-link">
+            <div class="module-card">
+              <div class="module-num">06</div>
+              <h3>反馈迭代</h3>
+              <p>数据回流、模型更新、持续学习。上线只是开始，迭代才是日常。</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <p class="topic-empty-line">内容还在梳理中，先放一张图——</p>
+
+      <!-- 五层金字塔：AI 使用人群的分层 -->
+      <div class="pyramid-section">
+        <div class="svg-diagram pyramid-svg-wrap">
+          <svg viewBox="0 0 720 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:720px;height:auto;">
+            <defs>
+              <linearGradient id="lv1g" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#5e8f6b"/><stop offset="100%" stop-color="#8fb89c"/>
+              </linearGradient>
+              <linearGradient id="lv2g" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#6b8cae"/><stop offset="100%" stop-color="#a8bdd1"/>
+              </linearGradient>
+              <linearGradient id="lv3g" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#c9a876"/><stop offset="100%" stop-color="#ddc9a8"/>
+              </linearGradient>
+              <linearGradient id="lv4g" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#a89bc4"/><stop offset="100%" stop-color="#c8bcdc"/>
+              </linearGradient>
+              <linearGradient id="lv5g" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#9a948a"/><stop offset="100%" stop-color="#c0b8aa"/>
+              </linearGradient>
+            </defs>
+
+            <!-- 三角形金字塔：顶点(250,40) 底边(20,500)-(480,500) -->
+            <!-- L1 顶 -->
+            <polygon points="250,40 296,132 204,132" fill="url(#lv1g)" opacity="0.9"/>
+            <text x="250" y="112" text-anchor="middle" font-family="'Noto Sans SC',sans-serif" font-size="12" font-weight="700" fill="#fff">L1</text>
+
+            <!-- L2 -->
+            <polygon points="204,132 296,132 342,224 158,224" fill="url(#lv2g)" opacity="0.9"/>
+            <text x="250" y="182" text-anchor="middle" font-family="'Noto Sans SC',sans-serif" font-size="13" font-weight="700" fill="#fff">L2 · 研究员</text>
+
+            <!-- L3 -->
+            <polygon points="158,224 342,224 388,316 112,316" fill="url(#lv3g)" opacity="0.9"/>
+            <text x="250" y="274" text-anchor="middle" font-family="'Noto Sans SC',sans-serif" font-size="13" font-weight="700" fill="#fff">L3 · 极客开发</text>
+
+            <!-- L4 -->
+            <polygon points="112,316 388,316 434,408 66,408" fill="url(#lv4g)" opacity="0.9"/>
+            <text x="250" y="366" text-anchor="middle" font-family="'Noto Sans SC',sans-serif" font-size="13" font-weight="700" fill="#fff">L4 · AI 工作流</text>
+
+            <!-- L5 底 -->
+            <polygon points="66,408 434,408 480,500 20,500" fill="url(#lv5g)" opacity="0.9"/>
+            <text x="250" y="458" text-anchor="middle" font-family="'Noto Sans SC',sans-serif" font-size="13" font-weight="700" fill="#fff">L5 · 豆包 / DeepSeek</text>
+
+            <!-- 右侧引线 + 标注 -->
+            <!-- L1 -->
+            <line x1="296" y1="86" x2="510" y2="86" stroke="#c0b8aa" stroke-width="1" opacity="0.5"/>
+            <circle cx="296" cy="86" r="2.5" fill="#8fb89c"/>
+            <text x="520" y="82" font-family="'Noto Sans SC',sans-serif" font-size="13" font-weight="600" fill="#3d3a35">定义范式</text>
+            <text x="520" y="98" font-family="'Noto Sans SC',sans-serif" font-size="11" fill="#9a948a">黄仁勋 · 杨立昆 · 辛顿</text>
+
+            <!-- L2 -->
+            <line x1="342" y1="178" x2="510" y2="178" stroke="#c0b8aa" stroke-width="1" opacity="0.5"/>
+            <circle cx="342" cy="178" r="2.5" fill="#6b8cae"/>
+            <text x="520" y="174" font-family="'Noto Sans SC',sans-serif" font-size="13" font-weight="600" fill="#3d3a35">大厂实验室核心研究员</text>
+            <text x="520" y="190" font-family="'Noto Sans SC',sans-serif" font-size="11" fill="#9a948a">Karpathy · 林俊旸 · 杨植麟</text>
+
+            <!-- L3 -->
+            <line x1="388" y1="270" x2="510" y2="270" stroke="#c0b8aa" stroke-width="1" opacity="0.5"/>
+            <circle cx="388" cy="270" r="2.5" fill="#c9a876"/>
+            <text x="520" y="266" font-family="'Noto Sans SC',sans-serif" font-size="13" font-weight="600" fill="#3d3a35">个人极客开发者</text>
+            <text x="520" y="282" font-family="'Noto Sans SC',sans-serif" font-size="11" fill="#c9a876">能自己构建系统 · 我大概在这层</text>
+
+            <!-- L4 -->
+            <line x1="434" y1="362" x2="510" y2="362" stroke="#c0b8aa" stroke-width="1" opacity="0.5"/>
+            <circle cx="434" cy="362" r="2.5" fill="#a89bc4"/>
+            <text x="520" y="358" font-family="'Noto Sans SC',sans-serif" font-size="13" font-weight="600" fill="#3d3a35">AI Workflow 工作流</text>
+            <text x="520" y="374" font-family="'Noto Sans SC',sans-serif" font-size="11" fill="#9a948a">AI native / AI 赋能，加速工作流程</text>
+
+            <!-- L5 -->
+            <line x1="480" y1="454" x2="510" y2="454" stroke="#c0b8aa" stroke-width="1" opacity="0.5"/>
+            <circle cx="480" cy="454" r="2.5" fill="#9a948a"/>
+            <text x="520" y="450" font-family="'Noto Sans SC',sans-serif" font-size="13" font-weight="600" fill="#3d3a35">豆包 / DeepSeek 使用者</text>
+            <text x="520" y="466" font-family="'Noto Sans SC',sans-serif" font-size="11" fill="#9a948a">提问 → 回答，到此为止</text>
+
+            <!-- 左侧人数标注 -->
+            <text x="10" y="90" font-family="'Noto Sans SC',sans-serif" font-size="10" fill="#c0b8aa" transform="rotate(-90,10,90)">人少</text>
+            <text x="10" y="470" font-family="'Noto Sans SC',sans-serif" font-size="10" fill="#c0b8aa" transform="rotate(-90,10,470)">人多</text>
+          </svg>
+        </div>
+
+        <p class="pyramid-footnote">AI 这件事，说简单很简单，说难很难。所以我有一个暴论——<strong>人的幻觉有时候会比 AI 还强</strong>。越往下层的人，越容易对 AI 产生幻觉：觉得它能做一切，或者觉得它什么都不行。</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">深入下去，才知道水有多深</p>
+      <p class="footer-copy">© 2026 AIdreamer · 用 AI 学 AI</p>
+    </div>
+  </footer>
+</body>
+</html>

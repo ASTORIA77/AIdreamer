@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI 浏览器与扩展 —— Tabbit、豆包等工具" />
+  <title>浏览器 / 扩展 · 怪好用的 AI 工具</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css?v=20260703f" />
+
+  <style>
+    .hw-page { max-width: var(--content-width, 760px); margin: 0 auto; padding: 32px 0 80px; }
+    .hw-header { text-align: center; margin-bottom: 48px; }
+    .hw-header .hw-eyebrow { display: inline-block; font-size: 12px; letter-spacing: 3px; color: var(--blue-soft); font-weight: 500; text-transform: uppercase; }
+    .hw-header h1 { font-family: var(--font-serif); font-size: 28px; font-weight: 600; color: var(--text); margin: 8px 0 6px; }
+    .hw-header p { font-size: 14px; color: var(--text-mute); margin: 0 0 16px; }
+    .hw-header .hero-divider { margin: 0 auto; }
+    .hw-lead { font-family: var(--font-serif); font-size: 16.5px; color: var(--text-soft); line-height: 1.9; text-align: center; max-width: 600px; margin: 0 auto 48px; padding: 0 20px; }
+
+    .hw-card { position: relative; background: var(--surface); border: 1px solid var(--border-soft); border-radius: var(--radius-lg); padding: 32px 36px 32px 40px; margin-bottom: 24px; transition: transform .2s ease, box-shadow .2s ease; overflow: hidden; }
+    .hw-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 4px 0 0 4px; }
+    .hw-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+    .hw-card[data-accent="blue"]::before  { background: linear-gradient(180deg, #9eb8cd, #c7d7e6); }
+    .hw-card[data-accent="green"]::before { background: linear-gradient(180deg, var(--green), #b5d4be); }
+    .hw-card[data-accent="camel"]::before { background: linear-gradient(180deg, var(--camel), var(--camel-soft)); }
+
+    .hw-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+    .hw-card-header .hw-icon { width: 22px; height: 22px; flex-shrink: 0; }
+    .hw-card-header h2 { font-family: var(--font-serif); font-size: 17px; font-weight: 600; color: var(--text); margin: 0; flex: 1; }
+    .hw-tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 1px; padding: 3px 10px; border-radius: 20px; border: 1px solid var(--border); white-space: nowrap; background: var(--bg-soft); color: var(--text-mute); }
+    .hw-tag.bought { background: rgba(139, 184, 156, 0.12); color: #5a8a6e; border-color: rgba(139, 184, 156, 0.3); }
+
+    .hw-card-body p { color: var(--text-soft); line-height: 1.9; margin: 0 0 0.9em; }
+    .hw-card-body p:last-child { margin-bottom: 0; }
+    .hw-card-body strong { color: var(--text); font-weight: 500; }
+
+    .hw-group-title { font-family: var(--font-serif); font-size: 14px; font-weight: 500; color: var(--text-mute); letter-spacing: 2px; text-align: center; margin: 40px 0 20px; position: relative; }
+    .hw-group-title::before, .hw-group-title::after { content: ''; display: inline-block; vertical-align: middle; width: 48px; height: 1px; background: var(--border); margin: 0 12px; }
+    .hw-back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--blue); text-decoration: none; transition: color .2s ease; margin-top: 32px; }
+    .hw-back:hover { color: var(--camel); }
+
+    .hw-card { animation: fadeUp .5s ease both; }
+    .hw-card:nth-child(1) { animation-delay: 0s; }
+    .hw-card:nth-child(2) { animation-delay: 0.06s; }
+    .hw-card:nth-child(3) { animation-delay: 0.12s; }
+    .hw-card:nth-child(4) { animation-delay: 0.18s; }
+    .hw-card:nth-child(5) { animation-delay: 0.24s; }
+    .hw-card:nth-child(6) { animation-delay: 0.30s; }
+    .hw-card:nth-child(7) { animation-delay: 0.36s; }
+    .hw-card:nth-child(8) { animation-delay: 0.42s; }
+    .hw-card:nth-child(9) { animation-delay: 0.48s; }
+    .hw-card:nth-child(10) { animation-delay: 0.54s; }
+
+    @media (max-width: 640px) {
+      .hw-page { padding: 24px 16px 64px; }
+      .hw-card { padding: 24px 20px 24px 28px; margin-bottom: 16px; }
+      .hw-card-header h2 { font-size: 15.5px; }
+      .hw-header h1 { font-size: 24px; }
+      .hw-lead { font-size: 15px; margin-bottom: 36px; }
+      .hw-group-title::before, .hw-group-title::after { width: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-left" style="display:flex;align-items:center;gap:16px;">
+        <a href="index.html" class="back-to-portal">← 返回星河</a>
+        <a href="tools.html" class="back-to-portal">← 返回工具列表</a>
+      </div>
+      <div class="header-right">
+        <a href="tools.html" class="site-title">
+          <span class="title-mark" style="background:linear-gradient(135deg,#6b8cae,#8fa5c9);">具</span>
+          <span class="title-text">怪好用的 AI 工具</span>
+        </a>
+        <div class="topic-switcher">
+          <button class="topic-switcher-btn" aria-haspopup="true" aria-expanded="false">
+            <span>主题</span>
+            <svg viewBox="0 0 24 24" width="14" height="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="topic-switcher-menu">
+            <a href="agent.html" class="topic-switcher-item">从小白玩转 AI Agent</a>
+            <a href="history.html" class="topic-switcher-item">AI 纵横 70 年</a>
+            <a href="complexity.html" class="topic-switcher-item">不要低估了 AI 系统的复杂度</a>
+            <a href="basics.html" class="topic-switcher-item">那些没人教过你的基础</a>
+            <a href="spillover.html" class="topic-switcher-item">学 AI 时的价值溢出</a>
+            <a href="tools.html" class="topic-switcher-item current">怪好用的 AI 工具</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="hw-page">
+
+      <header class="hw-header fade-up">
+        <span class="hw-eyebrow">BROWSER</span>
+        <h1>浏览器 / 扩展</h1>
+        <p>AI 长出一个浏览器，还是在浏览器上挂AI插件</p>
+        <div class="hero-divider"></div>
+      </header>
+
+      <p class="hw-lead fade-up">AI 浏览器有两层：一层是原生从零开始的（AI 长出一个浏览器），一层是传统浏览器加插件（浏览器挂上 AI）。两者都试过，只留了最喜欢的。</p>
+
+      <div class="hw-group-title">AI 原生浏览器</div>
+
+      <div class="hw-card" data-accent="camel">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="7" cy="9" r="1"/><circle cx="12" cy="9" r="1"/><circle cx="17" cy="9" r="1"/><circle cx="7" cy="14" r="1"/><circle cx="12" cy="14" r="1"/><circle cx="17" cy="14" r="1"/></svg>
+          <h2>Tabbit（美团 · GN06）</h2>
+          <span class="hw-tag bought">日常在用</span>
+        </div>
+        <div class="hw-card-body">
+          <p>目前我用过的 AI 原生功能最强的浏览器。它不是浏览器里加个 AI 聊天框——而是 AI 原生长出了一个浏览器。</p>
+          <p>几个我喜欢的功能：</p>
+          <p><strong>一键整理当前网页</strong>——打开任何一篇文章，直接让它做总结、翻译、提取要点，不用复制粘贴到别处。</p>
+          <p><strong>多模型随意切</strong>——内置了十多个主流大模型，而且支持多模型对比。公测数据显示 60% 以上的活跃用户都会根据场景切换模型。你可以写总结用 Kimi、做翻译用 DeepSeek、复杂推理用大模型互相对比验证。</p>
+          <p><strong>内置智能代理</strong>——Tabbit 集成了 Agent 能力，可以在浏览器内自主执行一些任务。这个方向是对的——纯对话早晚不够用，Agent 才是浏览器的未来形态。我还没深度用过这个功能，但看路线图是这个方向。</p>
+          <p><strong>国际版有 GPT 和 Claude</strong>——用 Gmail 登录国际版，直接免费接入 GPT-5.5、Claude Opus 4.8、Gemini 3.5 Flash 三家旗舰模型。同时国内模型也都保留。这在国产工具里很少见——通常国际模型和国内模型只能二选一，Tabbit 是少见的全家桶。</p>
+          <p><strong>「妙招」脚本系统</strong>——可以把常用操作流程保存为妙招（提示词/脚本/Agent 三种形态），后续用斜杠命令一键调用。你在网页上写点自动化脚本也行。</p>
+          <p>基础功能永久免费。把 Tabbit 设为默认浏览器可解锁完整 Pro 功能（Agent 和妙招全部放开）。</p>
+        </div>
+      </div>
+
+      <div class="hw-group-title">浏览器扩展</div>
+
+      <div class="hw-card" data-accent="green">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h7v4H4z"/><path d="M13 4h7v4h-7z"/><path d="M4 10h7v4H4z"/><path d="M13 10h7v4h-7z"/><path d="M4 16h7v4H4z"/><path d="M13 16h7v4h-7z"/></svg>
+          <h2>豆包 AI 扩展</h2>
+          <span class="hw-tag bought">装了一个</span>
+        </div>
+        <div class="hw-card-body">
+          <p>浏览器扩展这方面，我的建议是——<strong>装一个就够了，千万别贪</strong>。</p>
+          <p>我目前只留了豆包的浏览器扩展。划词翻译、页面总结、AI 对话这些基本需求都能覆盖。简洁，不抢戏。</p>
+          <p>为什么不多装几个？因为我经历过那种惨状：在网页上复制一段文字，三四个 AI 扩展同时弹出来抢着帮你——豆包问你要不要总结，Kimi 问你要不要翻译，通义灵码想帮你检查代码。那场面，比工作群 @所有人 还热闹。最后全删了，只留一个，世界清净了。</p>
+          <p>所以浏览器扩展就一条准则：<strong>少即是多</strong>。找一个覆盖你最常用场景的，剩下的全卸掉。</p>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:40px;">
+        <a href="tools.html" class="hw-back">← 返回工具列表</a>
+      </div>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">工欲善其事，必先利其器</p>
+      <p class="footer-copy">© 2026 AIdreamer · 用 AI 学 AI</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 520" style="background:#fdfbf7;border-radius:12px;">
+  <defs>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(120,110,90,0.08)"/>
+    </filter>
+  </defs>
+
+  <!-- 标题 -->
+  <text x="340" y="32" text-anchor="middle" font-family="'Noto Serif SC', serif" font-size="16" font-weight="600" fill="#6b665d">保持信息新鲜感的来源地图</text>
+
+  <!-- 中心节点 -->
+  <circle cx="340" cy="270" r="58" fill="#fdfbf7" stroke="#c9a876" stroke-width="2"/>
+  <text x="340" y="263" text-anchor="middle" font-family="'Noto Serif SC', serif" font-size="14" font-weight="600" fill="#3d3a35">我的</text>
+  <text x="340" y="284" text-anchor="middle" font-family="'Noto Serif SC', serif" font-size="14" font-weight="600" fill="#3d3a35">AI 信息源</text>
+
+  <!-- 1. 国内机构媒体 -->
+  <line x1="382" y1="222" x2="520" y2="120" stroke="#c9a876" stroke-width="2"/>
+  <rect x="450" y="80" width="160" height="56" rx="8" fill="#fff" stroke="#c9a876" stroke-width="1.5" filter="url(#soft)"/>
+  <text x="530" y="104" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="13" font-weight="600" fill="#3d3a35">国内机构媒体</text>
+  <text x="530" y="126" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="12" fill="#6b665d">腾讯研究院</text>
+
+  <!-- 2. 播客 -->
+  <line x1="396" y1="250" x2="580" y2="230" stroke="#6b8cae" stroke-width="2"/>
+  <rect x="500" y="196" width="160" height="70" rx="8" fill="#fff" stroke="#6b8cae" stroke-width="1.5" filter="url(#soft)"/>
+  <text x="580" y="220" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="13" font-weight="600" fill="#3d3a35">播客</text>
+  <text x="580" y="240" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="11" fill="#6b665d">活人的播客我更爱听</text>
+  <text x="580" y="256" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="11" fill="#6b665d">AI 播客之外，真实感永远会爱</text>
+
+  <!-- 3. 国际团队 -->
+  <line x1="384" y1="298" x2="540" y2="380" stroke="#8fb89c" stroke-width="2"/>
+  <rect x="470" y="350" width="160" height="70" rx="8" fill="#fff" stroke="#8fb89c" stroke-width="1.5" filter="url(#soft)"/>
+  <text x="550" y="374" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="13" font-weight="600" fill="#3d3a35">国际团队</text>
+  <text x="550" y="394" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="12" fill="#6b665d">OpenAI / Anthropic</text>
+  <text x="550" y="410" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="12" fill="#6b665d">Google DeepMind</text>
+
+  <!-- 4. AI 产品/公司 -->
+  <line x1="340" y1="328" x2="340" y2="440" stroke="#a89bc4" stroke-width="2"/>
+  <rect x="250" y="430" width="180" height="56" rx="8" fill="#fff" stroke="#a89bc4" stroke-width="1.5" filter="url(#soft)"/>
+  <text x="340" y="454" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="13" font-weight="600" fill="#3d3a35">AI 产品 & 公司动态</text>
+  <text x="340" y="476" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="12" fill="#6b665d">新模型发布 · 新 Agent 形态</text>
+
+  <!-- 5. 个人博客/Newsletter -->
+  <line x1="296" y1="298" x2="140" y2="380" stroke="#c9a876" stroke-width="2"/>
+  <rect x="20" y="350" width="160" height="70" rx="8" fill="#fff" stroke="#c9a876" stroke-width="1.5" filter="url(#soft)"/>
+  <text x="100" y="374" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="13" font-weight="600" fill="#3d3a35">个人博客 / Newsletter</text>
+  <text x="100" y="394" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="12" fill="#6b665d">独立博客 · Substack</text>
+  <text x="100" y="410" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="12" fill="#6b665d">一线从业者的体感</text>
+
+  <!-- 6. 论文/开源社区 -->
+  <line x1="284" y1="250" x2="100" y2="230" stroke="#6b8cae" stroke-width="2"/>
+  <rect x="20" y="180" width="160" height="70" rx="8" fill="#fff" stroke="#6b8cae" stroke-width="1.5" filter="url(#soft)"/>
+  <text x="100" y="204" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="13" font-weight="600" fill="#3d3a35">论文 / 开源社区</text>
+  <text x="100" y="224" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="12" fill="#6b665d">arXiv · Hugging Face</text>
+  <text x="100" y="240" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="12" fill="#6b665d">GitHub · Reddit</text>
+</svg>

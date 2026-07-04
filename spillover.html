@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="学 AI 时的价值溢出 —— 学着学着，我会了一些别的东西" />
+  <title>学 AI 时的价值溢出</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css?v=20260703k" />
+
+  <style>
+    /* ============================================
+       价值溢出 —— 散落的便签板
+       ============================================ */
+
+    .spillover-page {
+      max-width: var(--wide-width);
+      margin: 0 auto;
+      padding: 32px 32px 80px;
+    }
+
+    .sp-header {
+      text-align: center;
+      margin-bottom: 48px;
+      animation: fadeUp .6s ease both;
+    }
+    .sp-header .sp-eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: var(--camel);
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    .sp-header h1 {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 8px 0 6px;
+    }
+    .sp-header p {
+      font-size: 14px;
+      color: var(--text-mute);
+      margin: 0 0 16px;
+    }
+    .sp-header .hero-divider { margin: 0 auto; }
+
+    .sp-lead {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      color: var(--text-soft);
+      line-height: 1.9;
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto 48px;
+      padding: 0 20px;
+      animation: fadeUp .6s ease .1s both;
+    }
+
+    /* --- 便签板 --- */
+    .pinboard {
+      position: relative;
+      min-height: 580px;
+      margin: 0 auto;
+    }
+
+    .note {
+      position: absolute;
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--surface);
+      border: 1px solid var(--border-soft);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      transition: transform .35s cubic-bezier(.2,.7,.3,1), box-shadow .35s ease;
+      padding: 22px 20px 18px;
+    }
+    .note:hover {
+      transform: rotate(0deg) scale(1.03) !important;
+      box-shadow: var(--shadow-hover);
+      z-index: 20;
+    }
+
+    .note-1 {
+      top: 10px; left: 4%;
+      width: 300px;
+      transform: rotate(-4.5deg);
+      animation: dropIn .6s ease .15s both;
+      z-index: 3;
+    }
+    .note-2 {
+      top: 60px; left: 42%;
+      width: 260px;
+      transform: rotate(3.2deg);
+      animation: dropIn .6s ease .3s both;
+      z-index: 2;
+    }
+    .note-3 {
+      top: 300px; left: 18%;
+      width: 320px;
+      transform: rotate(-2deg);
+      animation: dropIn .6s ease .45s both;
+      z-index: 1;
+    }
+
+    @keyframes dropIn {
+      0%   { opacity: 0; transform: rotate(0deg) translateY(-30px) scale(.9); }
+      100% { opacity: 1; }
+    }
+
+    /* --- 胶带 --- */
+    .note[data-tape]::before {
+      content: '';
+      position: absolute;
+      top: -7px;
+      width: 52px;
+      height: 15px;
+      border-radius: 2px;
+      opacity: 0.65;
+    }
+    .note-1[data-tape]::before { left: 38%; transform: rotate(8deg); }
+    .note-2[data-tape]::before { left: 45%; transform: rotate(-12deg); }
+    .note-3[data-tape]::before { left: 30%; transform: rotate(5deg); }
+
+    .note[data-tape="camel"]::before  { background: rgba(201, 168, 118, 0.35); }
+    .note[data-tape="blue"]::before   { background: rgba(107, 140, 174, 0.30); }
+    .note[data-tape="green"]::before  { background: rgba(143, 184, 156, 0.30); }
+    .note[data-tape="purple"]::before { background: rgba(168, 155, 196, 0.30); }
+
+    /* --- 图钉 --- */
+    .note[data-pin]::after {
+      content: '';
+      position: absolute;
+      top: -6px;
+      right: 16px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0,0,0,.15);
+    }
+    .note[data-pin="camel"]::after { background: radial-gradient(circle at 30% 30%, #ddc9a8, #c9a876); }
+    .note[data-pin="blue"]::after  { background: radial-gradient(circle at 30% 30%, #a8bdd1, #6b8cae); }
+    .note[data-pin="green"]::after { background: radial-gradient(circle at 30% 30%, #b5d4be, #8fb89c); }
+
+    .note-dashed { border-style: dashed; }
+
+    /* --- 便签内容 --- */
+    .note-tag {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .note-tag.t-camel  { background: rgba(201,168,118,0.12); color: #a08555; }
+    .note-tag.t-blue   { background: rgba(107,140,174,0.10); color: #5a7d9e; }
+    .note-tag.t-green  { background: rgba(143,184,156,0.12); color: #5a8a6e; }
+    .note-tag.t-purple { background: rgba(168,155,196,0.12); color: #7a6e9a; }
+
+    .note h3 {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 0 0 8px;
+      line-height: 1.4;
+    }
+    .note p {
+      font-size: 13.5px;
+      color: var(--text-soft);
+      line-height: 1.8;
+      margin: 0;
+    }
+    .note .note-foot {
+      margin-top: 12px;
+      font-size: 11px;
+      color: var(--text-mute);
+      font-family: var(--font-mono);
+    }
+
+    /* --- 底部 --- */
+    .sp-footer {
+      text-align: center;
+      margin-top: 48px;
+      animation: fadeUp .6s ease .6s both;
+    }
+    .sp-footer p {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      color: var(--text-soft);
+      line-height: 1.9;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 720px) {
+      .pinboard { min-height: auto; }
+      .note {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        width: auto !important;
+        max-width: 420px;
+        margin: 0 auto 20px;
+        transform: rotate(0deg) !important;
+      }
+      .sp-header h1 { font-size: 24px; }
+      .sp-lead { font-size: 14.5px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="back-to-portal">← 返回星河</a>
+      <div class="header-right">
+        <a href="spillover.html" class="site-title">
+          <span class="title-mark" style="background:linear-gradient(135deg,#ddc9a8,#e8d4b8);">溢</span>
+          <span class="title-text">学 AI 时的价值溢出</span>
+        </a>
+        <div class="topic-switcher">
+          <button class="topic-switcher-btn" aria-haspopup="true" aria-expanded="false">
+            <span>主题</span>
+            <svg viewBox="0 0 24 24" width="14" height="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="topic-switcher-menu">
+            <a href="agent.html" class="topic-switcher-item">从小白玩转 AI Agent</a>
+            <a href="history.html" class="topic-switcher-item">AI 纵横 70 年</a>
+            <a href="complexity.html" class="topic-switcher-item">不要低估了 AI 系统的复杂度</a>
+            <a href="basics.html" class="topic-switcher-item">那些没人教过你的基础</a>
+            <a href="spillover.html" class="topic-switcher-item current">学 AI 时的价值溢出</a>
+            <a href="tools.html" class="topic-switcher-item">怪好用的 AI 工具</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top:32px;">
+    <div class="spillover-page">
+
+      <header class="sp-header">
+        <span class="sp-eyebrow">VALUE SPILLOVER</span>
+        <h1>学 AI 时的价值溢出</h1>
+        <p>学着学着，我会了一些别的东西</p>
+        <div class="hero-divider"></div>
+      </header>
+
+      <p class="sp-lead">学 AI 的时候，有些收获不是 AI 本身——是路上顺手捡到的。这些东西杂七杂八，没什么体系，但回头看，可能比 AI 本身更实用。这里不按主题分类，就散着放，像一块便签板。点一张进去看看。</p>
+
+      <div class="pinboard">
+
+        <a href="spillover-smart-factory.html" class="note note-1" data-tape="camel" data-pin="camel">
+          <span class="note-tag t-camel">工业智能</span>
+          <h3>领航级智能工厂全景讲解</h3>
+          <p>制造业搞智能化不是企业自己瞎折腾，国家是有顶层设计的。从四级智能工厂梯度培育到数据要素×、AI+制造专项行动——这些政策文件就是路线图。</p>
+          <div class="note-foot">← 意外收获 #1</div>
+        </a>
+
+        <a href="spillover-markdown.html" class="note note-2" data-tape="blue" data-pin="blue">
+          <span class="note-tag t-blue">写作格式</span>
+          <h3>笔尖上的简洁之道</h3>
+          <p>学 AI 时在 Obsidian 记笔记，顺手就学会了 Markdown。现在 ## 加粗 代码块，手指头自己就敲出来了。更重要的是——在 Agent 时代，Markdown 正在成为人和机器对话的"通用语"。</p>
+          <div class="note-foot">← 意外收获 #2</div>
+        </a>
+
+        <a href="spillover-ppt.html" class="note note-3 note-dashed" data-tape="green" data-pin="green">
+          <span class="note-tag t-green">AI 排版</span>
+          <h3>让 AI 替你做完 PPT</h3>
+          <p>试了一圈 AI 生成 PPT 的方案，结论很直接：最流行的那条路反而是错的。生图式 PPT 只是画了一张像 PPT 的图。正确做法是让 AI 出大纲、模板兜底，或者把幻灯片当成一段代码。</p>
+          <div class="note-foot">← 意外收获 #3</div>
+        </a>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">学着学着，路就宽了</p>
+      <p class="footer-copy">© 2026 AIdreamer · 用 AI 学 AI</p>
+    </div>
+  </footer>
+</body>
+</html>

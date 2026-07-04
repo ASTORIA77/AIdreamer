@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI 知识库与笔记工具 —— IMA 知识库、Obsidian、Notion" />
+  <title>知识库 / 笔记 · 怪好用的 AI 工具</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css?v=20260703f" />
+
+  <style>
+    .hw-page { max-width: var(--content-width, 760px); margin: 0 auto; padding: 32px 0 80px; }
+    .hw-header { text-align: center; margin-bottom: 48px; }
+    .hw-header .hw-eyebrow { display: inline-block; font-size: 12px; letter-spacing: 3px; color: var(--blue-soft); font-weight: 500; text-transform: uppercase; }
+    .hw-header h1 { font-family: var(--font-serif); font-size: 28px; font-weight: 600; color: var(--text); margin: 8px 0 6px; }
+    .hw-header p { font-size: 14px; color: var(--text-mute); margin: 0 0 16px; }
+    .hw-header .hero-divider { margin: 0 auto; }
+    .hw-lead { font-family: var(--font-serif); font-size: 16.5px; color: var(--text-soft); line-height: 1.9; text-align: center; max-width: 600px; margin: 0 auto 48px; padding: 0 20px; }
+
+    .hw-card { position: relative; background: var(--surface); border: 1px solid var(--border-soft); border-radius: var(--radius-lg); padding: 32px 36px 32px 40px; margin-bottom: 24px; transition: transform .2s ease, box-shadow .2s ease; overflow: hidden; }
+    .hw-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 4px 0 0 4px; }
+    .hw-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+    .hw-card[data-accent="blue"]::before  { background: linear-gradient(180deg, #9eb8cd, #c7d7e6); }
+    .hw-card[data-accent="green"]::before  { background: linear-gradient(180deg, #b2c9b6, #d2dfd5); }
+    .hw-card[data-accent="purple"]::before { background: linear-gradient(180deg, #b8adc6, #d2c9de); }
+    .hw-card[data-accent="camel"]::before  { background: linear-gradient(180deg, #d6bc92, #e4d4b8); }
+    .hw-card[data-accent="gray"]::before   { background: linear-gradient(180deg, #c4bbb0, #ddd6cc); }
+
+    .hw-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+    .hw-card-header .hw-icon { width: 22px; height: 22px; flex-shrink: 0; }
+    .hw-card-header h2 { font-family: var(--font-serif); font-size: 17px; font-weight: 600; color: var(--text); margin: 0; flex: 1; }
+    .hw-tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 1px; padding: 3px 10px; border-radius: 20px; border: 1px solid var(--border); white-space: nowrap; background: var(--bg-soft); color: var(--text-mute); }
+    .hw-tag.bought { background: rgba(139, 184, 156, 0.12); color: #5a8a6e; border-color: rgba(139, 184, 156, 0.3); }
+    .hw-tag.trial { background: rgba(107, 140, 174, 0.10); color: #5a7d9e; border-color: rgba(107, 140, 174, 0.25); }
+
+    .hw-card-body p { color: var(--text-soft); line-height: 1.9; margin: 0 0 0.9em; }
+    .hw-card-body p:last-child { margin-bottom: 0; }
+    .hw-card-body strong { color: var(--text); font-weight: 500; }
+
+    .hw-group-title { font-family: var(--font-serif); font-size: 14px; font-weight: 500; color: var(--text-mute); letter-spacing: 2px; text-align: center; margin: 40px 0 20px; position: relative; }
+    .hw-group-title::before, .hw-group-title::after { content: ''; display: inline-block; vertical-align: middle; width: 48px; height: 1px; background: var(--border); margin: 0 12px; }
+    .hw-back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--blue); text-decoration: none; transition: color .2s ease; margin-top: 32px; }
+    .hw-back:hover { color: var(--camel); }
+
+    .hw-card { animation: fadeUp .5s ease both; }
+    .hw-card:nth-child(1) { animation-delay: 0s; }
+    .hw-card:nth-child(2) { animation-delay: 0.06s; }
+    .hw-card:nth-child(3) { animation-delay: 0.12s; }
+    .hw-card:nth-child(4) { animation-delay: 0.18s; }
+    .hw-card:nth-child(5) { animation-delay: 0.24s; }
+    .hw-card:nth-child(6) { animation-delay: 0.30s; }
+    .hw-card:nth-child(7) { animation-delay: 0.36s; }
+    .hw-card:nth-child(8) { animation-delay: 0.42s; }
+    .hw-card:nth-child(9) { animation-delay: 0.48s; }
+    .hw-card:nth-child(10) { animation-delay: 0.54s; }
+
+    @media (max-width: 640px) {
+      .hw-page { padding: 24px 16px 64px; }
+      .hw-card { padding: 24px 20px 24px 28px; margin-bottom: 16px; }
+      .hw-card-header h2 { font-size: 15.5px; }
+      .hw-header h1 { font-size: 24px; }
+      .hw-lead { font-size: 15px; margin-bottom: 36px; }
+      .hw-group-title::before, .hw-group-title::after { width: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-left" style="display:flex;align-items:center;gap:16px;">
+        <a href="index.html" class="back-to-portal">← 返回星河</a>
+        <a href="tools.html" class="back-to-portal">← 返回工具列表</a>
+      </div>
+      <div class="header-right">
+        <a href="tools.html" class="site-title">
+          <span class="title-mark" style="background:linear-gradient(135deg,#6b8cae,#8fa5c9);">具</span>
+          <span class="title-text">怪好用的 AI 工具</span>
+        </a>
+        <div class="topic-switcher">
+          <button class="topic-switcher-btn" aria-haspopup="true" aria-expanded="false">
+            <span>主题</span>
+            <svg viewBox="0 0 24 24" width="14" height="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="topic-switcher-menu">
+            <a href="agent.html" class="topic-switcher-item">从小白玩转 AI Agent</a>
+            <a href="history.html" class="topic-switcher-item">AI 纵横 70 年</a>
+            <a href="complexity.html" class="topic-switcher-item">不要低估了 AI 系统的复杂度</a>
+            <a href="basics.html" class="topic-switcher-item">那些没人教过你的基础</a>
+            <a href="spillover.html" class="topic-switcher-item">学 AI 时的价值溢出</a>
+            <a href="tools.html" class="topic-switcher-item current">怪好用的 AI 工具</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="hw-page">
+
+      <header class="hw-header fade-up">
+        <span class="hw-eyebrow">KNOWLEDGE</span>
+        <h1>知识库 / 笔记</h1>
+        <p>存资料的和写东西的，虽然软件经常分不开</p>
+        <div class="hero-divider"></div>
+      </header>
+
+      <p class="hw-lead fade-up">在我心里知识库和笔记是两回事：<strong>知识库是放真实可信资料的仓库</strong>——电子书、文献、报告、白皮书蓝皮书——资料本身不是我写的，我负责上传和检索；<strong>笔记是我归纳总结的学习心得和实践记录</strong>——是我写的东西。但现实是，现在很多软件把这两件事揉在了一起，存和写都在一个界面里。</p>
+
+      <div class="hw-group-title">知识库</div>
+
+      <div class="hw-card" data-accent="green">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          <h2>IMA 知识库</h2>
+          <span class="hw-tag bought">主力在用</span>
+        </div>
+        <div class="hw-card-body">
+          <p>已经推荐过好几次了，还是那句话——选它核心就一个理由：<strong>能和所有 Agent 打通</strong>。IMA 有资料库、连接器（MCP 生态）和 Skill 系统，你上传一份 PDF，你的 WorkBuddy 或者其他 Agent 就能直接检索到。不用复制粘贴、不用切换窗口，资料就在 Agent 的可触及范围内。</p>
+          <p>作为知识库本身也很好用——可以配置自定义大模型，翻译、总结、问答这些任务在知识库内部就能完成。检索完知识库里的内容后，结果可以直接<strong>记为笔记</strong>，等于把「查资料」和「写笔记」连成了一条线。</p>
+          <p>2026 年 4 月 IMA 推出了 <strong>Copilot Agent 模式</strong>（就是那个几十万人排队的 copilot），核心是记忆系统 + 场景感知 + Skill 生态。5 月底已经全面开放。我还没用，但这个方向是对的——知识库不应该只是一个存储工具，它应该能和你的工作流互动。</p>
+        </div>
+      </div>
+
+      <div class="hw-group-title">笔记</div>
+
+      <div class="hw-card" data-accent="purple">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 12 12 22 2 12"/></svg>
+          <h2>Obsidian</h2>
+          <span class="hw-tag bought">日常在用</span>
+        </div>
+        <div class="hw-card-body">
+          <p>本地笔记的标杆。核心优势四句话：</p>
+          <p><strong>本地优先</strong>——所有文件是纯 Markdown，存在你电脑上，也可以开云端同步。不怕服务商倒闭、不怕断网、不怕数据被审查。</p>
+          <p><strong>插件生态</strong>——2026 年已积累了 75+ 款实测好用的插件，覆盖写作、任务管理、AI 辅助、知识管理全场景。不是插件多就好，而是你用哪个场景都能找到趁手的。</p>
+          <p><strong>Markdown 书写</strong>——纯键盘操作、链接用 <code>[[]]</code> 双括号、所见即所得的实时预览。写得越久越顺手。</p>
+          <p><strong>知识图谱</strong>——笔记之间的双向链接会自动生成一个网状图。你写的每一篇笔记不是孤岛，是一条条连线。数学意义上你确实在构建自己的「第二大脑」。</p>
+        </div>
+      </div>
+
+      <div class="hw-card" data-accent="blue">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4"/><line x1="8" y1="2" x2="8" y2="22"/></svg>
+          <h2>Notion</h2>
+          <span class="hw-tag trial">刚上手</span>
+        </div>
+        <div class="hw-card-body">
+          <p>最近才注册，还没深入探索。但有一个理由让我觉得值得推荐——<strong>Notion AI 可以接入海外 SOTA 模型</strong>。2026 年 1 月更新后，你现在可以在 Notion 里直接选 GPT-5.2、Claude Opus 4.5、Gemini 3，或者让 Auto 模式自动匹配最适合当前任务的模型。</p>
+          <p>这个思路跟其他笔记工具有本质区别——大多数工具的 AI 是「我给你配一个模型，爱用不用」。Notion 的 AI 是「我把最好的几个模型都放这了，你选，或者我帮你选」。在国产工具普遍无法合法接入 Claude/GPT 的环境下，这是一个很实际的吸引力。</p>
+          <p>功能层面我还没跑通全流程——Notion 的数据库、看板、协作这些是它的传统强项，但我目前只停留在「写文档 + AI 辅助」的阶段。后面用多了再补。</p>
+        </div>
+      </div>
+
+      <p style="font-family:var(--font-serif);font-size:15.5px;color:var(--text-soft);line-height:1.9;text-align:center;max-width:540px;margin:44px auto 0;padding:0 20px;">说句实话，大家不要老纠结本地知识库安全隐私这些。我就学个习，有啥私密的？换个设备的时候就知道——云端同步点一下，所有笔记全过去了，迁移成本是零。这个爽感，经历过一次就回不去了。</p>
+
+      <div style="text-align:center;margin-top:40px;">
+        <a href="tools.html" class="hw-back">← 返回工具列表</a>
+      </div>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">工欲善其事，必先利其器</p>
+      <p class="footer-copy">© 2026 AIdreamer · 用 AI 学 AI</p>
+    </div>
+  </footer>
+</body>
+</html>

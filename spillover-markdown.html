@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="学 AI 时的价值溢出 —— Markdown：从语法之美到 Agent 时代的写作语言" />
+  <title>Markdown 写作 · 价值溢出</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css?v=20260703j" />
+
+  <style>
+    .page {
+      max-width: var(--wide-width);
+      margin: 0 auto;
+      padding: 32px 32px 80px;
+    }
+
+    .article-header {
+      text-align: center;
+      margin-bottom: 48px;
+      animation: fadeUp .5s ease both;
+    }
+    .article-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--blue);
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .article-header h1 {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 0 0 6px;
+      line-height: 1.4;
+    }
+    .article-header .subtitle {
+      font-size: 14px;
+      color: var(--text-mute);
+    }
+    .article-header .hero-divider { margin: 18px auto 0; }
+
+    .lead {
+      font-family: var(--font-serif);
+      font-size: 16.5px;
+      color: var(--text-soft);
+      line-height: 2;
+      margin: 0 0 48px;
+      animation: fadeUp .5s ease .1s both;
+    }
+
+    .body {
+      animation: fadeUp .5s ease .2s both;
+    }
+    .body h2 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 44px 0 12px;
+      padding-left: 14px;
+      border-left: 3px solid var(--blue);
+    }
+    .body h3 {
+      font-family: var(--font-serif);
+      font-size: 16.5px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 32px 0 10px;
+    }
+    .body h4 {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 24px 0 8px;
+    }
+    .body p, .body li {
+      font-size: 15px;
+      color: var(--text-soft);
+      line-height: 1.9;
+      margin: 0 0 14px;
+      text-align: justify;
+    }
+    .body ul, .body ol { margin: 4px 0 18px; padding-left: 20px; }
+    .body ul li, .body ol li { margin-bottom: 6px; }
+    .body strong { color: var(--text); font-weight: 600; }
+
+    .body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13.5px;
+    }
+    .body th, .body td {
+      padding: 10px 14px;
+      border: 1px solid var(--border-soft);
+      text-align: left;
+    }
+    .body th {
+      background: var(--bg-soft);
+      font-weight: 500;
+      color: var(--text);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .body td { color: var(--text-soft); vertical-align: top; }
+
+    .body pre {
+      background: var(--bg-soft);
+      border: 1px solid var(--border-soft);
+      border-left: 3px solid var(--blue);
+      padding: 14px 18px;
+      overflow-x: auto;
+      margin: 12px 0 18px;
+      border-radius: 4px;
+      font-size: 13px;
+      line-height: 1.7;
+      font-family: var(--font-mono);
+    }
+
+    .callout {
+      margin: 24px 0;
+      padding: 18px 24px;
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+    }
+    .callout-accent {
+      background: rgba(107, 140, 174, 0.04);
+      border-left: 3px solid var(--blue);
+    }
+    .callout-accent p {
+      font-family: var(--font-serif);
+      color: var(--text-soft);
+      margin: 0 0 4px;
+      font-size: 14.5px;
+    }
+    .callout h4 { margin-top: 0; color: var(--blue); }
+
+    .feature-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin: 14px 0;
+      padding: 14px 18px;
+      background: var(--bg-soft);
+      border-radius: 8px;
+      border: 1px solid var(--border-soft);
+    }
+    .feature-num {
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      background: rgba(107, 140, 174, 0.08);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid var(--border-soft);
+    }
+    .feature-text strong { color: var(--blue); }
+    .feature-text { font-size: 14px; color: var(--text-soft); line-height: 1.7; }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+    .card-mini {
+      background: var(--bg-soft);
+      border: 1px solid var(--border-soft);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .card-mini h4 { margin: 0 0 4px; font-size: 14px; }
+    .card-mini p { font-size: 13px; margin: 0; color: var(--text-mute); line-height: 1.6; }
+
+    .body blockquote {
+      border-left: 3px solid var(--blue);
+      padding: 8px 18px;
+      margin: 24px 0;
+      color: var(--text-soft);
+      font-style: italic;
+      background: rgba(107, 140, 174, 0.03);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .body hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+
+    @media (max-width: 640px) {
+      .page { padding: 24px 20px 64px; }
+      .article-header h1 { font-size: 23px; }
+      .lead { font-size: 15px; }
+      .body h2 { font-size: 18px; }
+      .body table { font-size: 12px; }
+      .body th, .body td { padding: 8px 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-left" style="display:flex;align-items:center;gap:16px;">
+        <a href="index.html" class="back-to-portal">← 返回星河</a>
+        <a href="spillover.html" class="back-to-portal">← 返回便签板</a>
+      </div>
+      <div class="header-right">
+        <a href="spillover.html" class="site-title">
+          <span class="title-mark" style="background:linear-gradient(135deg,#ddc9a8,#e8d4b8);">溢</span>
+          <span class="title-text">学 AI 时的价值溢出</span>
+        </a>
+        <div class="topic-switcher">
+          <button class="topic-switcher-btn" aria-haspopup="true" aria-expanded="false">
+            <span>主题</span>
+            <svg viewBox="0 0 24 24" width="14" height="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="topic-switcher-menu">
+            <a href="agent.html" class="topic-switcher-item">从小白玩转 AI Agent</a>
+            <a href="history.html" class="topic-switcher-item">AI 纵横 70 年</a>
+            <a href="complexity.html" class="topic-switcher-item">不要低估了 AI 系统的复杂度</a>
+            <a href="basics.html" class="topic-switcher-item">那些没人教过你的基础</a>
+            <a href="spillover.html" class="topic-switcher-item current">学 AI 时的价值溢出</a>
+            <a href="tools.html" class="topic-switcher-item">怪好用的 AI 工具</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top:32px;">
+    <article class="page">
+
+      <header class="article-header">
+        <div class="article-eyebrow">写作格式</div>
+        <h1>笔尖上的简洁之道</h1>
+        <p class="subtitle">Markdown · 从语法之美到 Agent 时代的写作语言</p>
+        <div class="hero-divider"></div>
+      </header>
+
+      <p class="lead">写这个博客之前，我记 AI 笔记已经在 Obsidian 里写了很久 Markdown。不是专门学的——是为了学 AI 顺手记笔记，手指头慢慢就熟了。现在回头看，Markdown 这件事本身也值得写清楚：为什么它值得会，以及它在 Agent 时代意味着什么。</p>
+
+      <div class="body">
+
+        <h2>一、何为 Markdown</h2>
+
+        <p>Markdown 是 2004 年由 John Gruber 与 Aaron Swartz 共同创立的<strong>轻量级标记语言</strong>。它的初衷只有一个——让作者<em>专注于内容本身</em>，而非格式的排布。</p>
+
+        <p>它不像 Word 那样将文字与样式纠缠在一起，也不像 HTML 那样需要繁复的标签。Markdown 用几个最常见的符号——<code>#</code>、<code>*</code>、<code>-</code>、<code>&gt;</code>——就能表达标题、强调、列表、引用等几乎所有写作所需的结构。</p>
+
+        <div class="callout callout-accent">
+          <h4>三个关键特征</h4>
+          <p><strong>纯文本</strong>——任何编辑器都能打开，永不过时，永不锁定</p>
+          <p><strong>可读性强</strong>——即便不渲染，源文本依然清晰悦目</p>
+          <p><strong>易于转换</strong>——可一键导出为 HTML、PDF、Word、PPT 等任意格式</p>
+        </div>
+
+        <h3>同一段文字的三种写法对比</h3>
+
+        <pre>Word 文档：  [需打开软件，点击 B 按钮加粗，再点 H1 设标题……]
+HTML：       &lt;h1&gt;标题&lt;/h1&gt; &lt;p&gt;这是&lt;strong&gt;粗体&lt;/strong&gt;文字&lt;/p&gt;
+Markdown：   # 标题
+            这是 **粗体** 文字</pre>
+
+        <p>同一份内容，Markdown 用最少的符号，传递最清晰的结构。这正是它二十年来历久弥新的理由。</p>
+
+        <h2>二、为何 Markdown 在今天尤为重要</h2>
+
+        <p>当我们走入 Agent 时代，Markdown 已不只是一种格式，而是<strong>人类与机器对话的"通用语"</strong>。</p>
+
+        <h3>它是程序员、写作者、研究者共同的母语</h3>
+        <p>从 GitHub 的 README，到 Notion、Obsidian、语雀的笔记；从博客 Hexo、Jekyll，到论文 Pandoc 转换——Markdown 是当今最广泛被采纳的写作格式。学会它，意味着你可以用同一套语法，在几乎所有现代写作平台上无缝迁移。</p>
+
+        <h3>在 AI Agent 时代，Markdown 是"机器可读的优雅文字"</h3>
+        <p>这是我最想强调的一点——Markdown 正在成为<strong>人与 AI 之间最高效的沟通语言</strong>。</p>
+
+        <div class="feature-row">
+          <div class="feature-num">①</div>
+          <div class="feature-text"><strong>大模型原生输出 Markdown。</strong>无论是 ChatGPT、Claude 还是各类国产大模型，它们的回答几乎全部以 Markdown 形式生成——标题、列表、代码块、表格皆然。理解 Markdown 等于理解了 AI "说话"的方式。</div>
+        </div>
+
+        <div class="feature-row">
+          <div class="feature-num">②</div>
+          <div class="feature-text"><strong>Agent 系统的提示词多用 Markdown 组织。</strong>当你写一段结构清晰的 Markdown 提示词，Agent 会更准确地理解你的意图。层级标题、有序列表、代码块边界——都是给 AI 的"语义路标"。</div>
+        </div>
+
+        <div class="feature-row">
+          <div class="feature-num">③</div>
+          <div class="feature-text"><strong>Agent 的"记忆"和"知识库"以 Markdown 存储。</strong>我在前面的文章里写过 Claude Code 的安全问题，但抛开那个不谈，主流 Agent 的 <code>MEMORY.md</code>、<code>SKILL.md</code>、<code>README.md</code> 全部使用 Markdown。它既能被人类读懂，又能被机器精确解析——这是 JSON 与自然语言之间最优雅的折中。</div>
+        </div>
+
+        <div class="feature-row">
+          <div class="feature-num">④</div>
+          <div class="feature-text"><strong>结构化 = 可被 AI 索引、检索、推理。</strong>当你用 Markdown 写笔记，AI 可以轻松定位到"第二章第三节"；当你用纯文本，它只能模糊地猜。结构本身就是一种<em>向 AI 友好</em>的写作礼仪。</div>
+        </div>
+
+        <h3>它让"写作"成为一种可积累的资产</h3>
+        <p>Markdown 文件是纯文本，可以用 Git 版本控制，可以同步到任意云端，可以二十年后依然打开。它让你的每一份笔记、每一篇思考，都成为<strong>可迁移、可复用、可被未来自己继承</strong>的知识资产。</p>
+
+        <blockquote>当格式不再是负担，思想才能真正自由地流淌。</blockquote>
+
+        <h2>三、如何写好 Markdown</h2>
+
+        <p>先掌握五个核心语法，其余皆水到渠成。</p>
+
+        <h3>基础语法</h3>
+
+        <h4>① 标题</h4>
+        <pre># 一级标题
+## 二级标题
+### 三级标题</pre>
+        <p><code>#</code> 数量代表层级，井号后<strong>必须有空格</strong>。一篇文章建议只有一个一级标题。</p>
+
+        <h4>② 强调</h4>
+        <pre>**粗体**    *斜体*    ***粗斜体***    ~~删除线~~</pre>
+
+        <h4>③ 列表</h4>
+        <pre>- 无序列表（横线 + 空格）
+- 第二项
+  - 缩进两格即嵌套
+
+1. 有序列表
+2. 自动编号
+
+- [x] 已完成的任务
+- [ ] 待办任务</pre>
+
+        <h4>④ 链接与图片</h4>
+        <pre>[链接文字](https://example.com)
+![图片描述](path/to/image.png)</pre>
+
+        <h4>⑤ 代码</h4>
+        <pre>行内代码用反引号：`npm install`
+
+代码块用三个反引号 + 语言名：
+```python
+def hello():
+    print("Hello, Markdown")
+```</pre>
+
+        <h4>⑥ 引用与分隔线</h4>
+        <pre>&gt; 这是一段引用，
+&gt; 可以多行。
+
+---  ← 三个连字符即分隔线</pre>
+
+        <h3>进阶语法</h3>
+
+        <h4>表格</h4>
+        <pre>| 姓名 | 年龄 | 城市 |
+|------|:---:|-----:|
+| 小明 |  25 | 北京 |
+| 小红 |  30 | 上海 |</pre>
+        <p>对齐方式：<code>:---</code> 左对齐 · <code>:---:</code> 居中 · <code>---:</code> 右对齐</p>
+
+        <h4>数学公式（LaTeX）</h4>
+        <pre>行内公式：$E = mc^2$
+块级公式：$$ \int_a^b f(x)\ dx = F(b) - F(a) $$</pre>
+
+        <h4>折叠块</h4>
+        <pre>&lt;details&gt;
+&lt;summary&gt;点击展开&lt;/summary&gt;
+隐藏的内容写在这里。
+&lt;/details&gt;</pre>
+
+        <h4>脚注</h4>
+        <pre>这是一句话[^1]。
+[^1]: 这是脚注内容。</pre>
+
+        <h3>推荐编辑器</h3>
+        <div class="card-grid">
+          <div class="card-mini">
+            <h4>Typora</h4>
+            <p>所见即所得，写作如行云流水。最适合长文与日常笔记。</p>
+          </div>
+          <div class="card-mini">
+            <h4>Obsidian</h4>
+            <p>本地存储 + 双向链接，构建你的"第二大脑"。免费且强大。</p>
+          </div>
+          <div class="card-mini">
+            <h4>VS Code</h4>
+            <p>配合 Markdown All in One 插件，是技术写作者的不二之选。</p>
+          </div>
+          <div class="card-mini">
+            <h4>Mark Text</h4>
+            <p>开源、跨平台、轻盈优雅。极简主义者的最爱。</p>
+          </div>
+          <div class="card-mini">
+            <h4>语雀 / Notion</h4>
+            <p>在线协作，团队共享，云端同步。适合团队文档。</p>
+          </div>
+          <div class="card-mini">
+            <h4>GitHub / GitLab</h4>
+            <p>在浏览器中直接编辑预览，README 与文档的天然主场。</p>
+          </div>
+        </div>
+
+        <h3>常见陷阱</h3>
+        <table>
+          <thead>
+            <tr><th>问题</th><th>原因</th><th>解决</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>列表不渲染</td><td><code>-</code> 后面缺少空格</td><td>写作 <code>- 内容</code></td></tr>
+            <tr><td>标题不生效</td><td>井号后缺空格（中文常见）</td><td>写作 <code># 标题</code></td></tr>
+            <tr><td>同段换行无效</td><td>行末缺两个空格</td><td>行末加两个空格或空一行</td></tr>
+            <tr><td>表格错位</td><td>分隔行缺失或 <code>|</code> 数量不一致</td><td>检查 <code>|---|</code> 那一行</td></tr>
+            <tr><td>代码块无高亮</td><td>未指定语言</td><td><code>```python</code> 而不只是 <code>```</code></td></tr>
+            <tr><td>显示出星号本身</td><td>被解析为强调</td><td>用反斜杠转义：<code>\*</code></td></tr>
+          </tbody>
+        </table>
+
+        <h3>写作工作流建议</h3>
+        <div class="callout callout-accent">
+          <p><strong>1. 先列大纲，再填血肉。</strong>用标题层级搭起骨架，思路自然清晰。</p>
+          <p><strong>2. 多用列表与表格。</strong>结构化的内容，比连绵的段落更易吸收。</p>
+          <p><strong>3. 关键词加粗，让读者一眼抓住重点。</strong></p>
+          <p><strong>4. 代码与命令必用代码块。</strong>避免被自动格式化破坏。</p>
+          <p><strong>5. 用 Git 管理长期写作。</strong>每一次修改都是一次思想的快照。</p>
+        </div>
+
+        <p style="text-align:center;margin-top:32px;">
+          当你下一次与 AI 对话时，试着用 Markdown 写你的提示词——用标题分主题，用列表列要求，用代码块标示输入。你会惊讶地发现，AI 的回答变得更精准，更有条理。
+        </p>
+
+        <blockquote style="text-align:center;margin-top:32px;">
+          Markdown 从来不只是写给人看的。它正在成为人类与机器共同的母语——一种简朴、清晰、且永远不会过时的写作方式。
+        </blockquote>
+
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">学着学着，路就宽了</p>
+      <p class="footer-copy">© 2026 AIdreamer · 用 AI 学 AI</p>
+    </div>
+  </footer>
+</body>
+</html>

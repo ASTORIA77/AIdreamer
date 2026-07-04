@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260">
+  <defs>
+    <filter id="shadow" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(120,110,90,0.07)"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,1 L8,5 L0,9 Z" fill="#b0a89c"/>
+    </marker>
+  </defs>
+
+  <!-- 标题 -->
+  <text x="320" y="28" text-anchor="middle" font-family="'Noto Serif SC', serif" font-size="17" font-weight="600" fill="#3d3a35">RAG 流水线：从你的文档到模型回答</text>
+  <text x="320" y="48" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="10" fill="#b0a89c">五步，每一步的工程选择都影响最终质量</text>
+
+  <!-- 步骤1：切分 -->
+  <rect x="20" y="70" width="110" height="80" rx="10" fill="#fdfbf7" stroke="#c9a876" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="75" y="96" text-anchor="middle" font-family="'Noto Serif SC', serif" font-size="13" font-weight="600" fill="#8b7d6a">切分</text>
+  <text x="75" y="114" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="9" fill="#9a948a">Chunking</text>
+  <text x="75" y="130" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="9" fill="#b0a89c">长文切小块</text>
+  <text x="75" y="144" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="9" fill="#b0a89c">300-800字/块</text>
+
+  <line x1="130" y1="110" x2="158" y2="110" stroke="#b0a89c" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- 步骤2：向量化 -->
+  <rect x="162" y="70" width="110" height="80" rx="10" fill="#fdfbf7" stroke="#6b8cae" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="217" y="96" text-anchor="middle" font-family="'Noto Serif SC', serif" font-size="13" font-weight="600" fill="#5a6d82">向量化</text>
+  <text x="217" y="114" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="9" fill="#9a948a">Embedding</text>
+  <text x="217" y="130" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="9" fill="#b0a89c">文字→数字</text>
+  <text x="217" y="144" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="9" fill="#b0a89c">语义相近=向量相近</text>
+
+  <line x1="272" y1="110" x2="300" y2="110" stroke="#b0a89c" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- 步骤3：存储 -->
+  <rect x="304" y="70" width="110" height="80" rx="10" fill="#fdfbf7" stroke="#8fb89c" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="359" y="96" text-anchor="middle" font-family="'Noto Serif SC', serif" font-size="13" font-weight="600" fill="#5e7a6b">存储</text>
+  <text x="359" y="114" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="9" fill="#9a948a">Store</text>
+  <text x="359" y="130" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="9" fill="#b0a89c">向量数据库</text>
+  <text x="359" y="144" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="9" fill="#b0a89c">文档→坐标点</text>
+
+  <line x1="414" y1="110" x2="442" y2="110" stroke="#b0a89c" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- 步骤4：检索+重排序 -->
+  <rect x="446" y="70" width="110" height="80" rx="10" fill="#fdfbf7" stroke="#a89bc4" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="501" y="96" text-anchor="middle" font-family="'Noto Serif SC', serif" font-size="13" font-weight="600" fill="#7d7390">检索+重排</text>
+  <text x="501" y="114" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="9" fill="#9a948a">Retrieve &amp; Rerank</text>
+  <text x="501" y="130" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="9" fill="#b0a89c">向量相似度Top-N</text>
+  <text x="501" y="144" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="9" fill="#b0a89c">精排→挑最优</text>
+
+  <!-- 大框：增强生成 -->
+  <rect x="30" y="170" width="580" height="54" rx="10" fill="rgba(107,140,174,0.04)" stroke="#6b8cae" stroke-width="1.5" stroke-dasharray="6 3" filter="url(#shadow)"/>
+  <text x="320" y="192" text-anchor="middle" font-family="'Noto Serif SC', serif" font-size="15" font-weight="600" fill="#5a6d82">步骤五：增强生成（Generate）</text>
+  <text x="320" y="210" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="10" fill="#9a948a">把检索到的片段拼进上下文 → 大模型基于这些"参考资料"回答你</text>
+
+  <!-- 底部 4 个箭头汇聚到生成框 -->
+  <line x1="75" y1="150" x2="75" y2="170" stroke="#c9a876" stroke-width="1" opacity="0.6"/>
+  <line x1="217" y1="150" x2="217" y2="170" stroke="#6b8cae" stroke-width="1" opacity="0.6"/>
+  <line x1="359" y1="150" x2="359" y2="170" stroke="#8fb89c" stroke-width="1" opacity="0.6"/>
+  <line x1="501" y1="150" x2="501" y2="170" stroke="#a89bc4" stroke-width="1" opacity="0.6"/>
+
+  <!-- 底部呼应 -->
+  <text x="320" y="246" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="10" fill="#b0a89c">不同产品之间的差异，主要在切分策略、向量模型、重排序算法上</text>
+</svg>

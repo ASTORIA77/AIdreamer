@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AIdreamer 的星河 —— AI 学习博客主题入口" />
+  <title>AIdreamer · 星河</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css?v=20260715" />
+  <link rel="stylesheet" href="css/portal.css?v=20260715k" />
+</head>
+<body class="portal-body">
+
+  <canvas id="starfield"></canvas>
+
+  <header class="portal-header">
+    <div class="portal-header-inner">
+      <span class="portal-logo" id="portal-about-trigger" role="button" tabindex="0" title="关于这个博客">AIdreamer</span>
+      <span class="portal-tagline" id="top-trigger" role="button" tabindex="0" title="今日激励">今天有变成技术 top 吗？</span>
+    </div>
+  </header>
+
+  <main class="portal-main">
+    <div class="portal-intro fade-in">
+      <h1 class="portal-title">星河浩瀚</h1>
+      <p class="portal-subtitle">AI 的范畴太大了，像宇宙一样无边无际。<br/>这里是我探索的几颗星——每个主题，都是一段旅程。</p>
+    </div>
+
+    <!-- 星图 -->
+    <div class="starmap" id="starmap">
+      <svg class="starmap-lines" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet">
+        <!-- 星座连线 -->
+        <line x1="180" y1="140" x2="420" y2="100" stroke="rgba(201,168,118,0.08)" stroke-width="1"/>
+        <line x1="420" y1="100" x2="720" y2="180" stroke="rgba(107,140,174,0.08)" stroke-width="1"/>
+        <line x1="720" y1="180" x2="560" y2="380" stroke="rgba(168,155,196,0.08)" stroke-width="1"/>
+        <line x1="560" y1="380" x2="220" y2="420" stroke="rgba(143,184,156,0.08)" stroke-width="1"/>
+        <line x1="220" y1="420" x2="180" y2="140" stroke="rgba(221,201,168,0.08)" stroke-width="1"/>
+        <line x1="420" y1="100" x2="560" y2="380" stroke="rgba(201,168,118,0.06)" stroke-width="1"/>
+        <line x1="720" y1="180" x2="820" y2="390" stroke="rgba(107,140,174,0.07)" stroke-width="1"/>
+        <line x1="560" y1="380" x2="820" y2="390" stroke="rgba(143,184,156,0.07)" stroke-width="1"/>
+      </svg>
+
+      <!-- 星球节点 -->
+      <a href="agent.html" class="star-node star-agent" style="--x:18%;--y:23%;--delay:0.3s;" data-name="从小白玩转 AI Agent" data-desc="一个普通人用 Agent 学 AI 的真实记录" data-count="21 篇">
+        <div class="star-orb"></div>
+        <div class="star-halo"></div>
+        <div class="star-label">从小白玩转 AI Agent</div>
+      </a>
+
+      <a href="history.html" class="star-node star-history" style="--x:42%;--y:16%;--delay:0.5s;" data-name="AI 纵横 70 年" data-desc="从图灵机到 Agent 时代，70 年 AI 史" data-count="时间轴">
+        <div class="star-orb"></div>
+        <div class="star-halo"></div>
+        <div class="star-label">AI 纵横 70 年</div>
+      </a>
+
+      <a href="complexity.html" class="star-node star-complexity" style="--x:72%;--y:30%;--delay:0.7s;" data-name="不要低估了 AI 系统的复杂度" data-desc="数据、模型、评估、推理、部署、迭代" data-count="筹备中">
+        <div class="star-orb"></div>
+        <div class="star-halo"></div>
+        <div class="star-label">不要低估了 AI 系统的复杂度</div>
+      </a>
+
+      <a href="basics.html" class="star-node star-basics" style="--x:56%;--y:63%;--delay:0.9s;" data-name="那些没人教过你的基础" data-desc="非科班学 AI 时踩过的基础坑" data-count="筹备中">
+        <div class="star-orb"></div>
+        <div class="star-halo"></div>
+        <div class="star-label">那些没人教过你的基础</div>
+      </a>
+
+      <a href="spillover.html" class="star-node star-spillover" style="--x:22%;--y:70%;--delay:1.1s;" data-name="学 AI 时的价值溢出" data-desc="学着学着，我会了一些别的东西" data-count="持续输出中">
+        <div class="star-orb"></div>
+        <div class="star-halo"></div>
+        <div class="star-label">学 AI 时的价值溢出</div>
+      </a>
+
+      <a href="tools.html" class="star-node star-tools" style="--x:82%;--y:65%;--delay:1.3s;" data-name="怪好用的 AI 工具" data-desc="硬件、编程、写作、知识库——7 个分类，全写完了" data-count="7 个分类">
+        <div class="star-orb"></div>
+        <div class="star-halo"></div>
+        <div class="star-label">怪好用的 AI 工具</div>
+      </a>
+    </div>
+
+    <!-- 跨主题搜索框（星图下方） -->
+    <div class="portal-search" id="search-box">
+      <svg class="portal-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="text" id="search-input" class="portal-search-input" placeholder="搜索文章、标签、关键词…" autocomplete="off" />
+      <div class="portal-search-results" id="search-results"></div>
+    </div>
+
+    <!-- 悬停信息卡（鼠标移到星球上时显示） -->
+    <div class="star-tooltip" id="star-tooltip">
+      <h3 class="tooltip-name"></h3>
+      <p class="tooltip-desc"></p>
+      <span class="tooltip-count"></span>
+    </div>
+
+    <!-- 内容声明 -->
+    <section class="portal-disclaimer">
+      <div class="disclaimer-inner">
+        <p>本站文章大多由作者口述感悟、与 AI 对话后梳理成文，内容经 AI 协助生成。</p>
+        <p class="disclaimer-detail">想法是我的，文字是 AI 帮我组织的。能帮我把脑子里想的东西落成文字，这本身就是「用 AI 学 AI」的一部分。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="portal-footer">
+    <p>慢慢写，慢慢想 · 每走一步，都算数</p>
+    <p class="portal-copy">© 2026 AIdreamer · 用 AI 学 AI</p>
+  </footer>
+
+  <!-- 关于浮层 -->
+  <div class="about-overlay" id="about-overlay">
+    <div class="about-overlay-backdrop"></div>
+    <div class="about-overlay-panel">
+      <button class="about-overlay-close" id="about-overlay-close" aria-label="关闭">&times;</button>
+
+      <div class="about-overlay-content">
+        <span class="about-eyebrow">ABOUT</span>
+        <h2 class="about-title">星河</h2>
+        <p class="about-lead">AI 的范畴太大了，像宇宙一样无边无际。这里是我探索的几颗星——每个主题，都是一段旅程。</p>
+
+        <div class="about-section">
+          <h3 class="about-h3">这里是什么</h3>
+          <p>这是 AIdreamer 的个人 AI 学习博客。不是教程，不是课程，不是权威指南。只记录一件事：<strong>一个普通人怎么用 AI 学 AI，怎么在用的过程中越来越懂 AI。</strong></p>
+          <p>博客目前有六颗星，各自独立，但都指向同一个方向——成为技术 top。</p>
+          <ul class="about-stars">
+            <li><span class="dot dot-camel"></span><strong>从小白玩转 AI Agent</strong> — 一个普通人用 Agent 学 AI 的真实记录</li>
+            <li><span class="dot dot-blue"></span><strong>AI 纵横 70 年</strong> — 从图灵机到 Agent 时代，70 年 AI 史</li>
+            <li><span class="dot dot-green"></span><strong>不要低估了 AI 系统的复杂度</strong> — 数据、模型、评估、推理、部署、迭代</li>
+            <li><span class="dot dot-purple"></span><strong>那些没人教过你的基础</strong> — 非科班学 AI 时踩过的基础坑</li>
+            <li><span class="dot dot-camel-light"></span><strong>学 AI 时的价值溢出</strong> — 学着学着，我会了一些别的东西</li>
+            <li><span class="dot dot-blue-light"></span><strong>怪好用的 AI 工具</strong> — 亲测好用的工具推荐，硬件、编程、写作、知识库共 7 个分类</li>
+          </ul>
+          <p class="about-note">有些星还在等——等我真的有技术体感了才写，不为填满而写。</p>
+        </div>
+
+        <div class="about-section">
+          <h3 class="about-h3">作者是谁</h3>
+          <p>我是 AIdreamer。一个下班后继续学东西的普通人，打出的旗号是四个字：<strong>用 AI 学 AI</strong>。</p>
+          <p>信奉费曼学习法——能用大白话讲清楚，才算真懂了。讲不清楚就是还没懂，那就继续啃，啃到能讲清楚再写下来。所以这里的文章会慢慢长出来，不追热点，不追字数。</p>
+        </div>
+
+        <div class="about-section">
+          <h3 class="about-h3">为什么写下来</h3>
+          <p>用 AI 的过程中，经常出现一些"当时觉得很重要，过两天就忘"的体会。知识点到处都能查，但<strong>亲手跑过、踩过坑、顿悟过之后的那个"哦原来是这样"</strong>——这个才是最宝贵的，只有写下来才不会变成空气。</p>
+        </div>
+
+        <div class="about-section">
+          <h3 class="about-h3">内容说明</h3>
+          <p>本站文章大多由作者口述感悟、与 AI 对话后梳理成文，内容经 AI 协助生成。想法是我的，文字是 AI 帮我组织的。能帮我把脑子里想的东西落成文字，这本身就是「用 AI 学 AI」的一部分。</p>
+        </div>
+
+        <div class="about-signature">
+          <p>慢慢写，慢慢想。</p>
+          <p>这里不是追求流量的地方，是一个安安静静记录思考的角落。</p>
+        </div>
+
+        <div class="about-final">
+          <p>如果你刚刚学AI并感到焦虑迷茫，请一定记住：</p>
+          <p>看再多技术博客，学习这条路也只能你自己走。</p>
+          <p>愚昧山峰、绝望之谷、开悟之坡——走到哪里，只有你自己说了算。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 技术 Top 激励全屏浮层 -->
+  <div class="top-overlay" id="top-overlay">
+    <div class="top-overlay-backdrop"></div>
+    <canvas id="top-starfield" class="top-starfield"></canvas>
+    <div class="top-overlay-panel">
+      <button class="top-overlay-close" id="top-overlay-close" aria-label="关闭">&times;</button>
+
+      <div class="top-overlay-content">
+        <span class="top-eyebrow">今日一问</span>
+        <h2 class="top-title">今天有变成技术 top 吗？</h2>
+        <div class="top-quote">
+          <p class="top-line">无论你想成为用 AI 创造东西的人，</p>
+          <p class="top-line">还是创造 AI 的人，</p>
+          <p class="top-line">怎么样能成为技术 top 呢？</p>
+          <p class="top-line top-break">AI 就像篮球——</p>
+          <p class="top-line">看篮球，是没办法学会打篮球的。</p>
+          <p class="top-line">只有打篮球，才能学会打篮球。</p>
+        </div>
+        <p class="top-just-do-it">想成为技术 top，就关掉我的博客。</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/articles.js?v=20260703v"></script>
+  <script src="js/history.js?v=20260702n"></script>
+  <script src="js/tools-index.js?v=20260703"></script>
+  <script src="js/spillover-index.js?v=20260703d"></script>
+  <script src="js/search.js?v=20260703a"></script>
+  <script src="js/starfield.js?v=20260710"></script>
+  <script src="js/starmap.js?v=20260710"></script>
+  <script>
+    // 关于浮层：点击 AIdreamer 打开，点击关闭/背景关闭
+    (function () {
+      var trigger = document.getElementById('portal-about-trigger');
+      var overlay = document.getElementById('about-overlay');
+      var topOverlay = document.getElementById('top-overlay');
+      var closeBtn = document.getElementById('about-overlay-close');
+      var backdrop = overlay.querySelector('.about-overlay-backdrop');
+      function open() {
+        if (topOverlay && topOverlay.classList.contains('show')) topOverlay.classList.remove('show');
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      }
+      function close() { overlay.classList.remove('show'); document.body.style.overflow = ''; }
+      trigger.addEventListener('click', open);
+      trigger.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+      closeBtn.addEventListener('click', close);
+      backdrop.addEventListener('click', close);
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && overlay.classList.contains('show')) close(); });
+    })();
+
+    // 技术 Top 激励全屏浮层：点击 tagline 打开
+    (function () {
+      var trigger = document.getElementById('top-trigger');
+      var overlay = document.getElementById('top-overlay');
+      var aboutOverlay = document.getElementById('about-overlay');
+      var closeBtn = document.getElementById('top-overlay-close');
+      var backdrop = overlay.querySelector('.top-overlay-backdrop');
+
+      // 顶部浮层星空 canvas
+      (function initTopStarfield() {
+        var canvas = document.getElementById('top-starfield');
+        if (!canvas) return;
+        var ctx = canvas.getContext('2d');
+        var W, H, stars;
+        function pickColor() {
+          var colors = ['201,168,118','107,140,174','168,189,209','221,201,168','255,255,255'];
+          return colors[Math.floor(Math.random() * colors.length)];
+        }
+        function initStars() {
+          var count = Math.floor((W * H) / 8000);
+          stars = [];
+          for (var i = 0; i < count; i++) {
+            stars.push({
+              x: Math.random() * W,
+              y: Math.random() * H,
+              r: Math.random() * 1.2 + 0.2,
+              baseAlpha: Math.random() * 0.4 + 0.1,
+              twinkleSpeed: Math.random() * 0.02 + 0.005,
+              twinklePhase: Math.random() * Math.PI * 2,
+              color: pickColor()
+            });
+          }
+        }
+        function resize() {
+          W = canvas.width = window.innerWidth;
+          H = canvas.height = window.innerHeight;
+          initStars();
+        }
+        function draw(t) {
+          ctx.clearRect(0, 0, W, H);
+          stars.forEach(function(s) {
+            var alpha = s.baseAlpha + Math.sin(t * s.twinkleSpeed + s.twinklePhase) * 0.15;
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(' + s.color + ',' + Math.max(0.05, alpha) + ')';
+            ctx.fill();
+            if (s.r > 0.9) {
+              ctx.beginPath();
+              ctx.arc(s.x, s.y, s.r * 3, 0, Math.PI * 2);
+              ctx.fillStyle = 'rgba(' + s.color + ',' + (alpha * 0.08) + ')';
+              ctx.fill();
+            }
+          });
+          requestAnimationFrame(draw);
+        }
+        window.addEventListener('resize', resize);
+        resize();
+        requestAnimationFrame(draw);
+      })();
+
+      function open() {
+        if (aboutOverlay && aboutOverlay.classList.contains('show')) aboutOverlay.classList.remove('show');
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      }
+      function close() { overlay.classList.remove('show'); document.body.style.overflow = ''; }
+      trigger.addEventListener('click', open);
+      trigger.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+      closeBtn.addEventListener('click', close);
+      backdrop.addEventListener('click', close);
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && overlay.classList.contains('show')) close(); });
+    })();
+  </script>
+</body>
+</html>

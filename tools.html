@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="怪好用的 AI 工具 —— 除了 Agent 和 LLM，还有很多好东西" />
+    <title>怪好用的 AI 工具</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css?v=20260703" />
+  <link rel="stylesheet" href="css/topic-placeholder.css?v=20260703b" />
+
+  <style>
+    .honeycomb-wrap { text-align:center; padding:32px 0 48px; }
+    .honeycomb-row { display:flex; justify-content:center; margin-bottom:-46px; }
+    .honeycomb-row.offset { padding:0 82px; }
+    .honeycomb-row:last-child { margin-bottom:0; }
+
+    .hex-link {
+      display:block; width:160px; height:185px; text-decoration:none; position:relative;
+      flex-shrink:0; margin:0 2px;
+    }
+    .hex-link:hover { z-index:2; }
+
+    .hex-inner {
+      width:100%; height:100%; display:flex; flex-direction:column; align-items:center;
+      justify-content:center; position:absolute; top:0; left:0;
+      clip-path:polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      background:linear-gradient(145deg, rgba(201,168,118,0.22) 0%, rgba(201,168,118,0.15) 50%, rgba(201,168,118,0.10) 100%);
+      transition:all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(201,168,118,0.06);
+    }
+    .hex-inner::after {
+      content:''; position:absolute; inset:4px;
+      clip-path:polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      background:linear-gradient(145deg, rgba(245,243,239,0.85) 0%, rgba(237,235,229,0.85) 100%);
+      z-index:-1;
+    }
+    .hex-link:hover .hex-inner {
+      background:linear-gradient(145deg, rgba(201,168,118,0.32) 0%, rgba(201,168,118,0.24) 50%, rgba(201,168,118,0.18) 100%);
+      box-shadow:0 4px 16px rgba(201,168,118,0.12);
+    }
+    .hex-link:hover .hex-inner::after {
+      background:linear-gradient(145deg, rgba(250,248,244,0.9) 0%, rgba(242,238,231,0.9) 100%);
+    }
+
+    .hex-icon { width:28px; height:28px; margin-bottom:4px; position:relative; z-index:1; display:block; }
+    .hex-name { font-size:13px; color:#b8956a; font-weight:500; text-align:center; line-height:1.5; padding:0 16px; position:relative; z-index:1; }
+    .hex-hint { font-size:10px; color:#aaa; margin-top:2px; position:relative; z-index:1; }
+
+    @media (max-width:600px) {
+      .honeycomb-row { margin-bottom:-36px; }
+      .honeycomb-row.offset { padding:0 62px; }
+      .hex-link { width:120px; height:140px; }
+      .hex-icon { width:22px; height:22px; }
+      .hex-name { font-size:11px; padding:0 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="back-to-portal">← 返回星河</a>
+      <div class="header-right">
+        <a href="tools.html" class="site-title">
+          <span class="title-mark" style="background:linear-gradient(135deg,#6b8cae,#8fa5c9);">具</span>
+          <span class="title-text">怪好用的 AI 工具</span>
+        </a>
+        <div class="topic-switcher">
+          <button class="topic-switcher-btn" aria-haspopup="true" aria-expanded="false">
+            <span>主题</span>
+            <svg viewBox="0 0 24 24" width="14" height="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="topic-switcher-menu">
+            <a href="agent.html" class="topic-switcher-item">从小白玩转 AI Agent</a>
+            <a href="history.html" class="topic-switcher-item">AI 纵横 70 年</a>
+            <a href="complexity.html" class="topic-switcher-item">不要低估了 AI 系统的复杂度</a>
+            <a href="basics.html" class="topic-switcher-item">那些没人教过你的基础</a>
+            <a href="spillover.html" class="topic-switcher-item">学 AI 时的价值溢出</a>
+            <a href="tools.html" class="topic-switcher-item current">怪好用的 AI 工具</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="topic-placeholder fade-up">
+      <div class="topic-hero">
+        <span class="topic-eyebrow" style="color:#c9a876;">HANDY TOOLS</span>
+        <h1 class="topic-title">怪好用的 AI 工具</h1>
+        <p class="topic-subtitle">除了 Agent 和大模型，AI 生态里还有很多好用的工具——画图的、做视频的、处理数据的、辅助编程的。这个主题专门记录我用过的、觉得不错的工具。</p>
+        <div class="topic-divider" style="background:linear-gradient(90deg,#c9a876,#d4b68a);"></div>
+      </div>
+
+      <div class="topic-empty compact">
+        <p class="empty-text" style="margin-bottom:16px;">这个主题记录我亲测好用的 AI 工具，不贪全，只写真用过的。如果你想一网打尽，现在有不少 AI 工具大全类网站（搜「AI 工具导航」一堆），分类比我这细多了。</p>
+      </div>
+
+      <div class="honeycomb-wrap">
+        <div class="honeycomb-row">
+          <a href="tools-hardware.html" class="hex-link"><div class="hex-inner"><svg class="hex-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12v5a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-5"/><path d="M18 12v5a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-5"/><path d="M4 12a8 8 0 0 1 16 0"/></svg><span class="hex-name">硬件设备</span></div></a>
+          <a href="tools-media.html" class="hex-link"><div class="hex-inner"><svg class="hex-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 6v12"/><path d="M18 6v12"/><line x1="2" y1="10" x2="6" y2="10"/><line x1="2" y1="14" x2="6" y2="14"/><line x1="18" y1="10" x2="22" y2="10"/><line x1="18" y1="14" x2="22" y2="14"/></svg><span class="hex-name">图片 · 视频 · 音频</span></div></a>
+          <a href="tools-learning.html" class="hex-link"><div class="hex-inner"><svg class="hex-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5z"/><path d="M12 2v20"/></svg><span class="hex-name">AI 学习</span></div></a>
+        </div>
+        <div class="honeycomb-row offset">
+          <a href="tools-coding.html" class="hex-link"><div class="hex-inner"><svg class="hex-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M6 8h2"/><path d="M6 12h8"/><path d="M6 16h5"/></svg><span class="hex-name">编程辅助</span></div></a>
+          <a href="tools-search.html" class="hex-link"><div class="hex-inner"><svg class="hex-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l2.3-6.5A8.38 8.38 0 0 1 4.5 11 8.5 8.5 0 0 1 12 2.5a8.5 8.5 0 0 1 9 9z"/></svg><span class="hex-name">对话 · 搜索 · 写作</span></div></a>
+        </div>
+        <div class="honeycomb-row">
+          <a href="tools-knowledge.html" class="hex-link"><div class="hex-inner"><svg class="hex-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4"/><line x1="8" y1="2" x2="8" y2="22"/><line x1="6" y1="8" x2="8" y2="8"/><line x1="6" y1="12" x2="8" y2="12"/><line x1="6" y1="16" x2="8" y2="16"/></svg><span class="hex-name">知识库 / 笔记</span></div></a>
+          <a href="tools-browser.html" class="hex-link"><div class="hex-inner"><svg class="hex-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span class="hex-name">浏览器 / 扩展</span></div></a>
+          <a href="tools-voice.html" class="hex-link"><div class="hex-inner"><svg class="hex-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 11v1a7 7 0 0 1-14 0v-1"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg><span class="hex-name">语音输入法</span></div></a>
+        </div>
+      </div>
+
+      <!-- ========== 其他分类占位 ========== -->
+      <section style="max-width:640px;margin:0 auto;text-align:center;padding:24px 0;border-top:1px solid #e8e3da;">
+        <p style="color:#aaa;font-size:14px;max-width:560px;margin:0 auto;line-height:1.8;">市面上好用的工具很多，但关键还是跟自身场景适配。比如飞书真的好用，我也喜欢它的多维表格，可我们公司 App 不是飞书，那我用它干啥？同类产品现在一抓一大把，想清楚自己想要什么，比知道有什么更重要。</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">工欲善其事，必先利其器</p>
+      <p class="footer-copy">© 2026 AIdreamer · 用 AI 学 AI</p>
+    </div>
+  </footer>
+</body>
+</html>

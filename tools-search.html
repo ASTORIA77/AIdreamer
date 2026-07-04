@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI 对话、搜索与写作工具 —— 秘塔搜索、大模型选型、知识库" />
+  <title>对话 · 搜索 · 写作 · 怪好用的 AI 工具</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css?v=20260703f" />
+
+  <style>
+    .hw-page { max-width: var(--content-width, 760px); margin: 0 auto; padding: 32px 0 80px; }
+    .hw-header { text-align: center; margin-bottom: 48px; }
+    .hw-header .hw-eyebrow { display: inline-block; font-size: 12px; letter-spacing: 3px; color: var(--blue-soft); font-weight: 500; text-transform: uppercase; }
+    .hw-header h1 { font-family: var(--font-serif); font-size: 28px; font-weight: 600; color: var(--text); margin: 8px 0 6px; }
+    .hw-header p { font-size: 14px; color: var(--text-mute); margin: 0 0 16px; }
+    .hw-header .hero-divider { margin: 0 auto; }
+
+    .hw-lead { font-family: var(--font-serif); font-size: 16.5px; color: var(--text-soft); line-height: 1.9; text-align: center; max-width: 600px; margin: 0 auto 48px; padding: 0 20px; }
+
+    .hw-card { position: relative; background: var(--surface); border: 1px solid var(--border-soft); border-radius: var(--radius-lg); padding: 32px 36px 32px 40px; margin-bottom: 24px; transition: transform .2s ease, box-shadow .2s ease; overflow: hidden; }
+    .hw-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 4px 0 0 4px; }
+    .hw-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+    .hw-card[data-accent="blue"]::before { background: linear-gradient(180deg, var(--blue), var(--blue-soft)); }
+    .hw-card[data-accent="green"]::before { background: linear-gradient(180deg, var(--green), #b5d4be); }
+    .hw-card[data-accent="purple"]::before { background: linear-gradient(180deg, #b8adc6, #d2c9de); }
+    .hw-card[data-accent="camel"]::before { background: linear-gradient(180deg, var(--camel), var(--camel-soft)); }
+    .hw-card[data-accent="gray"]::before { background: linear-gradient(180deg, #b8b0a6, #d4cec4); }
+
+    .hw-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+    .hw-card-header .hw-icon { width: 22px; height: 22px; flex-shrink: 0; }
+    .hw-card-header h2 { font-family: var(--font-serif); font-size: 17px; font-weight: 600; color: var(--text); margin: 0; flex: 1; }
+    .hw-tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 1px; padding: 3px 10px; border-radius: 20px; border: 1px solid var(--border); white-space: nowrap; background: var(--bg-soft); color: var(--text-mute); }
+    .hw-tag.bought { background: rgba(139, 184, 156, 0.12); color: #5a8a6e; border-color: rgba(139, 184, 156, 0.3); }
+    .hw-tag.shelf { background: rgba(168, 155, 196, 0.12); color: #7a6e9a; border-color: rgba(168, 155, 196, 0.3); }
+
+    .hw-card-body p { color: var(--text-soft); line-height: 1.9; margin: 0 0 0.9em; }
+    .hw-card-body p:last-child { margin-bottom: 0; }
+    .hw-card-body strong { color: var(--text); font-weight: 500; }
+    .hw-card-body a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+    .hw-card-body a:hover { color: var(--camel); }
+    .hw-card-body code { font-family: var(--font-mono); font-size: 13px; background: var(--bg-soft); padding: 2px 6px; border-radius: 4px; }
+
+    .hw-group-title { font-family: var(--font-serif); font-size: 14px; font-weight: 500; color: var(--text-mute); letter-spacing: 2px; text-align: center; margin: 40px 0 20px; position: relative; }
+    .hw-group-title::before, .hw-group-title::after { content: ''; display: inline-block; vertical-align: middle; width: 48px; height: 1px; background: var(--border); margin: 0 12px; }
+
+    .hw-back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--blue); text-decoration: none; transition: color .2s ease; margin-top: 32px; }
+    .hw-back:hover { color: var(--camel); }
+
+    .hw-card { animation: fadeUp .5s ease both; }
+    .hw-card:nth-child(1) { animation-delay: 0s; }
+    .hw-card:nth-child(2) { animation-delay: 0.06s; }
+    .hw-card:nth-child(3) { animation-delay: 0.12s; }
+    .hw-card:nth-child(4) { animation-delay: 0.18s; }
+    .hw-card:nth-child(5) { animation-delay: 0.24s; }
+    .hw-card:nth-child(6) { animation-delay: 0.30s; }
+    .hw-card:nth-child(7) { animation-delay: 0.36s; }
+    .hw-card:nth-child(8) { animation-delay: 0.42s; }
+    .hw-card:nth-child(9) { animation-delay: 0.48s; }
+    .hw-card:nth-child(10) { animation-delay: 0.54s; }
+
+    @media (max-width: 640px) {
+      .hw-page { padding: 24px 16px 64px; }
+      .hw-card { padding: 24px 20px 24px 28px; margin-bottom: 16px; }
+      .hw-card-header h2 { font-size: 15.5px; }
+      .hw-header h1 { font-size: 24px; }
+      .hw-lead { font-size: 15px; margin-bottom: 36px; }
+      .hw-group-title::before, .hw-group-title::after { width: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-left" style="display:flex;align-items:center;gap:16px;">
+        <a href="index.html" class="back-to-portal">← 返回星河</a>
+        <a href="tools.html" class="back-to-portal">← 返回工具列表</a>
+      </div>
+      <div class="header-right">
+        <a href="tools.html" class="site-title">
+          <span class="title-mark" style="background:linear-gradient(135deg,#6b8cae,#8fa5c9);">具</span>
+          <span class="title-text">怪好用的 AI 工具</span>
+        </a>
+        <div class="topic-switcher">
+          <button class="topic-switcher-btn" aria-haspopup="true" aria-expanded="false">
+            <span>主题</span>
+            <svg viewBox="0 0 24 24" width="14" height="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="topic-switcher-menu">
+            <a href="agent.html" class="topic-switcher-item">从小白玩转 AI Agent</a>
+            <a href="history.html" class="topic-switcher-item">AI 纵横 70 年</a>
+            <a href="complexity.html" class="topic-switcher-item">不要低估了 AI 系统的复杂度</a>
+            <a href="basics.html" class="topic-switcher-item">那些没人教过你的基础</a>
+            <a href="spillover.html" class="topic-switcher-item">学 AI 时的价值溢出</a>
+            <a href="tools.html" class="topic-switcher-item current">怪好用的 AI 工具</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="hw-page">
+
+      <header class="hw-header fade-up">
+        <span class="hw-eyebrow">SEARCH &amp; CHAT</span>
+        <h1>对话 · 搜索 · 写作</h1>
+        <p>大模型的语言能力 + 外部信息获取</p>
+        <div class="hero-divider"></div>
+      </header>
+
+      <p class="hw-lead fade-up">对话和写作本质上是一件事：让大模型直接生成语言。搜索是另一件事：让大模型基于外部信息生成。分的不是工具，是工作流。</p>
+
+      <div class="hw-group-title">搜索</div>
+
+      <div class="hw-card" data-accent="blue">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <h2>秘塔 AI 搜索（Metaso）</h2>
+          <span class="hw-tag bought">用过 · 始于学术</span>
+        </div>
+        <div class="hw-card-body">
+          <p>最早用的 AI 搜索，因为它是当时唯一一个把学术文献搜索做进主界面的工具。秘塔的「文库」和「学术」模式能搜到数亿篇文献，搜索结果直接给结构化摘要、大纲和思维导图，对学术场景极友好。</p>
+          <p>2025 年秘塔做了很多升级：2 月集成 DeepSeek R1 推理模型，加了「先想后搜」研究模式；9 月上线 Agentic Search 并内置 20 多种智能体。从纯搜索进化为「搜索+智能体执行」的多步推理工具。2024 年那场和知网的 28 页侵权函算是行业名场面了——知网不让秘塔展示论文摘要，秘塔扭头就切断了知网转而用其他中英文权威知识库。</p>
+          <p>现在用它少了，不是它不好，是我的工作流变了——不再需要一个工具包揽所有搜索场景。</p>
+        </div>
+      </div>
+
+      <div class="hw-card" data-accent="purple">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4z"/></svg>
+          <h2>APP 端「深度研究」</h2>
+          <span class="hw-tag shelf">半年前爱用 · 现在闲置</span>
+        </div>
+        <div class="hw-card-body">
+          <p>现在各家大模型的网页端或 APP 基本都内置了「深度研究」或「深度搜索」功能——输入一个主题，它自动拆解子问题、搜索关联网页、生成一份结构化的研究报告。</p>
+          <p>我半年前挺爱用这个的：千问的深度搜索、豆包的长文研究、Kimi 的长上下文搜索、智谱的多模态研究——各家的叫法不同，但本质一样：基于搜索生成报告。Kimi 在长文本消化上最强，千问胜在工程严谨，豆包速度快，智谱在图文混合研究上有独特优势。</p>
+          <p>但有个共性问题：<strong>大多数有次数限制</strong>。免费版通常每天几次到几十次不等，超出后要么等明天、要么开会员。更关键的是——这些报告的来源全是网页搜索结果，<strong>网页的真实性我没考证过</strong>。AI 不会判断信源是否可靠，它只会"网页上说啥我就整合啥"。所以我现在把这个纯粹当高效浏览的工具，不再当结论采纳。</p>
+        </div>
+      </div>
+
+      <div class="hw-card" data-accent="green">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <h2>实时数据：Agent 操作浏览器</h2>
+          <span class="hw-tag bought">日常在用</span>
+        </div>
+        <div class="hw-card-body">
+          <p>如果我要查的是实时数据——比如某只股票当前价格、最新新闻报道、某个网站的实时信息——我现在不再打开搜索引擎手动翻结果了。直接让 Agent 替我做：有些 Agent 工具支持 Computer Use，浏览器扩展也能让 AI 直接操作网页。</p>
+          <p>这比传统搜索的效率高在两点：一是 AI 替你翻页、筛选、阅读，你只收结论；二是信息来源就是原始网页，不存在「AI 自己编的」。跟秘塔那种先搜索再整理的模式互补——实时性强的走 Agent，结构化的走秘塔。</p>
+        </div>
+      </div>
+
+      <div class="hw-card" data-accent="camel">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <h2>知识数据：下载 → 知识库 → 智能体</h2>
+          <span class="hw-tag bought">日常在用</span>
+        </div>
+        <div class="hw-card-body">
+          <p>现在读书、文献、行业报告等对权威性要求高的信息，我有一套固定流程：</p>
+          <p><strong>要么让 Agent 先去下载真实数据</strong>——比如指定某本书的某个章节、某篇论文的 PDF，它先拿到原文件再分析，而不是从模型参数里去猜。</p>
+          <p><strong>要么我自己找到数据源，放入知识库</strong>——我用的是 IMA 知识库，上传文件后跟智能体打通。Agent 收到问题时先去知识库里检索相关内容，再生成回答。等于是我给 Agent 圈了一个「可信来源」的围栏，它只能在围栏里找答案。</p>
+          <p>这套流程比纯搜索多了一步，但换来了更高的可靠性。对于学习来说，错了比不知道更可怕。</p>
+        </div>
+      </div>
+
+      <div class="hw-group-title">对话与写作</div>
+
+      <div class="hw-card" data-accent="purple">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          <h2>大模型直接生成</h2>
+        </div>
+        <div class="hw-card-body">
+          <p>2026 年了，这个不需要展开。</p>
+          <p>大语言模型的本质就是做下一个词预测（next token prediction）。如果它连写个通知、总结、邮件都做不好——那一堆 benchmark 跑分、万亿参数、推理速度竞赛，全是自娱自乐。写文章是 LLM 最基础的能力，就像你评价一个厨子不会说他"会用菜刀"一样，这是他该会的，不是加分项。</p>
+          <p>至于选哪个大模型聊天、各家的优缺点、免费和付费怎么选——这些在 AI Agent 主题的第 7 篇已经写得比较详细了。</p>
+          <p>👉 <a href="agent.html#/post/llm-selection">《群山之间：大模型选型与使用之道》</a></p>
+        </div>
+      </div>
+
+      <div class="hw-card" data-accent="camel">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <h2>WPS AI</h2>
+          <span class="hw-tag bought">已开会员</span>
+        </div>
+        <div class="hw-card-body">
+          <p>大模型在聊天框里写东西是基操，但真正干活的时候，文字总要落到文档、PPT、Excel 里。WPS AI（灵犀 3.0）把 AI 能力嵌进了办公套件。</p>
+          <p>我觉得值的：</p>
+          <p><strong>AI 写作</strong>——在文档里随时唤起 AI 写初稿、润色、续写、翻译。Canvas 双屏协同，左边文档右边 AI，划一段直接对话修改，不用复制粘贴。</p>
+          <p><strong>AI 表格</strong>——不用记 VLOOKUP、SUMIF，直接说人话——「计算 A 列加 B 列，保留两位小数」「清洗重复数据」——AI 写公式出结果。</p>
+          <p><strong>调格式</strong>——一键转红头文件、通知、请示，字号行距自动对齐。以前调格式能调半小时，现在点一下，贼爽。</p>
+          <p>但我不推荐 AI PPT——现在的 AI PPT 底层大多是 CLIP + 扩散模型，结果不稳定，生成的版式经常跑偏，还不如自己选模板来得快。</p>
+          <p><strong><a href="spillover-ppt.html">PPT 的正确做法</a>：</strong>让 AI 生成大纲和文字内容（这是它最擅长的），然后你自己选 PPT 内置模板往里面填——静态模板的排版是设计师调过的，比 AI 随机生成的靠谱得多。</p>
+          <p>但更推荐的方案是：直接用 AI 生成 HTML 格式的演示页。AI 写代码已经很稳定了，你说清楚页面结构和内容，它就能输出一个可交互的 HTML 展示页——排版精准、动画可控、浏览器直接打开。如果你一定需要传统 PPT 文件，现在也有现成的 skill 可以把 HTML 转成 PPT 格式。</p>
+          <p>会员 30 元一个月，日常轻度用免费版也够。</p>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:40px;">
+        <a href="tools.html" class="hw-back">← 返回工具列表</a>
+      </div>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">工欲善其事，必先利其器</p>
+      <p class="footer-copy">© 2026 AIdreamer · 用 AI 学 AI</p>
+    </div>
+  </footer>
+</body>
+</html>

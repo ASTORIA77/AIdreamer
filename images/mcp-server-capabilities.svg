@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260">
+  <defs>
+    <filter id="shadow" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(120,110,90,0.06)"/>
+    </filter>
+  </defs>
+
+  <!-- 标题 -->
+  <text x="320" y="34" text-anchor="middle" font-family="'Noto Serif SC', serif" font-size="17" font-weight="600" fill="#3d3a35">MCP Server 能向外暴露什么</text>
+  <text x="320" y="56" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="11" fill="#b0a89c">三种能力原语，Agent 按需调用</text>
+
+  <!-- Tools -->
+  <rect x="55" y="80" width="170" height="120" rx="10" fill="#fdfbf7" stroke="#8fb89c" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="140" y="110" text-anchor="middle" font-family="'Noto Serif SC', serif" font-size="15" font-weight="600" fill="#5e7a6b">Tools</text>
+  <text x="140" y="132" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="10" fill="#8b7d6a">工具 / 函数</text>
+  <text x="140" y="156" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="10" fill="#9a948a">查询 GitHub Issue</text>
+  <text x="140" y="172" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="10" fill="#9a948a">读写文件</text>
+  <text x="140" y="188" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="10" fill="#9a948a">执行数据库 SQL</text>
+
+  <!-- Resources -->
+  <rect x="235" y="80" width="170" height="120" rx="10" fill="#fdfbf7" stroke="#6b8cae" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="320" y="110" text-anchor="middle" font-family="'Noto Serif SC', serif" font-size="15" font-weight="600" fill="#5a6d82">Resources</text>
+  <text x="320" y="132" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="10" fill="#8b7d6a">资源 / 只读数据</text>
+  <text x="320" y="156" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="10" fill="#9a948a">文件内容</text>
+  <text x="320" y="172" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="10" fill="#9a948a">数据库 Schema</text>
+  <text x="320" y="188" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="10" fill="#9a948a">API 文档片段</text>
+
+  <!-- Prompts -->
+  <rect x="415" y="80" width="170" height="120" rx="10" fill="#fdfbf7" stroke="#a89bc4" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="500" y="110" text-anchor="middle" font-family="'Noto Serif SC', serif" font-size="15" font-weight="600" fill="#7d7390">Prompts</text>
+  <text x="500" y="132" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="10" fill="#8b7d6a">提示模板 / 交互模式</text>
+  <text x="500" y="156" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="10" fill="#9a948a">标准提问格式</text>
+  <text x="500" y="172" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="10" fill="#9a948a">多轮对话模板</text>
+  <text x="500" y="188" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="10" fill="#9a948a">引导 Agent 的预设</text>
+</svg>

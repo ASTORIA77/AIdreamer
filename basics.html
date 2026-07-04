@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="那些没人教过你的基础 —— 非科班学 AI 时踩过的基础坑" />
+  <title>那些没人教过你的基础</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css?v=20260703b" />
+  <link rel="stylesheet" href="css/topic-placeholder.css?v=20260703b" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="back-to-portal">← 返回星河</a>
+      <div class="header-right">
+        <a href="basics.html" class="site-title">
+          <span class="title-mark" style="background:linear-gradient(135deg,#a89bc4,#bbaad0);">基</span>
+          <span class="title-text">那些没人教过你的基础</span>
+        </a>
+        <div class="topic-switcher">
+          <button class="topic-switcher-btn" aria-haspopup="true" aria-expanded="false">
+            <span>主题</span>
+            <svg viewBox="0 0 24 24" width="14" height="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="topic-switcher-menu">
+            <a href="agent.html" class="topic-switcher-item">从小白玩转 AI Agent</a>
+            <a href="history.html" class="topic-switcher-item">AI 纵横 70 年</a>
+            <a href="complexity.html" class="topic-switcher-item">不要低估了 AI 系统的复杂度</a>
+            <a href="basics.html" class="topic-switcher-item current">那些没人教过你的基础</a>
+            <a href="spillover.html" class="topic-switcher-item">学 AI 时的价值溢出</a>
+            <a href="tools.html" class="topic-switcher-item">怪好用的 AI 工具</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="topic-placeholder fade-up">
+      <div class="topic-hero">
+        <span class="topic-eyebrow" style="color:#a89bc4;">HIDDEN FUNDAMENTALS</span>
+        <h1 class="topic-title">那些没人教过你的基础</h1>
+        <p class="topic-subtitle">不是计算机科班出身，学 AI 的时候才发现：有很多东西是"默认你会"的，但没人教过你。这个主题记录我在补基础过程中的笔记。</p>
+        <div class="topic-divider" style="background:linear-gradient(90deg,#a89bc4,#6b8cae);"></div>
+      </div>
+
+      <div class="topic-empty" style="background:transparent;border:none;padding:0;max-width:672px;margin:0 auto;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 360" style="width:100%;height:auto;display:block;">
+          <defs>
+            <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+              <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="rgba(120,110,90,0.08)"/>
+            </filter>
+          </defs>
+
+          <!-- 标题 -->
+          <text x="280" y="36" text-anchor="middle" font-family="'Noto Serif SC', serif" font-size="18" font-weight="600" fill="#3d3a35">基础课表</text>
+          <text x="280" y="60" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="12" fill="#9a948a">非科班学 AI，先补三门底子课</text>
+
+          <!-- 语言基础 -->
+          <a href="basics-language.html">
+            <rect x="40" y="85" width="480" height="66" rx="10" fill="#fdfbf7" stroke="#efeae0" stroke-width="1" filter="url(#cardShadow)"/>
+            <rect x="40" y="85" width="6" height="66" rx="10" fill="#c9a876"/>
+            <text x="72" y="112" font-family="'Noto Serif SC', serif" font-size="16" font-weight="600" fill="#3d3a35">语言基础</text>
+            <text x="72" y="138" font-family="'Noto Serif SC', serif" font-size="12" font-weight="400" fill="#8a857c">Python、C++，还有跑模型的命令行</text>
+            <text x="480" y="112" font-family="'Noto Serif SC', serif" font-size="12" fill="#c9a876" font-weight="500">待定</text>
+          </a>
+
+          <!-- 计算机基础 -->
+          <a href="basics-computer.html">
+            <rect x="40" y="171" width="480" height="66" rx="10" fill="#fdfbf7" stroke="#efeae0" stroke-width="1" filter="url(#cardShadow)"/>
+            <rect x="40" y="171" width="6" height="66" rx="10" fill="#6b8cae"/>
+            <text x="72" y="198" font-family="'Noto Serif SC', serif" font-size="16" font-weight="600" fill="#3d3a35">计算机基础</text>
+            <text x="72" y="224" font-family="'Noto Serif SC', serif" font-size="12" font-weight="400" fill="#8a857c">操作系统、网络、数据结构——AI 不是飘在云上的</text>
+            <text x="480" y="198" font-family="'Noto Serif SC', serif" font-size="12" fill="#6b8cae" font-weight="500">待定</text>
+          </a>
+
+          <!-- 数学基础 -->
+          <a href="basics-math.html">
+            <rect x="40" y="257" width="480" height="66" rx="10" fill="#fdfbf7" stroke="#efeae0" stroke-width="1" filter="url(#cardShadow)"/>
+            <rect x="40" y="257" width="6" height="66" rx="10" fill="#8fb89c"/>
+            <text x="72" y="284" font-family="'Noto Serif SC', serif" font-size="16" font-weight="600" fill="#3d3a35">数学基础</text>
+            <text x="72" y="310" font-family="'Noto Serif SC', serif" font-size="12" font-weight="400" fill="#8a857c">线性代数、概率统计、优化——模型背后的语言</text>
+            <text x="480" y="284" font-family="'Noto Serif SC', serif" font-size="12" fill="#8fb89c" font-weight="500">待定</text>
+          </a>
+        </svg>
+
+        <p style="font-family:var(--font-serif);font-size:14px;color:var(--text-mute);margin-top:24px;text-align:center;">补基础是个长期过程，学到哪写到哪。</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">基础不牢，地动山摇</p>
+      <p class="footer-copy">© 2026 AIdreamer · 用 AI 学 AI</p>
+    </div>
+  </footer>
+</body>
+</html>

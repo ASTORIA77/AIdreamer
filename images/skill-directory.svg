@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 360">
+  <defs>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(120,110,90,0.07)"/>
+    </filter>
+  </defs>
+
+  <!-- 标题 -->
+  <text x="340" y="32" text-anchor="middle" font-family="'Noto Serif SC', serif" font-size="18" font-weight="600" fill="#3d3a35">Skill 目录结构</text>
+  <text x="340" y="56" text-anchor="middle" font-family="'Noto Serif SC', serif" font-size="13" font-weight="400" fill="#9a948a">一份 Skill 就是一个文件夹</text>
+
+  <!-- 根目录框 skill-name/ -->
+  <rect x="240" y="76" width="200" height="32" rx="6" fill="#fdfbf7" stroke="#c9a876" stroke-width="1.5" filter="url(#cardShadow)"/>
+  <text x="258" y="97" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="600" fill="#3d3a35">📁 skill-name/</text>
+
+  <!-- 主干连线 -->
+  <line x1="340" y1="108" x2="340" y2="124" stroke="#ddd5c8" stroke-width="1.5"/>
+  <line x1="115" y1="124" x2="565" y2="124" stroke="#ddd5c8" stroke-width="1.5"/>
+  <line x1="115" y1="124" x2="115" y2="138" stroke="#ddd5c8" stroke-width="1.5"/>
+  <line x1="340" y1="124" x2="340" y2="138" stroke="#ddd5c8" stroke-width="1.5"/>
+  <line x1="565" y1="124" x2="565" y2="138" stroke="#ddd5c8" stroke-width="1.5"/>
+
+  <!-- SKILL.md -->
+  <rect x="30" y="138" width="170" height="74" rx="7" fill="#fdfbf7" stroke="#6b8cae" stroke-width="1.2" filter="url(#cardShadow)"/>
+  <rect x="30" y="138" width="170" height="74" rx="7" fill="rgba(107,140,174,0.04)"/>
+  <text x="46" y="160" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="600" fill="#5a7d9e">📄 SKILL.md</text>
+  <line x1="46" y1="168" x2="184" y2="168" stroke="rgba(107,140,174,0.12)" stroke-width="0.5"/>
+  <text x="46" y="184" font-family="'Noto Sans SC', sans-serif" font-size="11.5" fill="#6b665d">YAML 元数据 · 角色 · 工作流</text>
+  <text x="46" y="201" font-family="'Noto Sans SC', sans-serif" font-size="11.5" fill="#6b665d">约束 · 引用路径</text>
+
+  <!-- scripts/ -->
+  <rect x="255" y="138" width="170" height="74" rx="7" fill="#fdfbf7" stroke="rgba(143,184,156,0.7)" stroke-width="1" stroke-dasharray="5,4" filter="url(#cardShadow)"/>
+  <text x="271" y="160" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="600" fill="#6a9a7a">📁 scripts/</text>
+  <text x="271" y="180" font-family="'Noto Sans SC', sans-serif" font-size="11.5" fill="#888">可选 · 可执行脚本</text>
+  <text x="271" y="200" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#aaa">helper.py · setup.sh</text>
+
+  <!-- references/ -->
+  <rect x="480" y="138" width="170" height="74" rx="7" fill="#fdfbf7" stroke="rgba(168,155,196,0.7)" stroke-width="1" stroke-dasharray="5,4" filter="url(#cardShadow)"/>
+  <text x="496" y="160" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="600" fill="#7a6e9a">📁 references/</text>
+  <text x="496" y="180" font-family="'Noto Sans SC', sans-serif" font-size="11.5" fill="#888">可选 · 参考文档</text>
+  <text x="496" y="200" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#aaa">pitfalls.md · guide.md</text>
+
+  <!-- 分隔线 -->
+  <line x1="40" y1="242" x2="640" y2="242" stroke="#efeae0" stroke-width="1"/>
+
+  <!-- 渐进式披露说明 -->
+  <text x="340" y="268" text-anchor="middle" font-family="'Noto Serif SC', serif" font-size="16" font-weight="600" fill="#6b8cae">渐进式披露 · 三次加载</text>
+
+  <!-- 步骤 1 -->
+  <rect x="40" y="284" width="180" height="56" rx="6" fill="rgba(107,140,174,0.05)" stroke="rgba(107,140,174,0.2)" stroke-width="1"/>
+  <text x="60" y="306" font-family="'Noto Serif SC', serif" font-size="14" font-weight="500" fill="#3d3a35">① 发现</text>
+  <text x="60" y="326" font-family="'Noto Sans SC', sans-serif" font-size="12" fill="#6b665d">name + description</text>
+
+  <text x="250" y="318" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="18" fill="#c9a876">→</text>
+
+  <!-- 步骤 2 -->
+  <rect x="270" y="284" width="180" height="56" rx="6" fill="rgba(107,140,174,0.05)" stroke="rgba(107,140,174,0.2)" stroke-width="1"/>
+  <text x="290" y="306" font-family="'Noto Serif SC', serif" font-size="14" font-weight="500" fill="#3d3a35">② 加载</text>
+  <text x="290" y="326" font-family="'Noto Sans SC', sans-serif" font-size="12" fill="#6b665d">读取 SKILL.md 全文</text>
+
+  <text x="480" y="318" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="18" fill="#c9a876">→</text>
+
+  <!-- 步骤 3 -->
+  <rect x="500" y="284" width="140" height="56" rx="6" fill="rgba(107,140,174,0.05)" stroke="rgba(107,140,174,0.2)" stroke-width="1"/>
+  <text x="520" y="306" font-family="'Noto Serif SC', serif" font-size="14" font-weight="500" fill="#3d3a35">③ 取用</text>
+  <text x="520" y="326" font-family="'Noto Sans SC', sans-serif" font-size="12" fill="#6b665d">scripts + refs</text>
+</svg>

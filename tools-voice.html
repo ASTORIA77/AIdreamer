@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI 语音输入法 —— 智谱AutoGLM、豆包输入法" />
+  <title>语音输入法 · 怪好用的 AI 工具</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css?v=20260703f" />
+
+  <style>
+    .hw-page { max-width: var(--content-width, 760px); margin: 0 auto; padding: 32px 0 80px; }
+    .hw-header { text-align: center; margin-bottom: 48px; }
+    .hw-header .hw-eyebrow { display: inline-block; font-size: 12px; letter-spacing: 3px; color: var(--blue-soft); font-weight: 500; text-transform: uppercase; }
+    .hw-header h1 { font-family: var(--font-serif); font-size: 28px; font-weight: 600; color: var(--text); margin: 8px 0 6px; }
+    .hw-header p { font-size: 14px; color: var(--text-mute); margin: 0 0 16px; }
+    .hw-header .hero-divider { margin: 0 auto; }
+    .hw-lead { font-family: var(--font-serif); font-size: 16.5px; color: var(--text-soft); line-height: 1.9; text-align: center; max-width: 600px; margin: 0 auto 48px; padding: 0 20px; }
+
+    .hw-card { position: relative; background: var(--surface); border: 1px solid var(--border-soft); border-radius: var(--radius-lg); padding: 32px 36px 32px 40px; margin-bottom: 24px; transition: transform .2s ease, box-shadow .2s ease; overflow: hidden; }
+    .hw-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 4px 0 0 4px; }
+    .hw-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+    .hw-card[data-accent="blue"]::before  { background: linear-gradient(180deg, #9eb8cd, #c7d7e6); }
+    .hw-card[data-accent="green"]::before { background: linear-gradient(180deg, var(--green), #b5d4be); }
+    .hw-card[data-accent="purple"]::before { background: linear-gradient(180deg, #b8adc6, #d2c9de); }
+
+    .hw-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+    .hw-card-header .hw-icon { width: 22px; height: 22px; flex-shrink: 0; }
+    .hw-card-header h2 { font-family: var(--font-serif); font-size: 17px; font-weight: 600; color: var(--text); margin: 0; flex: 1; }
+    .hw-tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 1px; padding: 3px 10px; border-radius: 20px; border: 1px solid var(--border); white-space: nowrap; background: var(--bg-soft); color: var(--text-mute); }
+    .hw-tag.bought { background: rgba(139, 184, 156, 0.12); color: #5a8a6e; border-color: rgba(139, 184, 156, 0.3); }
+
+    .hw-card-body p { color: var(--text-soft); line-height: 1.9; margin: 0 0 0.9em; }
+    .hw-card-body p:last-child { margin-bottom: 0; }
+    .hw-card-body strong { color: var(--text); font-weight: 500; }
+
+    .hw-group-title { font-family: var(--font-serif); font-size: 14px; font-weight: 500; color: var(--text-mute); letter-spacing: 2px; text-align: center; margin: 40px 0 20px; position: relative; }
+    .hw-group-title::before, .hw-group-title::after { content: ''; display: inline-block; vertical-align: middle; width: 48px; height: 1px; background: var(--border); margin: 0 12px; }
+    .hw-back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--blue); text-decoration: none; transition: color .2s ease; margin-top: 32px; }
+    .hw-back:hover { color: var(--camel); }
+
+    .hw-card { animation: fadeUp .5s ease both; }
+    .hw-card:nth-child(1) { animation-delay: 0s; }
+    .hw-card:nth-child(2) { animation-delay: 0.06s; }
+    .hw-card:nth-child(3) { animation-delay: 0.12s; }
+    .hw-card:nth-child(4) { animation-delay: 0.18s; }
+    .hw-card:nth-child(5) { animation-delay: 0.24s; }
+    .hw-card:nth-child(6) { animation-delay: 0.30s; }
+    .hw-card:nth-child(7) { animation-delay: 0.36s; }
+    .hw-card:nth-child(8) { animation-delay: 0.42s; }
+    .hw-card:nth-child(9) { animation-delay: 0.48s; }
+    .hw-card:nth-child(10) { animation-delay: 0.54s; }
+
+    @media (max-width: 640px) {
+      .hw-page { padding: 24px 16px 64px; }
+      .hw-card { padding: 24px 20px 24px 28px; margin-bottom: 16px; }
+      .hw-card-header h2 { font-size: 15.5px; }
+      .hw-header h1 { font-size: 24px; }
+      .hw-lead { font-size: 15px; margin-bottom: 36px; }
+      .hw-group-title::before, .hw-group-title::after { width: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-left" style="display:flex;align-items:center;gap:16px;">
+        <a href="index.html" class="back-to-portal">← 返回星河</a>
+        <a href="tools.html" class="back-to-portal">← 返回工具列表</a>
+      </div>
+      <div class="header-right">
+        <a href="tools.html" class="site-title">
+          <span class="title-mark" style="background:linear-gradient(135deg,#6b8cae,#8fa5c9);">具</span>
+          <span class="title-text">怪好用的 AI 工具</span>
+        </a>
+        <div class="topic-switcher">
+          <button class="topic-switcher-btn" aria-haspopup="true" aria-expanded="false">
+            <span>主题</span>
+            <svg viewBox="0 0 24 24" width="14" height="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="topic-switcher-menu">
+            <a href="agent.html" class="topic-switcher-item">从小白玩转 AI Agent</a>
+            <a href="history.html" class="topic-switcher-item">AI 纵横 70 年</a>
+            <a href="complexity.html" class="topic-switcher-item">不要低估了 AI 系统的复杂度</a>
+            <a href="basics.html" class="topic-switcher-item">那些没人教过你的基础</a>
+            <a href="spillover.html" class="topic-switcher-item">学 AI 时的价值溢出</a>
+            <a href="tools.html" class="topic-switcher-item current">怪好用的 AI 工具</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="hw-page">
+
+      <header class="hw-header fade-up">
+        <span class="hw-eyebrow">VOICE</span>
+        <h1>语音输入法</h1>
+        <p>说话比打字快得多，把想说的说出来就行</p>
+        <div class="hero-divider"></div>
+      </header>
+
+      <p class="hw-lead fade-up">人的输入和输出效率是不对称的：说出来要比一个字一个字敲快得多，但接收信息的时候，看要比听更快。各有利弊，选自己最高效的方式就行。我现在最烦的就是打字，能说话绝不动手。</p>
+
+      <div class="hw-card" data-accent="blue">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+          <h2>智谱 AI 输入法（电脑端）</h2>
+          <span class="hw-tag bought">主力在用</span>
+        </div>
+        <div class="hw-card-body">
+          <p>电脑上我用的是智谱的 AutoGLM 输入法。快捷键呼出，对着话筒说，实时转文字——微信、飞书、Word、代码编辑器，哪个输入框里都能用。底层是 GLM-ASR 语音识别模型，中文准确率挺高，自动断句做得也不错。</p>
+          <p>思路跟传统输入法完全不一样：不是打字时偶尔用语音辅助一下，而是默认就是语音，打字才是辅助。用习惯了以后回不去——你对着电脑滔滔不绝说一条消息的速度，比你掏出键盘敲半天的速度感差太多了。</p>
+        </div>
+      </div>
+
+      <div class="hw-card" data-accent="purple">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+          <h2>豆包输入法（手机端）</h2>
+          <span class="hw-tag bought">推荐给我妈了</span>
+        </div>
+        <div class="hw-card-body">
+          <p>手机上我用豆包输入法。同样语音转文字，识别准，响应快。然后我把它推荐给了我妈——她现在发微信消息基本都是语音输入转文字，再也不用盯着一块小板子戳拼音了，可爱说话了。</p>
+        </div>
+      </div>
+
+      <div class="hw-group-title">语音输入的意外收获</div>
+
+      <div class="hw-card" data-accent="green">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a4 4 0 0 1 4 4c0 3-4 8-4 8s-4-5-4-8a4 4 0 0 1 4-4z"/><path d="M8 9c-2 1-4 3-4 6a8 8 0 0 0 16 0c0-3-2-5-4-6"/></svg>
+          <h2>锻炼表述能力</h2>
+        </div>
+        <div class="hw-card-body">
+          <p>语音输入用久了，我发现它有一个隐藏价值——<strong>锻炼人对一件事情的表述能力</strong>。</p>
+          <p>打字的时候你可以边写边删边改，思路是散的。但说话不一样——你必须在开口之前就想清楚要说什么、怎么说、先说什么后说什么。语言是思维的边界，把一堆散乱的念头组织成一句通顺的话，这个过程本身就是对你思维脉络的一次整理。</p>
+          <p>我写了这么多篇博客文章，第一遍全是用嘴说的。不是因为我懒，是因为用说的方式，我更容易抓住自己真正的想法。</p>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:40px;">
+        <a href="tools.html" class="hw-back">← 返回工具列表</a>
+      </div>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">工欲善其事，必先利其器</p>
+      <p class="footer-copy">© 2026 AIdreamer · 用 AI 学 AI</p>
+    </div>
+  </footer>
+</body>
+</html>

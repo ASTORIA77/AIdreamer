@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI 编程工具 —— VS Code、TRAE 等 AI 编程工具的亲测体验" />
+  <title>编程工具 · 怪好用的 AI 工具</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css?v=20260703f" />
+
+  <style>
+    .hw-page {
+      max-width: var(--content-width, 760px);
+      margin: 0 auto;
+      padding: 32px 0 80px;
+    }
+    .hw-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .hw-header .hw-eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: var(--blue-soft);
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    .hw-header h1 {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 8px 0 6px;
+    }
+    .hw-header p {
+      font-size: 14px;
+      color: var(--text-mute);
+      margin: 0 0 16px;
+    }
+    .hw-header .hero-divider { margin: 0 auto; }
+
+    .hw-lead {
+      font-family: var(--font-serif);
+      font-size: 16.5px;
+      color: var(--text-soft);
+      line-height: 1.9;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 48px;
+      padding: 0 20px;
+    }
+
+    .hw-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 32px 36px 32px 40px;
+      margin-bottom: 24px;
+      transition: transform .2s ease, box-shadow .2s ease;
+      overflow: hidden;
+    }
+    .hw-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      border-radius: 4px 0 0 4px;
+    }
+    .hw-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    .hw-card[data-accent="blue"]::before  { background: linear-gradient(180deg, #9eb8cd, #c7d7e6); }
+    .hw-card[data-accent="green"]::before  { background: linear-gradient(180deg, #b2c9b6, #d2dfd5); }
+    .hw-card[data-accent="purple"]::before { background: linear-gradient(180deg, #b8adc6, #d2c9de); }
+    .hw-card[data-accent="camel"]::before  { background: linear-gradient(180deg, #d6bc92, #e4d4b8); }
+    .hw-card[data-accent="gray"]::before   { background: linear-gradient(180deg, #c4bbb0, #ddd6cc); }
+
+    .hw-card-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 14px; flex-wrap: wrap;
+    }
+    .hw-card-header .hw-icon { width: 22px; height: 22px; flex-shrink: 0; }
+    .hw-card-header h2 {
+      font-family: var(--font-serif); font-size: 17px;
+      font-weight: 600; color: var(--text); margin: 0; flex: 1;
+    }
+    .hw-tag {
+      display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 1px;
+      padding: 3px 10px; border-radius: 20px; border: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .hw-tag { background: var(--bg-soft); color: var(--text-mute); }
+    .hw-tag.bought { background: rgba(139, 184, 156, 0.12); color: #5a8a6e; border-color: rgba(139, 184, 156, 0.3); }
+    .hw-tag.shelf  { background: rgba(168, 155, 196, 0.12); color: #7a6e9a; border-color: rgba(168, 155, 196, 0.3); }
+    .hw-tag.pass   { background: rgba(184, 176, 166, 0.12); color: #8a8070; border-color: rgba(184, 176, 166, 0.3); }
+    .hw-tag.curious { background: rgba(107, 140, 174, 0.10); color: #5a7d9e; border-color: rgba(107, 140, 174, 0.25); }
+
+    .hw-card-body p {
+      color: var(--text-soft); line-height: 1.9; margin: 0 0 0.9em;
+    }
+    .hw-card-body p:last-child { margin-bottom: 0; }
+    .hw-card-body strong { color: var(--text); font-weight: 500; }
+
+    .hw-group-title {
+      font-family: var(--font-serif); font-size: 14px; font-weight: 500;
+      color: var(--text-mute); letter-spacing: 2px; text-align: center;
+      margin: 40px 0 20px; position: relative;
+    }
+    .hw-group-title::before,
+    .hw-group-title::after {
+      content: ''; display: inline-block; vertical-align: middle;
+      width: 48px; height: 1px; background: var(--border); margin: 0 12px;
+    }
+
+    .hw-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; color: var(--blue); text-decoration: none;
+      transition: color .2s ease; margin-top: 32px;
+    }
+    .hw-back:hover { color: var(--camel); }
+
+    .hw-card { animation: fadeUp .5s ease both; }
+    .hw-card:nth-child(1) { animation-delay: 0s; }
+    .hw-card:nth-child(2) { animation-delay: 0.06s; }
+    .hw-card:nth-child(3) { animation-delay: 0.12s; }
+    .hw-card:nth-child(4) { animation-delay: 0.18s; }
+    .hw-card:nth-child(5) { animation-delay: 0.24s; }
+    .hw-card:nth-child(6) { animation-delay: 0.30s; }
+    .hw-card:nth-child(7) { animation-delay: 0.36s; }
+    .hw-card:nth-child(8) { animation-delay: 0.42s; }
+    .hw-card:nth-child(9) { animation-delay: 0.48s; }
+    .hw-card:nth-child(10) { animation-delay: 0.54s; }
+
+    @media (max-width: 640px) {
+      .hw-page { padding: 24px 16px 64px; }
+      .hw-card { padding: 24px 20px 24px 28px; margin-bottom: 16px; }
+      .hw-card-header h2 { font-size: 15.5px; }
+      .hw-header h1 { font-size: 24px; }
+      .hw-lead { font-size: 15px; margin-bottom: 36px; }
+      .hw-group-title::before, .hw-group-title::after { width: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-left" style="display:flex;align-items:center;gap:16px;">
+        <a href="index.html" class="back-to-portal">← 返回星河</a>
+        <a href="tools.html" class="back-to-portal">← 返回工具列表</a>
+      </div>
+      <div class="header-right">
+        <a href="tools.html" class="site-title">
+          <span class="title-mark" style="background:linear-gradient(135deg,#6b8cae,#8fa5c9);">具</span>
+          <span class="title-text">怪好用的 AI 工具</span>
+        </a>
+        <div class="topic-switcher">
+          <button class="topic-switcher-btn" aria-haspopup="true" aria-expanded="false">
+            <span>主题</span>
+            <svg viewBox="0 0 24 24" width="14" height="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="topic-switcher-menu">
+            <a href="agent.html" class="topic-switcher-item">从小白玩转 AI Agent</a>
+            <a href="history.html" class="topic-switcher-item">AI 纵横 70 年</a>
+            <a href="complexity.html" class="topic-switcher-item">不要低估了 AI 系统的复杂度</a>
+            <a href="basics.html" class="topic-switcher-item">那些没人教过你的基础</a>
+            <a href="spillover.html" class="topic-switcher-item">学 AI 时的价值溢出</a>
+            <a href="tools.html" class="topic-switcher-item current">怪好用的 AI 工具</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="hw-page">
+
+      <header class="hw-header fade-up">
+        <span class="hw-eyebrow">PROGRAMMING</span>
+        <h1>编程工具</h1>
+        <p>从面向自然语言到面向正经代码</p>
+        <div class="hero-divider"></div>
+      </header>
+
+      <p class="hw-lead fade-up">AI 编程工具现在大致分两派：老一辈的<strong>传统编辑器 + AI 插件</strong>（如 VS Code + Copilot / 通义灵码），和新一代的<strong>原生 AI IDE</strong>（如 TRAE、Qoder、CodeBuddy、ZCode）。前者像给你配了个副驾，后者更像你把车钥匙直接给了司机。各有各的用处。</p>
+
+      <div class="hw-group-title">亲测过</div>
+
+      <div class="hw-card" data-accent="green">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <h2>VS Code + AI 插件</h2>
+          <span class="hw-tag bought">主力在用</span>
+        </div>
+        <div class="hw-card-body">
+          <p>最近的心头好。不是因为功能多强，是心态——在 miniconda 配好虚拟环境，终端敲下 <code style="font-family:var(--font-mono);font-size:13px;">code .</code>，VS Code 在项目目录里打开的那一刻，感觉自己真的在正规化学 AI。</p>
+          <p>VS Code 本身不是 AI 工具，但装上 AI 插件之后——比如 GitHub Copilot（代码补全鼻祖，虽然现在有点被后来者赶超）、通义灵码（阿里出品，中文理解好）——编码体验就完全不同了。写注释描述功能，AI 补充代码；选中一段逻辑，AI 解释给你听。它不是帮你写代码，是帮你理解代码。</p>
+          <p>对我来说，VS Code 代表一种信号：我不再是随便玩玩，我要系统性地学了。这个心态价值大于一切功能。</p>
+        </div>
+      </div>
+
+      <div class="hw-card" data-accent="purple">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.3-3.5 4-2 7 3 1.5 5.7-.5 7-2L16 15"/><circle cx="16" cy="8" r="3"/><path d="M8 16l-4-4"/><path d="M18 6l-3-3"/></svg>
+          <h2>TRAE（字节跳动）</h2>
+          <span class="hw-tag shelf">用过 · 已切 VS Code</span>
+        </div>
+        <div class="hw-card-body">
+          <p>我第一个正经用的 AI 编程工具。字节跳动出的，底层基于 VS Code 架构，完美兼容 VS Code 插件生态——所以你从 TRAE 切到 VS Code 几乎零迁移成本。</p>
+          <p>TRAE 核心是两种模式：<strong>IDE 模式</strong>是你正常写代码，AI 在旁边辅助补全和对话；<strong>SOLO 模式</strong>就厉害了——你只需要用自然语言描述需求，比如「帮我写一个 Flask 的增删改查接口」，它自己规划、写代码、跑调试，你只要当甲方就行。说是「面向自然语言编程」毫不夸张。</p>
+          <p>非常适合新手入门。你不需要懂语法，就能先看到代码是怎么跑起来的。对我来说，它是帮我把「编程恐惧」这个心理门槛打掉的第一块砖。后来转向 VS Code 不是因为它不好，是因为我想更正规地写代码了。</p>
+        </div>
+      </div>
+
+      <div class="hw-group-title">知道但没用过</div>
+
+      <div class="hw-card" data-accent="blue">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="12" y1="9" x2="12" y2="15"/></svg>
+          <h2>CodeBuddy · Qoder · ZCode</h2>
+          <span class="hw-tag curious">关注中</span>
+        </div>
+        <div class="hw-card-body">
+          <p>这三个是原生 AI IDE 里的代表选手。</p>
+          <p><strong>Qoder</strong>（阿里）走的是「智能体自主开发」路线——你把一个模块级别的任务交给它，它自己拆子任务、查文档、写代码。跟 TRAE 的 SOLO 有点像，但 Qoder 更强调全自动，不需要你坐在电脑前跟它交互。</p>
+          <p><strong>CodeBuddy</strong>（腾讯云）亮点是 MCP 生态集成——它不只是一个编辑器，还能连通外部工具和数据源。我说过我用 WorkBuddy，底层就是 CodeBuddy 的能力。</p>
+          <p><strong>ZCode</strong>（智谱）是 GLM 模型官方适配的开发工具，2026 年 6 月刚出 3.0 版，用了自研 Agent 内核，国产工具里少有的「不用第三方 Agent 框架」的产品。</p>
+          <p>这三个我都还没上手——目前 VS Code 够用，再切工具成本太高。但不妨碍先记下来，以后有需求了再试。</p>
+        </div>
+      </div>
+
+      <div class="hw-card" data-accent="gray">
+        <div class="hw-card-header">
+          <svg class="hw-icon" viewBox="0 0 24 24" stroke="#c9a876" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l4-2 4 2 4-2 4 2 4-2v12l-4 2-4-2-4 2-4-2-4 2V6z"/><line x1="5" y1="10" x2="19" y2="10"/></svg>
+          <h2>CLI AI 工具 / Copilot</h2>
+          <span class="hw-tag pass">还没到这个段位</span>
+        </div>
+        <div class="hw-card-body">
+          <p>据说正经程序员除了 IDE，还会用命令行里的 AI 工具——比如在终端里直接让 AI 生成脚本、调试错误、操作 Git。像 Claude Code、OpenAI Codex CLI 就是做这个的。</p>
+          <p>至于 GitHub Copilot，可以说是代码自动补灵的鼻祖——你在编辑器里写函数名，它猜你想干嘛，自动生成整段代码。曾经在 2023-2025 年火得不得了，但现在各路 AI IDE 全都自带这个能力了，Copilot 的光环就没那么强了。</p>
+          <p>这两个品类我现在都还没接触到——不是它们不好，是我还没写足够多的代码，没有「被重复劳动逼疯」的体验，自然也不需要这些工具来救命。等以后干活干到吐了，自然就上道了。</p>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:40px;">
+        <a href="tools.html" class="hw-back">← 返回工具列表</a>
+      </div>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">工欲善其事，必先利其器</p>
+      <p class="footer-copy">© 2026 AIdreamer · 用 AI 学 AI</p>
+    </div>
+  </footer>
+</body>
+</html>
