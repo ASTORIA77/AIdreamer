@@ -1,0 +1,45 @@
+<svg viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg">
+  <style>text{font-family:'Noto Serif SC','Noto Sans SC',serif;}</style>
+
+  <rect x="15" y="20" width="220" height="240" rx="10" fill="#fdf8f0" stroke="#c9a876" stroke-width="1.5"/>
+  <rect x="15" y="20" width="220" height="36" rx="10" fill="#c9a876"/>
+  <rect x="15" y="40" width="220" height="16" fill="#c9a876"/>
+  <text x="125" y="44" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">第一层：WebSearch</text>
+  <text x="125" y="72" text-anchor="middle" font-size="12" fill="#a08060">搜索引擎 API</text>
+  <text x="35" y="100" font-size="12" fill="#6b5c4a">✅ 搜有没有相关文章</text>
+  <text x="35" y="124" font-size="12" fill="#6b5c4a">✅ 毫秒级返回</text>
+  <text x="35" y="148" font-size="12" fill="#6b5c4a">✅ 覆盖全网公开页面</text>
+  <text x="35" y="178" font-size="12" fill="#b8a080">✗ 不打开任何网页</text>
+  <text x="35" y="202" font-size="12" fill="#b8a080">✗ 看不到 JS 动态内容</text>
+  <text x="35" y="226" font-size="12" fill="#b8a080">✗ 没有登录态</text>
+
+  <path d="M 240 140 L 255 140" stroke="#bbb" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="250" y="20" width="220" height="240" rx="10" fill="#edf3f9" stroke="#6b8cae" stroke-width="1.5"/>
+  <rect x="250" y="20" width="220" height="36" rx="10" fill="#6b8cae"/>
+  <rect x="250" y="40" width="220" height="16" fill="#6b8cae"/>
+  <text x="360" y="44" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">第二层：WebFetch</text>
+  <text x="360" y="72" text-anchor="middle" font-size="12" fill="#6080a0">HTTP 页面抓取</text>
+  <text x="270" y="100" font-size="12" fill="#5a6d80">✅ 读整篇文章正文</text>
+  <text x="270" y="124" font-size="12" fill="#5a6d80">✅ 秒级返回</text>
+  <text x="270" y="148" font-size="12" fill="#5a6d80">✅ 源码里有就能拿到</text>
+  <text x="270" y="178" font-size="12" fill="#8098b0">✗ 不执行 JavaScript</text>
+  <text x="270" y="202" font-size="12" fill="#8098b0">✗ 不带 Cookie</text>
+  <text x="270" y="226" font-size="12" fill="#8098b0">✗ 动态渲染页面空白</text>
+
+  <path d="M 475 140 L 490 140" stroke="#bbb" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="485" y="20" width="220" height="240" rx="10" fill="#eef6f0" stroke="#8fb89c" stroke-width="1.5"/>
+  <rect x="485" y="20" width="220" height="36" rx="10" fill="#8fb89c"/>
+  <rect x="485" y="40" width="220" height="16" fill="#8fb89c"/>
+  <text x="595" y="44" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">第三层：WebBridge</text>
+  <text x="595" y="72" text-anchor="middle" font-size="12" fill="#508060">真实浏览器控制</text>
+  <text x="505" y="100" font-size="12" fill="#4a6d5a">✅ 完整渲染 + JS 执行</text>
+  <text x="505" y="124" font-size="12" fill="#4a6d5a">✅ 带你的 Cookie 和登录态</text>
+  <text x="505" y="148" font-size="12" fill="#4a6d5a">✅ 能点击/输入/截图</text>
+  <text x="505" y="178" font-size="12" fill="#80a890">✗ 比较慢（秒到分钟）</text>
+  <text x="505" y="202" font-size="12" fill="#80a890">✗ 依赖浏览器运行</text>
+  <text x="505" y="226" font-size="12" fill="#80a890">✗ 不能后台静默</text>
+
+  <defs><marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#bbb"/></marker></defs>
+</svg>

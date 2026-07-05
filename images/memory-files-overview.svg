@@ -1,0 +1,67 @@
+<svg viewBox="0 0 720 400" xmlns="http://www.w3.org/2000/svg">
+  <style>text{font-family:'Noto Serif SC','Noto Sans SC',serif;}</style>
+
+  <text x="360" y="22" text-anchor="middle" font-size="13" fill="#8a8376">Agent 记忆系统文件全景图</text>
+
+  <!-- Layer 1: Persona -->
+  <rect x="20" y="40" width="210" height="155" rx="8" fill="#edf2f8" stroke="#6b8cae" stroke-width="1.5"/>
+  <rect x="20" y="40" width="210" height="28" rx="8" fill="#6b8cae"/>
+  <rect x="20" y="56" width="210" height="12" fill="#6b8cae"/>
+  <text x="125" y="60" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">第一层：身份层</text>
+  <text x="125" y="84" text-anchor="middle" font-size="10" fill="#6b8cae">启动时加载，不随项目变</text>
+  <line x1="40" y1="96" x2="210" y2="96" stroke="#d8e4f2" stroke-width="1"/>
+  <rect x="40" y="104" width="170" height="20" rx="3" fill="#d8e4f2"/>
+  <text x="125" y="118" text-anchor="middle" font-size="10" fill="#5a7d9e">SOUL.md · 人格与价值观</text>
+  <rect x="40" y="128" width="170" height="20" rx="3" fill="#d8e4f2"/>
+  <text x="125" y="142" text-anchor="middle" font-size="10" fill="#5a7d9e">IDENTITY.md · 对外形象</text>
+  <rect x="40" y="152" width="170" height="20" rx="3" fill="#d8e4f2"/>
+  <text x="125" y="166" text-anchor="middle" font-size="10" fill="#5a7d9e">USER.md · 你的长期档案</text>
+
+  <path d="M 125 195 L 125 218" stroke="#bbb" stroke-width="1.2" marker-end="url(#a)"/>
+
+  <!-- Layer 2: Memory -->
+  <rect x="255" y="40" width="210" height="155" rx="8" fill="#eef6f0" stroke="#8fb89c" stroke-width="1.5"/>
+  <rect x="255" y="40" width="210" height="28" rx="8" fill="#8fb89c"/>
+  <rect x="255" y="56" width="210" height="12" fill="#8fb89c"/>
+  <text x="360" y="60" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">第二层：记忆层</text>
+  <text x="360" y="84" text-anchor="middle" font-size="10" fill="#8fb89c">记录项目里发生的一切</text>
+  <line x1="275" y1="96" x2="445" y2="96" stroke="#dae9df" stroke-width="1"/>
+  <rect x="275" y="104" width="170" height="20" rx="3" fill="#dae9df"/>
+  <text x="360" y="118" text-anchor="middle" font-size="10" fill="#5a8a6e">MEMORY.md · 长期精选决策</text>
+  <rect x="275" y="128" width="170" height="20" rx="3" fill="#dae9df"/>
+  <text x="360" y="142" text-anchor="middle" font-size="10" fill="#5a8a6e">YYYY-MM-DD.md · 每日日志</text>
+  <rect x="275" y="152" width="170" height="20" rx="3" fill="#dae9df"/>
+  <text x="360" y="166" text-anchor="middle" font-size="10" fill="#5a8a6e">CONTEXT.md · 会话快照</text>
+
+  <path d="M 360 195 L 360 218" stroke="#bbb" stroke-width="1.2" marker-end="url(#a)"/>
+
+  <!-- Layer 3: Skills -->
+  <rect x="490" y="40" width="210" height="155" rx="8" fill="#fdf8f0" stroke="#c9a876" stroke-width="1.5"/>
+  <rect x="490" y="40" width="210" height="28" rx="8" fill="#c9a876"/>
+  <rect x="490" y="56" width="210" height="12" fill="#c9a876"/>
+  <text x="595" y="60" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">第三层：技能层</text>
+  <text x="595" y="84" text-anchor="middle" font-size="10" fill="#c9a876">按需加载，省 token</text>
+  <line x1="510" y1="96" x2="680" y2="96" stroke="#efe4d2" stroke-width="1"/>
+  <rect x="510" y="104" width="170" height="20" rx="3" fill="#efe4d2"/>
+  <text x="595" y="118" text-anchor="middle" font-size="10" fill="#a08060">SKILL.md · 任务执行手册</text>
+  <rect x="510" y="128" width="170" height="20" rx="3" fill="#efe4d2"/>
+  <text x="595" y="142" text-anchor="middle" font-size="10" fill="#a08060">references/ · 按需读</text>
+  <rect x="510" y="152" width="170" height="20" rx="3" fill="#efe4d2"/>
+  <text x="595" y="166" text-anchor="middle" font-size="10" fill="#a08060">scripts/ · 不占上下文</text>
+
+  <!-- Bottom separator -->
+  <line x1="30" y1="230" x2="690" y2="230" stroke="#e0dbd2" stroke-width="1"/>
+
+  <!-- WorkBuddy vs Qoder Work comparison -->
+  <text x="30" y="258" font-size="12" font-weight="700" fill="#6b8cae">WorkBuddy 布局：</text>
+  <text x="30" y="278" font-size="11" fill="#5c564a">~/.workbuddy/ （根目录） 𔘤 SOUL.md + IDENTITY.md + USER.md + MEMORY.md</text>
+  <text x="30" y="296" font-size="11" fill="#5c564a">.workbuddy/memory/  𔘤 MEMORY.md + YYYY-MM-DD.md</text>
+  <text x="30" y="314" font-size="11" fill="#5c564a">~/.workbuddy/skills/  𔘤 各技能子目录</text>
+  <text x="30" y="338" font-size="11" fill="#8a8376">✦ 根目录散落文件较多，有历史包袱</text>
+
+  <text x="30" y="366" font-size="12" font-weight="700" fill="#8fb89c">Qoder Work 布局：</text>
+  <text x="30" y="386" font-size="11" fill="#5c564a">memory/  𔘤 long-term/ + short-term/ 全在这一个文件夹里</text>
+  <text x="30" y="404" font-size="11" fill="#8a8376">✦ 一个文件夹管所有记忆，打开就清爽</text>
+
+  <defs><marker id="a" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#bbb"/></marker></defs>
+</svg>

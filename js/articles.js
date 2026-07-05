@@ -255,6 +255,28 @@ const ARTICLES = [
     readTime: '约 5 分钟',
     file: 'posts/21-final-thoughts.md',
     accent: 'camel'
+  },
+  {
+    slug: 'agent-web-capabilities',
+    title: 'Agent 上网能力全景图——虽然说是最后了，但想到就又写了',
+    subtitle: 'WebSearch、WebFetch、WebBridge——三层递进，大部分人口中的上网，其实只用了最浅的一层',
+    date: '2026-07-05',
+    tags: ['AI Agent', 'WebSearch', 'WebFetch', 'WebBridge'],
+    excerpt: 'AI 上网有三层：WebSearch（搜索引擎摘要，不打开任何网页）、WebFetch（读 HTML 源码，不渲染 JS）、WebBridge（操控真实浏览器，带你的登录态）。你不是在选功能，是在给 AI 选眼镜。外加我的实操：怎么把 Kimi WebBridge 接入 WorkBuddy，让 Agent 写完 HTML 后自己打开截图、验证成果。',
+    readTime: '约 9 分钟',
+    file: 'posts/22-agent-web-capabilities.md',
+    accent: 'blue'
+  },
+  {
+    slug: 'memory-files-explained',
+    title: '那么多的.md文件究竟是什么？',
+    subtitle: 'Agent 的记忆系统全景——三层记忆、两种布局、一侧写',
+    date: '2026-07-05',
+    tags: ['AI Agent', 'Agent 记忆', '工具对比'],
+    excerpt: '打开 Agent 的工作目录，一堆 .md 文件。SOUL.md 是灵魂，IDENTITY.md 是名片，MEMORY.md 是日记本，SKILL.md 是工具箱。WorkBuddy 的散落 vs Qoder Work 的整洁——还有两个 Agent 对我的侧写：一个夸得我舒服，一个让我恼羞成怒关掉了反思。',
+    readTime: '约 8 分钟',
+    file: 'posts/23-memory-files-explained.md',
+    accent: 'purple'
   }
 ];
 
